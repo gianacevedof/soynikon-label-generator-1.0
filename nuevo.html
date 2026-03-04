@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/197e9f07b4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Nuevo cliente</title>
+  </head>
+
+  <body class="clientes-page-styles">
+    <header>
+      <img src="images/logo-3.png" alt="Logo de Soynikon" />
+      <!-- <p class="logo">Soynikon</p> -->
+      <div class="header-menu">
+        <div class="store-name">
+          <h1>Soynikon | Tienda de Cámaras</h1>
+          <p>¡Estamos listos para enviar tus paquetes!</p>
+        </div>
+        <div class="right-menu">
+          <a href="#">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Panel administrador
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="nav-bar">
+        <nav class="nav">
+          <div class="nav-bar-menu">
+            <a href="index.html"
+              ><p>INICIO <i class="fa-solid fa-house"></i></p
+            ></a>
+            <a href="nuevo.html"
+              ><p>NUEVO CLIENTE <i class="fa-solid fa-user-plus"></i></p
+            ></a>
+            <a href="clientes.html"
+              ><p>VER CLIENTES <i class="fa-solid fa-user"></i></p
+            ></a>
+            <a href="#"
+              ><p>CONFIGURACIÓN <i class="fa-solid fa-gear"></i></p
+            ></a>
+          </div>
+        </nav>
+      </div>
+
+      <section class="nuevo-cliente">
+        <div class="form-container">
+          <form>
+            <label for="nombre">First name:</label>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              placeholder="First name"
+              required
+              class="nuevo-form-input"
+            />
+            <br />
+
+            <label for="nombre">Last name:</label>
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              placeholder="Last name"
+              required
+              class="nuevo-form-input"
+            />
+            <br />
+
+            <label for="telefono">Phone number:</label>
+            <input
+              type="tel"
+              id="phone_number"
+              name="phone_number"
+              placeholder="8092344567"
+              maxlength="10"
+              minlength="10"
+              pattern="[0-9]{10}"
+              title="Utiliza un número de 10 dígitos sin espacios ni guiones"
+              required
+              class="nuevo-form-input"
+            />
+            <br />
+
+            <label for="ciudad">Ciudad:</label>
+            <input
+              list="ciudades"
+              type="text"
+              id="city"
+              name="city"
+              placeholder="City"
+              required
+              class="nuevo-form-input"
+            />
+            <datalist id="city">
+              <option value="Santo Domingo">
+                Santo Domingo (Distrito Nacional)
+              </option>
+              <option value="Azua de Compostela">Azua de Compostela</option>
+              <option value="Neiba">Neiba</option>
+              <option value="Barahona">Barahona</option>
+              <option value="Dajabon">Dajabón</option>
+              <option value="San Francisco de Macoris">
+                San Francisco de Macorís
+              </option>
+              <option value="Comendador">Comendador</option>
+              <option value="Santa Cruz del Seibo">Santa Cruz del Seibo</option>
+              <option value="Moca">Moca</option>
+              <option value="Hato Mayor del Rey">Hato Mayor del Rey</option>
+              <option value="Salcedo">Salcedo</option>
+              <option value="Jimani">Jimaní</option>
+              <option value="Higuey">Higüey</option>
+              <option value="La Romana">La Romana</option>
+              <option value="Concepcion de La Vega">
+                Concepción de La Vega
+              </option>
+              <option value="Nagua">Nagua</option>
+              <option value="Bonao">Bonao</option>
+              <option value="San Fernando de Monte Cristi">
+                San Fernando de Monte Cristi
+              </option>
+              <option value="Monte Plata">Monte Plata</option>
+              <option value="Pedernales">Pedernales</option>
+              <option value="Bani">Baní</option>
+              <option value="San Felipe de Puerto Plata">
+                San Felipe de Puerto Plata
+              </option>
+              <option value="Santa Barbara de Samana">
+                Santa Bárbara de Samaná
+              </option>
+              <option value="San Cristobal">San Cristóbal</option>
+              <option value="San Jose de Ocoa">San José de Ocoa</option>
+              <option value="San Juan de la Maguana">
+                San Juan de la Maguana
+              </option>
+              <option value="San Pedro de Macoris">San Pedro de Macorís</option>
+              <option value="Cotuí">Cotuí</option>
+              <option value="Santiago de los Caballeros">
+                Santiago de los Caballeros
+              </option>
+              <option value="San Ignacio de Sabaneta">
+                San Ignacio de Sabaneta
+              </option>
+              <option value="Santo Domingo Este">Santo Domingo Este</option>
+              <option value="Mao">Mao</option>
+            </datalist>
+            <br />
+
+            <input type="submit" value="Guardar" class="nuevo-form-input" />
+            <input type="reset" value="Reiniciar" class="nuevo-form-input" />
+          </form>
+          <a href="index.html">Ir atrás</a>
+          <script src="js/submit_client.js"></script>
+        </div>
+      </section>
+    </main>
+  </body>
+  <footer>
+    <p><a href="tel:8098664326">Soynikon &copy; 2025</a></p>
+
+    <section class="social-media">
+      <a href="https://www.instagram.com/soynikon/" target="_blank"
+        ><i class="fa-brands fa-instagram"></i
+      ></a>
+
+      <a href="https://www.facebook.com/soynikon.do" target="_blank"
+        ><i class="fa-brands fa-facebook"></i
+      ></a>
+
+      <a href="http://wa.me/8098664326" target="_blank"
+        ><i class="fa-brands fa-whatsapp"></i
+      ></a>
+    </section>
+  </footer>
+</html>

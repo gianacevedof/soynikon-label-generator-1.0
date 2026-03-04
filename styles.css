@@ -1,0 +1,570 @@
+html,
+body {
+  height: 100vh;
+  margin: 0;
+}
+* {
+  font-family: "Source Sans 3", sans-serif;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+body {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+/* BACKGROUNDS */
+.background-image {
+  background-image: url(images/couple-holding-box.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  padding: 2em;
+}
+.white-background {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  margin: 0 auto;
+  max-width: 1250px;
+  width: 100%;
+  height: 100%;
+}
+
+/* HEADER */
+header {
+  background-color: rgb(255, 200, 0);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 2em 4em;
+}
+header img {
+  font-size: 3em;
+  width: 10%;
+  font-weight: bolder;
+  color: white;
+  border-right: 3px solid white;
+  padding-right: 1em;
+}
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-left: 2em;
+}
+.store-name {
+  color: white;
+  font-size: 20px;
+}
+.store-name p {
+  font-size: 25px;
+}
+.right-menu {
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: space-between;
+  width: 20em;
+  font-size: 25px;
+  align-items: center;
+}
+.right-menu a {
+  text-decoration: none;
+  color: white;
+}
+.right-menu a:hover,
+.nav-bar-menu p:hover {
+  color: rgb(177, 177, 177);
+  border-bottom: solid 1px rgb(177, 177, 177);
+}
+
+/* NAVBAR */
+.nav-bar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 2em 0;
+  justify-content: right;
+  background-color: rgb(225 95 68);
+}
+nav p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  margin: 0 1em;
+}
+.nav-bar-menu {
+  width: 50em;
+  text-align: right;
+}
+
+/* BUTTONS */
+.btn {
+  background-color: rgb(255, 200, 0);
+  color: white;
+  font-size: medium;
+  border-radius: 0.7em;
+  margin-top: 1em;
+  padding: 0.5em 0.8em;
+  border: none;
+  cursor: pointer;
+}
+.btn a {
+  text-decoration: none;
+  color: white;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+  padding: 2em;
+}
+.separator h1 {
+  margin: 1em;
+}
+
+/* LABEL GENERATOR LAYOUT */
+.label-generator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  margin: 3em 3em;
+  justify-items: center;
+}
+.label-generator h1 {
+  margin-bottom: 0.7em;
+}
+
+/* FORM STYLES */
+.label-form-container {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 50px;
+  max-width: 600px;
+  min-width: 350px;
+  border: 1px solid black;
+}
+.generator-controls {
+  display: flex;
+  background-color: rgb(225 95 68);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin-bottom: 2em;
+}
+.generator-controls p {
+  color: white;
+  font-weight: bold;
+  padding: 0 0.5em;
+}
+.search-bar {
+  width: 70%;
+  padding: 0.5em;
+}
+.search-bar input {
+  width: 100%;
+  font-size: 90%;
+  padding: 0.3em 0;
+}
+.input {
+  border: solid 1px rgb(230, 230, 230);
+  border-radius: 50px;
+  font-size: 100%;
+  padding: 0.5em;
+}
+
+.search-bar {
+  position: relative;
+  z-index: 100;
+}
+
+.search-results-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-width: 300px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.search-item:hover {
+  background-color: #f0f0f0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.form-btn {
+  display: flex;
+  margin: 2em auto;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(225 95 68);
+  border-radius: 50px;
+  padding: 0.2em 0;
+}
+.form-btn input {
+  background-color: rgb(225 95 68);
+  border: none;
+  font-weight: bold;
+  color: white;
+  font-size: 100%;
+  cursor: pointer;
+}
+.form-btn-div {
+  display: flex;
+  justify-self: center;
+  margin: 0 1.5em;
+}
+.form-btn-icon {
+  align-content: center;
+  margin: auto 0;
+  margin-left: 0.5em;
+  border: 1px solid white;
+  border-radius: 50px;
+  background-color: white;
+  width: 100%;
+  height: 50%;
+  padding: 0.2em;
+}
+
+/* =========================================
+   PREVISUALIZACIÓN EN PANTALLA (SCREEN)
+   ========================================= */
+.shipping-label-container {
+  width: 600px;
+  height: 600px;
+  box-sizing: border-box;
+  padding: 2em;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+.label-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid black;
+}
+.label-separator {
+  margin: 0.5em 0;
+  border: none;
+  border-top: 1px solid black;
+}
+.label-image {
+  width: 20%;
+  height: auto;
+}
+.label-preview-sections {
+  margin: 1.5em;
+}
+.label-info-top {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+}
+.label-logo-area img {
+  width: 120px;
+  padding-right: 1.5em;
+  border-right: 2px solid black;
+}
+
+/* Estilos de RUTA y ITEM en pantalla */
+.ruta-details-group {
+  margin-left: 1em;
+  font-weight: bold;
+  width: 100%;
+}
+.ruta-detail,
+.item-detail {
+  background-color: rgba(187, 187, 187, 0.5);
+  border-radius: 2px;
+  padding: 0.1em 0.4em;
+  margin: 0.2em 0;
+  display: block;
+}
+
+.label-recipient-section {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+.recipient-address-info {
+  text-align: left;
+}
+.label-fragile-icon {
+  text-align: right;
+}
+.label-fragile-icon img {
+  width: 120px;
+}
+
+.label-sender-section {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  text-align: left;
+}
+.label-ig-qr img {
+  width: 120px;
+}
+
+/* =========================================
+   PREVISUALIZACIÓN DE IMPRESIÓN (OCULTO EN PANTALLA)
+   ========================================= */
+.shipping-label-container-p {
+  display: none;
+  width: 4in;
+  height: 3in;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255, 100%);
+  border: 1px solid rgb(0, 0, 0);
+  padding: 1em;
+}
+
+.label-separator-p {
+  margin: 0;
+  border: none;
+  border-top: 1px solid black;
+}
+
+.label-header-p {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  font-size: 10px;
+  padding-bottom: 1em;
+}
+
+.label-header-p h1 {
+  margin: 0;
+}
+
+.label-preview-sections-p {
+  justify-self: center;
+  align-self: center;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.label-info-top-p {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  justify-self: center;
+  align-self: center;
+}
+
+.label-logo-area-p {
+  width: 1in;
+  justify-self: left;
+  align-self: center;
+}
+
+.label-logo-area-p img {
+  display: flex;
+  width: 70px;
+  border-right: solid 1px rgb(0, 0, 0);
+  padding-right: 0.8em;
+  justify-content: center;
+}
+
+.order-details-group-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-self: center;
+  font-weight: bold;
+  width: 100%;
+  font-size: 10px;
+}
+
+.order-detail-item-p {
+  display: block;
+  background-color: rgb(187, 187, 187, 50%);
+  border-radius: 2px;
+  margin: 0.1em 0;
+}
+
+.order-detail-item-p p {
+  padding: 0.1em 0.4em;
+  margin: 0.1em;
+}
+
+.label-recipient-section-p,
+.label-sender-section-p {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.recipient-address-info-p,
+.sender-info-p {
+  font-size: 10px;
+}
+
+.label-fragile-icon-p,
+.label-ig-qr-p {
+  height: 60px;
+}
+
+.label-fragile-icon-p img,
+.label-ig-qr-p img {
+  width: 60px;
+}
+
+/* CLIENTS PAGE & FOOTER */
+.clients-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5em;
+  margin-top: 2em;
+}
+.client-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 0.8em;
+  padding: 1.5em;
+  cursor: pointer;
+}
+.site-footer {
+  border: solid 1px rgb(226, 226, 226);
+  font-size: small;
+  padding: 2em;
+  background-color: rgb(250, 200, 0);
+}
+.site-footer a,
+.site-footer p {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+.site-footer .social-media {
+  float: right;
+}
+.fa-brands {
+  font-size: 1.4em;
+  margin-left: 10px;
+}
+
+/* =========================================
+   MEDIA QUERY: RESPONSIVE SCREEN
+   ========================================= */
+@media screen and (max-width: 768px) {
+  header,
+  .header-menu,
+  .right-menu,
+  .nav-bar,
+  .label-generator,
+  .generator-controls,
+  .form-btn {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .label-generator {
+    grid-template-columns: 1fr;
+  }
+  .shipping-label-container {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+  }
+  .label-info-top,
+  .label-recipient-section,
+  .label-sender-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .label-logo-area img {
+    border-right: none;
+  }
+}
+
+/* =========================================
+   MEDIA QUERY: PRINT (IMPRESIÓN REAL)
+   ========================================= */
+@media print {
+  /* Ocultar TODO lo que no sea la etiqueta de impresión */
+  nav,
+  header,
+  .generator-controls,
+  .label-form-container,
+  .nav-bar,
+  .separator,
+  .site-footer,
+  .shipping-label-container {
+    display: none !important;
+  }
+
+  /* Ocultar elementos específicos dentro de label-generator si es necesario */
+  .label-form-container,
+  .label-generator-container,
+  .separator,
+  header,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* Resetear body para la hoja */
+  html,
+  body {
+    width: 4in;
+    height: 3in;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  .label-generator {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Mostrar y Posicionar la etiqueta de impresión */
+  .label-generator-container-p {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4in;
+    height: 3in;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Asegurar visibilidad interna */
+  .shipping-label-container-p {
+    border: 3px solid black; /* Borde más visible al imprimir */
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/197e9f07b4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Clientes</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="images/logo-3.png" alt="Logo de Soynikon" />
+      <!-- <p class="logo">Soynikon</p> -->
+      <div class="header-menu">
+        <div class="store-name">
+          <h1>Soynikon | Tienda de Cámaras</h1>
+          <p>¡Estamos listos para enviar tus paquetes!</p>
+        </div>
+        <div class="right-menu">
+          <a href="#">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Panel administrador
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="nav-bar">
+        <nav class="nav">
+          <div class="nav-bar-menu">
+            <a href="index.html"
+              ><p>INICIO <i class="fa-solid fa-house"></i></p
+            ></a>
+            <a href="nuevo.html"
+              ><p>NUEVO CLIENTE <i class="fa-solid fa-user-plus"></i></p
+            ></a>
+            <a href="clientes.html"
+              ><p>VER CLIENTES <i class="fa-solid fa-user"></i></p
+            ></a>
+            <a href="#"
+              ><p>CONFIGURACIÓN <i class="fa-solid fa-gear"></i></p
+            ></a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- CLIENTS SECTION -->
+      <section class="clients">
+        <h1>Clients</h1>
+        <div class="search-bar-centered">
+          <input
+            class="search-bar"
+            type="text"
+            placeholder="Search by name, phonen number or city... "
+          />
+        </div>
+        <!-- BUTTON -->
+        <button class="btn new-client-btn">
+          <i class="fa-solid fa-plus"></i>
+          <a href="nuevo.html">New client</a>
+        </button>
+
+        <div id="clients-container" class="clients-container">
+          <p>Loading clients...</p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <p><a href="tel:8098664326">Powered by HelveticaStudio &copy; 2025</a></p>
+
+      <div class="social-media">
+        <a href="https://www.instagram.com/soynikon/" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+
+        <a href="https://www.facebook.com/soynikon.do" target="_blank"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+
+        <a href="http://wa.me/8098664326" target="_blank"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+    </footer>
+    <script src="js/get_clients.js"></script>
+  </body>
+</html>

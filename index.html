@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/197e9f07b4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Generador de Etiquetas</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="images/logo-3.png" alt="Logo de Soynikon" />
+      <div class="header-menu">
+        <div class="store-name">
+          <h1>Soynikon | Photo Store</h1>
+          <p>¡Estamos listos para enviar tus paquetes!</p>
+        </div>
+        <div class="right-menu">
+          <a href="#">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Panel administrador
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="nav-bar">
+        <nav class="nav">
+          <div class="nav-bar-menu">
+            <a href="index.html"
+              ><p>INICIO <i class="fa-solid fa-house"></i></p
+            ></a>
+            <a href="nuevo.html"
+              ><p>NUEVO CLIENTE <i class="fa-solid fa-user-plus"></i></p
+            ></a>
+            <a href="clientes.html"
+              ><p>VER CLIENTES <i class="fa-solid fa-user"></i></p
+            ></a>
+            <a href="#"
+              ><p>CONFIGURACIÓN <i class="fa-solid fa-gear"></i></p
+            ></a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="background-image">
+        <div class="white-background">
+          <div class="main-container">
+            <div class="separator">
+              <h1>Generador de etiquetas</h1>
+            </div>
+
+            <section class="label-generator">
+              <div class="label-form-container">
+                <div class="generator-controls">
+                  <p>ENVIAR A</p>
+                  <div class="search-bar">
+                    <input
+                      class="input"
+                      type="text"
+                      id="search-input"
+                      placeholder="Nombre, teléfono o ciudad..."
+                    />
+                    <div id="search-results" class="search-results-list"></div>
+                  </div>
+                </div>
+
+                <div class="label-display-container">
+                  <form action="#" onsubmit="return false;">
+                    <label for="client-name">Cliente:</label>
+                    <input
+                      class="input"
+                      type="text"
+                      id="client-name"
+                      name="client-name"
+                      placeholder="Nombre del cliente"
+                      readonly
+                      aria-readonly="true"
+                    />
+
+                    <label for="form-phone-number">Teléfono:</label>
+                    <input
+                      class="input"
+                      type="tel"
+                      id="form-phone-number"
+                      name="form-phone-number"
+                      placeholder="(809) XXX-XXX"
+                      readonly
+                      aria-readonly="true"
+                    />
+
+                    <label for="form-city">Destino:</label>
+                    <input
+                      class="input"
+                      type="text"
+                      id="form-city"
+                      name="form-city"
+                      placeholder="Lugar de destino"
+                      readonly
+                      aria-readonly="true"
+                    />
+
+                    <label for="form-ruta">Ruta:</label>
+                    <input
+                      class="input"
+                      type="text"
+                      id="form-ruta"
+                      name="form-ruta"
+                      placeholder="Por donde se envía"
+                      maxlength="37"
+                      required
+                    />
+
+                    <label for="form-item">Artículo:</label>
+                    <input
+                      class="input"
+                      type="text"
+                      id="form-item"
+                      name="form-item"
+                      placeholder="Artículo enviado"
+                      maxlength="33"
+                      required
+                    />
+
+                    <div class="form-btn">
+                      <div class="form-btn-div">
+                        <input type="reset" value="Limpiar" />
+                        <div class="form-btn-icon">❌</div>
+                      </div>
+                      <div class="form-btn-div">
+                        <input
+                          type="submit"
+                          value="Generar"
+                          onclick="window.print()"
+                        />
+                        <div class="form-btn-icon">✔️</div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="label-generator-container">
+                <div class="shipping-label-container">
+                  <div class="label-header">
+                    <h1>ETIQUETA DE ENVÍO</h1>
+                  </div>
+
+                  <div class="label-info-top label-preview-sections">
+                    <div class="label-logo-area">
+                      <img
+                        src="images/logo-1.png"
+                        alt="Logo de Soynikon"
+                        class="label-image"
+                      />
+                    </div>
+
+                    <div class="ruta-details-group">
+                      <div class="ruta-detail">
+                        <span id="label-ruta">RUTA:</span>
+                      </div>
+                      <div class="item-detail">
+                        <span id="label-item">ARTÍCULO:</span>
+                      </div>
+                      <div class="item-detail">
+                        <span id="label-date">FECHA:</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="label-separator" />
+
+                  <div class="label-recipient-section label-preview-sections">
+                    <div class="recipient-address-info">
+                      <h2 id="recipient-city">Ciudad:</h2>
+                      <p id="recipient-name">Recibe:</p>
+                      <p id="recipient-phone-number">Teléfono:</p>
+                    </div>
+
+                    <div class="label-fragile-icon">
+                      <img
+                        src="images/fragile-2.png"
+                        alt="Frágil"
+                        class="label-image"
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="label-separator" />
+
+                  <div class="label-sender-section label-preview-sections">
+                    <div class="sender-info">
+                      <h2 id="sender-name">ENVIA: Juan Acevedo</h2>
+                      <p id="sender-phone-number">(809) 866-4326</p>
+                    </div>
+                    <div class="label-ig-qr">
+                      <img
+                        src="images/ig-qr-2.png"
+                        alt="QR Instagram"
+                        class="label-image"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LABEL PRINT VERSION -->
+              <div class="label-generator-container-p">
+                <div class="shipping-label-container-p">
+                  <div class="label-header-p">
+                    <h1>ETIQUETA DE ENVÍO</h1>
+                  </div>
+
+                  <div class="label-info-top-p label-preview-sections-p">
+                    <div class="label-logo-area-p">
+                      <img
+                        src="images/logo-1.png"
+                        alt="Logo"
+                        class="label-image-p"
+                      />
+                    </div>
+
+                    <div class="order-details-group-p">
+                      <div class="order-detail-item-p">
+                        <p id="label-ruta-p">RUTA:</p>
+                      </div>
+                      <div class="order-detail-item-p">
+                        <p id="label-item-p">ARTÍCULO:</p>
+                      </div>
+                      <div class="order-detail-item-p">
+                        <p id="label-date-p">FECHA:</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="label-separator-p" />
+
+                  <div
+                    class="label-recipient-section-p label-preview-sections-p"
+                  >
+                    <div class="recipient-address-info-p">
+                      <h2 id="recipient-city-p">Ciudad</h2>
+                      <p id="recipient-name-p">Recibe</p>
+                      <p id="recipient-phone-number-p">Teléfono</p>
+                    </div>
+
+                    <div class="label-fragile-icon-p">
+                      <img
+                        src="images/fragile-2.png"
+                        alt="Frágil"
+                        class="label-image-p"
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="label-separator-p" />
+
+                  <div class="label-sender-section-p label-preview-sections-p">
+                    <div class="sender-info-p">
+                      <h2 id="sender-name-p">ENVIA: Juan Acevedo</h2>
+                      <p id="sender-phone-number-p">(809) 866-4326</p>
+                    </div>
+                    <div class="label-ig-qr-p">
+                      <img
+                        src="images/ig-qr-2.png"
+                        alt="QR Instagram"
+                        class="label-image-p"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="tel:8098664326">Powered by HelveticaStudio &copy; 2025</a></p>
+      <div class="social-media">
+        <a href="https://www.instagram.com/soynikon/" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a href="https://www.facebook.com/soynikon.do" target="_blank"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+        <a href="http://wa.me/8098664326" target="_blank"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+    </footer>
+    <script src="js/label_app.js"></script>
+  </body>
+</html>
