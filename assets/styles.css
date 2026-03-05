@@ -8,15 +8,21 @@ header a {
     text-align: center;
 }
 
+header img {
+    width: 70px;
+}
+
 #hero .btns, 
 #main .btns,
-#new-client .btns {
+#new-client .btns,
+#clients .btns {
     background-color: rgb(255, 200, 0);
     color: white;
 }
 
 #hero .btn2:hover,
-#main .btn2:hover {
+#main .btn2:hover,
+#clients .btn2:hover {
     background-color: rgb(255, 200, 0);
     color: white;
 }
@@ -35,6 +41,10 @@ header a {
     text-align: center;
 }
 
+#hero h1 {
+    font-size: 2.5em;
+}
+
 #hero img {
     height: 60vh;
     width: 100vw;
@@ -49,12 +59,12 @@ header a {
 #search-bar {
     padding: 5px 15px;
     margin-bottom: 5px;
-    width: 300px;
+    width: 76vw;
 }
 
 #add-client {
     padding: 5px 15px;
-    width: 300px;
+    width: 76vw;
 }
 
 #add-client i {
@@ -81,13 +91,15 @@ header a {
     margin-bottom: 0;
 }
 
+/* NEW.HTML PAGE */
+
 #new-client {
     background-image: 
         linear-gradient(
         0deg,
         rgba(255, 255, 255, .9),
         rgba(255, 255, 255, .9)
-    ), url(../assets/images/hero-2.jpg);
+    ), url(../assets/images/bg-1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -95,12 +107,12 @@ header a {
     padding: 60px 30px;
 }
 
-#new-client form {
-    margin: auto;
+#new-client h1 {
+    font-size: 2.5em;
 }
 
-#new-client h1 {
-    font-size: 2em;
+#new-client form {
+    margin: auto;
 }
 
 #new-client p {
@@ -108,7 +120,47 @@ header a {
 }
 
 #new-client .btns {
-    width: 300px;
+    width: 76w;
+}
+
+/* CLIENTS.HTML PAGE */
+
+#clients {
+    background-image: 
+        linear-gradient(
+        0deg,
+        rgba(255, 255, 255, .9),
+        rgba(255, 255, 255, .9)
+    ), url(../assets/images/bg-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 60px 30px;
+}
+
+#clients h1 {
+    font-size: 2.5em;
+}
+
+#clients .container {
+    padding: 40px 45px;
+    background-color: white;
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .05);
+}
+
+#clients table {
+    min-width: 750px;
+}
+
+#clients p {
+    font-size: 0.9em;
+}
+
+#clients .btns {
+    width: 76w;
 }
 
 footer {
