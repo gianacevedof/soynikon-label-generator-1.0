@@ -4,8 +4,13 @@
     margin: 0;
 }
 
+header a {
+    text-align: center;
+}
+
 #hero .btns, 
-#main .btns {
+#main .btns,
+#new-client .btns {
     background-color: rgb(255, 200, 0);
     color: white;
 }
@@ -27,6 +32,7 @@
 
 #hero {
     background-color: rgb(251, 251, 251);
+    text-align: center;
 }
 
 #hero img {
@@ -34,6 +40,10 @@
     width: 100vw;
     object-fit: cover;
     position: center;
+}
+
+#main {
+    text-align: center;
 }
 
 #search-bar {
@@ -71,8 +81,39 @@
     margin-bottom: 0;
 }
 
+#new-client {
+    background-image: 
+        linear-gradient(
+        0deg,
+        rgba(255, 255, 255, .9),
+        rgba(255, 255, 255, .9)
+    ), url(../assets/images/hero-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 60px 30px;
+}
+
+#new-client form {
+    margin: auto;
+}
+
+#new-client h1 {
+    font-size: 2em;
+}
+
+#new-client p {
+    font-size: 0.9em;
+}
+
+#new-client .btns {
+    width: 300px;
+}
+
 footer {
     background: rgb(255, 200, 0);
+    text-align: center;
 }
 
 footer a {
