@@ -18,289 +18,112 @@
     <title>Soynikon | Label Generator</title>
   </head>
 
-  <body class="container-lg">
-    <header class="container-fluid">
-      <div class="container-lg header row justify-content-between">
-        <div class="col- col-sm-4">
-          <img src="assets/images/logo-3.png" alt="Logo de Soynikon" />
-        </div>
-
-        <div class="col- col-sm-4">
-          <nav class="">
-            <a href="index.html" class="h6">Home</a>
-            <a href="nuevo.html" class="h6">Add</a>
-            <a href="clientes.html" class="h6">Clients</a>
-            <!-- <a href="#" class="h6">Settings</a> -->
-          </nav>
-        </div>
+  <body>
+    <header>
+      <div>
+        <img
+          src="assets/images/logo-1.png"
+          alt="Logo for Soynikon Photo Store"
+          style="width: 15%"
+        />
+      </div>
+      
+      <div>
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Clients</li>
+            <li>New</li>
+          </ul>
+        </nav>
       </div>
     </header>
 
-    <div class="hero container-lg shadow-sm row">
-      <div class="hero-row-1 col- col-sm-6">
-        <div class="hero-row-1-container">
-          <p class="h1 fw-bold">Shipping Label Generator</p>
+    <section id="hero">
+      <div>
+        <div>
+          <h2>Shipping Label Generator</h2>
           <p>Simple and efficient management of your clients.</p>
-          <button class="btn btn1">See clients</button>
-          <button class="btn btn2">New clients</button>
+          <a href="new.html"><button>See clients</button></a>
+          <a href="clients.html"><button>New client</button></a>
+        </div>
+
+        <div>
+          <img 
+          src="assets/images/hero-1.jpg" 
+          alt="Nikon D810 Camera with Lens as 'Hero image'"
+          style="width: 30%">
         </div>
       </div>
+    </section>
 
-      <div class="hero-row-2 col- col-sm-6">
-        <img src="assets/images/hero-1.jpg" alt="" />
+    <section id="main">
+      <h3>Label Generator</h3>
+
+      <div>
+        <input
+        id="search-bar"
+        type="text"
+        placeholder="Search by name, phone number or city...">
+        <button id="add-client">Add client <i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
-    </div>
 
-    <main>
-      <div class="container-lg">
-        <h3 class="my-5">Label Generator</h3>
-
-        <div class="generator-search-bar mb-5">
-          <input
-            class="input rounded shadow-sm"
-            type="text"
-            id="search-input"
-            placeholder="Search by name, phone number or city..."
+      <div id="label-preview">
+        <div>
+          <img
+            src="assets/images/logo-1.png"
+            alt="Logo for Soynikon Photo Store"
+            style="width: 15%"
           />
-          <button
-            type="submit"
-            value="#"
-            class="btn btn1 px-4 rounded shadow-sm"
-          >
-            Add client<i class="fa-solid fa-plus"></i>
-          </button>
-          <div id="search-results" class="search-results-list"></div>
         </div>
 
-        <div class="container label-generator-section">
-          <div class="label-form-container">
-            <div class="label-display-container">
-              <form action="#" onsubmit="return false;">
-                <label for="client-name">Cliente:</label>
-                <input
-                  class="input"
-                  type="text"
-                  id="client-name"
-                  name="client-name"
-                  placeholder="Giancarlo Acevedo"
-                  readonly
-                  aria-readonly="true"
-                />
+        <div id="details">
+          <p id="order-details">ORDER DETAILS</p>
+          <p id="order-number">ORDER #: 12345</p>
+          <p id="order-item">ITEM: Camera Accesorie</p>
+          <p id="shipping-date">SHIPPING DATE: 07-29-2026</p>
+        </div>
 
-                <label for="form-phone-number">Teléfono:</label>
-                <input
-                  class="input"
-                  type="tel"
-                  id="form-phone-number"
-                  name="form-phone-number"
-                  placeholder="4076184326"
-                  readonly
-                  aria-readonly="true"
-                />
+        <div id="recipient">
+          <p>SHIP TO:</p>
+          <span id="ship-to">Giancarlo Acevedo</span>
+          <br>
+          <span id="ship-address">
+            789 Oakwood Ave<br> 
+            Dallas, TX 75230
+          </span>
+        </div>
 
-                <label for="form-city">Destino:</label>
-                <input
-                  class="input"
-                  type="text"
-                  id="form-city"
-                  name="form-city"
-                  placeholder="12 Orlando St Apt 3, Orlandoo, FL 32837"
-                  readonly
-                  aria-readonly="true"
-                />
-
-                <label for="form-ruta">Ruta:</label>
-                <input
-                  class="input"
-                  type="text"
-                  id="form-ruta"
-                  name="form-ruta"
-                  placeholder="Temp..."
-                  maxlength="37"
-                  required
-                />
-
-                <label for="form-item">Artículo:</label>
-                <input
-                  class="input"
-                  type="text"
-                  id="form-item"
-                  name="form-item"
-                  placeholder="Nikkor 600mm Lens"
-                  maxlength="33"
-                  required
-                />
-
-                <div class="form-btn">
-                  <button
-                    class="btn btn-outline-dark"
-                    type="submit"
-                    value="Generate"
-                    onclick="window.print()"
-                  >
-                    Generate
-                  </button>
-                  <div class="form-btn-div">
-                    <button
-                      class="btn btn-outline-dark"
-                      type="reset"
-                      value="Reset"
-                    >
-                      Reset
-                    </button>
-                  </div>
-                  <div class="form-btn-div"></div>
-                </div>
-              </form>
-            </div>
+        <div id="sender">
+          <p>FROM</p>
+          <p>
+            Soynikon Photo Store<br>
+            1234 Envio St.<br>
+            Orlando, FL 56789
+          </p>
+          <div>
+            <img
+            src="assets/images/fragile.png"
+            alt="Icon of fragile item"
+            style="width: 15%;">
           </div>
+        </div>
 
-          <div class="label-generator-container">
-            <div class="shipping-label-container">
-              <div class="label-header">
-                <h3>SOYNIKON PHOTO STORE</h3>
-              </div>
-
-              <div class="label-info-top label-preview-sections">
-                <div class="label-logo-area">
-                  <img
-                    src="assets/images/logo-1.png"
-                    alt="Logo de Soynikon"
-                    class="label-image"
-                  />
-                </div>
-
-                <div class="ruta-details-group">
-                  <div class="ruta-detail">
-                    <span id="label-ruta">Shipping address:</span>
-                  </div>
-                  <div class="item-detail">
-                    <span id="label-item">Item:</span>
-                  </div>
-                  <div class="item-detail">
-                    <span id="label-date">Date:</span>
-                  </div>
-                </div>
-              </div>
-
-              <hr class="label-separator" />
-
-              <div class="label-recipient-section label-preview-sections">
-                <div class="recipient-address-info">
-                  <p id="recipient-city">Ship to:</p>
-                  <p id="recipient-name">Recipient:</p>
-                  <p id="recipient-phone-number">Phone number:</p>
-                </div>
-
-                <div class="label-fragile-icon">
-                  <img
-                    src="assets/images/fragile-2.png"
-                    alt="Frágil"
-                    class="label-image"
-                  />
-                </div>
-              </div>
-
-              <hr class="label-separator" />
-
-              <div class="label-sender-section label-preview-sections">
-                <div class="sender-info">
-                  <p id="sender-name">Sends:</p>
-                  <p id="sender-phone-number">Contact:</p>
-                </div>
-                <div class="label-ig-qr">
-                  <img
-                    src="assets/images/ig-qr-2.png"
-                    alt="QR Instagram"
-                    class="label-image"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- LABEL PRINT VERSION -->
-          <div class="label-generator-container-p">
-            <div class="shipping-label-container-p">
-              <div class="label-header-p">
-                <h1>ETIQUETA DE ENVÍO</h1>
-              </div>
-
-              <div class="label-info-top-p label-preview-sections-p">
-                <div class="label-logo-area-p">
-                  <img
-                    src="images/logo-1.png"
-                    alt="Logo"
-                    class="label-image-p"
-                  />
-                </div>
-
-                <div class="order-details-group-p">
-                  <div class="order-detail-item-p">
-                    <p id="label-ruta-p">RUTA:</p>
-                  </div>
-                  <div class="order-detail-item-p">
-                    <p id="label-item-p">ARTÍCULO:</p>
-                  </div>
-                  <div class="order-detail-item-p">
-                    <p id="label-date-p">FECHA:</p>
-                  </div>
-                </div>
-              </div>
-
-              <hr class="label-separator-p" />
-
-              <div class="label-recipient-section-p label-preview-sections-p">
-                <div class="recipient-address-info-p">
-                  <h2 id="recipient-city-p">Ciudad</h2>
-                  <p id="recipient-name-p">Recibe</p>
-                  <p id="recipient-phone-number-p">Teléfono</p>
-                </div>
-
-                <div class="label-fragile-icon-p">
-                  <img
-                    src="images/fragile-2.png"
-                    alt="Frágil"
-                    class="label-image-p"
-                  />
-                </div>
-              </div>
-
-              <hr class="label-separator-p" />
-
-              <div class="label-sender-section-p label-preview-sections-p">
-                <div class="sender-info-p">
-                  <h2 id="sender-name-p">ENVIA: Juan Acevedo</h2>
-                  <p id="sender-phone-number-p">(809) 866-4326</p>
-                </div>
-                <div class="label-ig-qr-p">
-                  <img
-                    src="images/ig-qr-2.png"
-                    alt="QR Instagram"
-                    class="label-image-p"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="note">
+          <h1>NOTE:</h1>
         </div>
       </div>
-    </main>
+    </section>
 
-    <footer class="site-footer">
-      <p><a href="tel:8098664326">Giancarlo Acevedo &copy; 2026</a></p>
-      <div class="social-media">
-        <a href="https://www.instagram.com/soynikon/" target="_blank"
-          ><i class="fa-brands fa-instagram"></i
-        ></a>
-        <a href="https://www.facebook.com/soynikon.do" target="_blank"
-          ><i class="fa-brands fa-facebook"></i
-        ></a>
-        <a href="http://wa.me/8098664326" target="_blank"
-          ><i class="fa-brands fa-whatsapp"></i
-        ></a>
+    <footer>
+      <p>&#169 2026 Soynikon</p>
+      <div>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
       </div>
     </footer>
+
     <script
       src="/assets/js/label_app.js"
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
