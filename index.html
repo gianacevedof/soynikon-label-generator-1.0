@@ -19,74 +19,89 @@
   </head>
 
   <body>
+    <!-- header -->
     <header>
-      <div>
-        <img
-          src="assets/images/logo-1.png"
-          alt="Logo for Soynikon Photo Store"
-          style="width: 70px"
-        />
-      </div>
-      
-      <div>
-        <nav>
-          <ul>
-            <a href="index.html">Home</a>
-            <a href="clients.html">Clients</a>
-            <a href="new.html">New</a>
-          </ul>
-        </nav>
-      </div>
+      <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <div>
+              <img
+                src="assets/images/logo-3.png"
+                alt="Logo for Soynikon Photo Store"
+                style="width: 70px"
+              />
+            </div>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav text-center fw-bold">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" href="clients.html">New</a>
+              <a class="nav-link" href="new.html">Clients</a>
+              <a class="nav-link disabled" aria-disabled="true">Settings</a>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <section id="hero">
       <div>
-        <div>
-          <h2>Shipping Label Generator</h2>
-          <p>Simple and efficient management of your clients</p>
-          <a href="new.html"><button>See clients</button></a>
-          <a href="clients.html"><button>New client</button></a>
-        </div>
-
-        <div>
+        <div class="img-fluid">
           <img 
-          src="assets/images/hero-1.jpg" 
-          alt="Nikon D810 Camera with Lens as 'Hero image'"
-          style="width: 70px">
+            src="assets/images/hero-2.jpg" alt="Nikon D810 Camera with Lens as 'Hero image'">
+        </div>
+        <div class="text-center p-5">
+          <h1 class="fw-bold">Shipping Label Generator</h1>
+          <p class="text-secondary">Simple and efficient management of your clients.</p>
+          <a href="new.html"><button class="btns btn1 btn fw-bold">New client</button></a>
+          <a href="clients.html"><button class="btn2 btn btn-outline-warning fw-bold">See clients</button></a>
         </div>
       </div>
     </section>
 
-    <section id="main">
+    <section id="main" class="text-center py-5">
       <h3>Label Generator</h3>
+      <p class="text-secondary">Preview</p>
 
-      <div>
+      <div class="py-4">
         <input
-        id="search-bar"
-        type="text"
-        placeholder="Search by name, phone number or city...">
-        <button id="add-client">Add client <i class="fa-solid fa-magnifying-glass"></i></button>
+          id="search-bar"
+          type="text"
+          placeholder="Search by name, phone number or city..."
+          class="border rounded"
+        >
+        
+        <button id="add-client" class="btns btn">
+          Add client <i class="fa-solid fa-plus"></i>
+        </button>
       </div>
 
-      <div id="label-preview">
-        <div>
-          <img
-            src="assets/images/logo-1.png"
-            alt="Logo for Soynikon Photo Store"
-            style="width: 70px"
-          />
-        </div>
+      <div id="label-preview" class="row m-4 border bg-light">
+        
+        <div id="details" class="bg-light border">
+          <div>
+            <img
+              src="assets/images/logo-1.png"
+              alt="Logo for Soynikon Photo Store"
+              style="width: 70px"
+              class="my-4"
+            />
+          </div>
 
-        <div id="details">
-          <p id="order-details">ORDER DETAILS</p>
+          <p id="order-details" class="fw-bold">ORDER DETAILS</p>
           <p id="order-number">ORDER #: 12345</p>
           <p id="order-item">ITEM: Camera Accesorie</p>
           <p id="shipping-date">SHIPPING DATE: 07-29-2026</p>
         </div>
 
-        <div id="recipient">
-          <p>SHIP TO:</p>
-          <span id="ship-to">Giancarlo Acevedo</span>
+        <div id="recipient" class="border py-4">
+          <p class="text-decoration-underline fw-bold">SHIP TO:</p>
+          <span id="ship-to" class="h2">Giancarlo Acevedo</span>
           <br>
           <span id="ship-address">
             789 Oakwood Ave<br> 
@@ -94,8 +109,8 @@
           </span>
         </div>
 
-        <div id="sender">
-          <p>FROM</p>
+        <div id="sender" class="border">
+          <p class="fw-bold">FROM:</p>
           <p>
             Soynikon Photo Store<br>
             1234 Envio St.<br>
@@ -109,26 +124,25 @@
           </div>
         </div>
 
-        <div id="note">
+        <div id="note" class="border text-start">
           <h1>NOTE:</h1>
         </div>
       </div>
+
+      <button type="button" class="btns btn1 btn fw-bold">Generate</button>
+      <button type="reset" class="btn2 btn btn-outline-warning fw-bold">Reset</button>
+
     </section>
 
-    <footer>
+    <footer class="text-center text-white p-4">
       <p>&#169 2026 Soynikon</p>
       <div>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="http://wa.me/18098664326" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/soynikon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/soynikon.do" target="_blank"><i class="fa-brands fa-facebook"></i></a>
       </div>
     </footer>
 
-    <script
-      src="/assets/js/label_app.js"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
