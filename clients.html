@@ -19,43 +19,82 @@
   </head>
 
   <body>
+    <!-- header -->
     <header>
       <div>
-        <img
-          src="assets/images/logo-1.png"
-          alt="Logo for Soynikon Photo Store"
-          style="width: 70px"
-        />
-      </div>
-      
-      <div>
-        <nav>
-          <ul>
-            <a href="index.html">Home</a>
-            <a href="clients.html">Clients</a>
-            <a href="new.html">New</a>
-          </ul>
+        <nav class="navbar navbar-expand-md">
+          <div class="container-fluid m-1">
+            <a class="navbar-brand" href="index.html">
+              <div>
+                <img src="assets/images/logo-3.png" alt="Logo for Soynikon Photo Store"/>
+              </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav fw-bold">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="new.html">New</a>
+                <a class="nav-link" href="clients.html">Clients</a>
+                <a class="nav-link disabled" aria-disabled="true">Settings</a>
+              </div>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
 
     <section id="clients">
-      <h1>Client Management</h1>
-      <p>View, edit or delete clients.</p>
+      <h1 class="display-1 fw-bold">Client Management</h1>
+      <p class="text-secondary fw-light">View, edit or delete clients.</p>
 
-      <table>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Address</th>
-        <th>Phone Number</th>
-      </table>
-
-      <button type="submit">Save</button>
-      <button type="reset">Discard</button>
-    
+      <div class="container mt-5 rounded">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>123 Isle St, Orlando, FL 32837</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>456 Merrie Ln, Kissimmee, FL 34743</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>John</td>
+              <td>Doe</td>
+              <td>@social</td>
+              <td>Denn John Blvd, Sanford, 32708</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btns mt-4">Save</button>
+        <button type="submit" class="btn btn2 btn-outline-warning mt-4">Discard</button>
+      </div>
     </section>
 
-    <footer>
+    <!-- footer -->
+    <footer class="text-white p-4">
       <p>&#169 2026 Soynikon</p>
       <div>
         <a href="http://wa.me/18098664326" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
@@ -64,11 +103,6 @@
       </div>
     </footer>
 
-    <script
-      src="/assets/js/label_app.js"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
