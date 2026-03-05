@@ -1,0 +1,80 @@
+* {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#hero .btns, 
+#main .btns {
+    background-color: rgb(255, 200, 0);
+    color: white;
+}
+
+#hero .btn2:hover,
+#main .btn2:hover {
+    background-color: rgb(255, 200, 0);
+    color: white;
+}
+
+.navbar {
+    position: fixed;
+    background-color: rgb(255, 200, 0);
+}
+
+.navbar a {
+    color: white;
+}
+
+#hero {
+    background-color: rgb(251, 251, 251);
+}
+
+#hero img {
+    height: 60vh;
+    width: 100vw;
+    object-fit: cover;
+    position: center;
+}
+
+#search-bar {
+    padding: 5px 15px;
+    margin-bottom: 5px;
+    width: 300px;
+}
+
+#add-client {
+    padding: 5px 15px;
+    width: 300px;
+}
+
+#add-client i {
+    font-size: 0.9em;
+}
+
+#add-client:hover {
+    background-color: white;
+    color: rgb(255, 200, 0);
+    border: solid 1px rgb(255, 200, 0);
+}
+
+#label-preview p {
+    font-weight: lighter;
+}
+
+#details, #sender, #note {
+    padding: 15px 0;
+}
+
+#note h1 {
+    padding: 15px;
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+footer {
+    background: rgb(255, 200, 0);
+}
+
+footer a {
+ color: white;
+}
