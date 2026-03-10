@@ -12,6 +12,19 @@ header img {
     width: 70px;
 }
 
+.navbar {
+    position: fixed;
+    background-color: rgb(255, 200, 0);
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar-toggler {
+  border: 0px;
+}
+
 #hero .btns, 
 #main .btns,
 #new-client .btns,
@@ -24,15 +37,6 @@ header img {
 #main .btn2:hover,
 #clients .btn2:hover {
     background-color: rgb(255, 200, 0);
-    color: white;
-}
-
-.navbar {
-    position: fixed;
-    background-color: rgb(255, 200, 0);
-}
-
-.navbar a {
     color: white;
 }
 
@@ -111,6 +115,12 @@ header img {
     font-size: 2.5em;
 }
 
+#new-client .container {
+    padding: 40px 45px;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .05);
+}
+
 #new-client form {
     margin: auto;
 }
@@ -170,4 +180,9 @@ footer {
 
 footer a {
  color: white;
+}
+
+/* temp - will be gone */
+header .gray {
+    color: rgba(0, 0, 0, 0.3);
 }
