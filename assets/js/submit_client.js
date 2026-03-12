@@ -1,31 +1,34 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".form-container form");
-  const messageContainer = document.createElement("div"); // container for success message
-  form.parentNode.insertBefore(messageContainer, form);
+document.addEventListener('DOMContentLoaded', function() {
+    const clientForm = document.querySelector('form[name="clients"]');
+    
+    if (clientForm) {
+        clientForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stops form tranditional submission
+            const formData = new FormData(this);
 
-    const formData = new FormData(form);
-
-    fetch("../backend/add_client.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        messageContainer.textContent = data.message;
-        if (data.success) {
-          messageContainer.style.color = "green";
-          form.reset(); // Clears the form if successful
-        } else {
-          messageContainer.style.color = "red";
-        }
-      })
-      .catch((error) => {
-        messageContainer.textContent = "Server connection error.";
-        messageContainer.style.color = "red";
-        console.error("Error:", error);
-      });
-  });
+            fetch('../backend/add_client.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error in the server (Status ' + response.status + ')');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert("Success: " + data.message);
+                    this.reset();
+                } else {
+                    alert("There was a problem: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("There was a problem: " + error.message);
+            });
+        });
+    }
 });
