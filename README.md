@@ -15,10 +15,10 @@ This is a full-stack web application built to manage business operations and use
 * **Deployment:** Managed through cPanel.
 
 ## Roadmap (Upcoming)
-- [ ] Changing design and structure of the web
+- [x] Changing design and structure of the web
 - [ ] User Authentication System (Secure Login/Signup)
-- [ ] Advanced CSS Grid/Flexbox layouts
-- [ ] Database normalization for order tracking
+- [x] Advanced CSS Grid/Flexbox layouts
+- [x] Database normalization for order tracking
 
 ---
 *Developed by Giancarlo Acevedo Francisco – Computer Programming & Analysis Student (3.9 GPA)*
