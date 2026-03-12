@@ -181,8 +181,3 @@ footer {
 footer a {
  color: white;
 }
-
-/* temp - will be gone */
-header .gray {
-    color: rgba(0, 0, 0, 0.3);
-}
