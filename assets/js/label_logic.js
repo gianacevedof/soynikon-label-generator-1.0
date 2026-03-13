@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewItem = document.getElementById("order-item");
     const btnTemplate = document.getElementById("template");
 
+    // Get actual date MM-DD-YYYY
+    const previewDate = document.getElementById("shipping-date");
+    const today = new Date();
+    const formattedDate = (today.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                          today.getDate().toString().padStart(2, '0') + '-' + 
+                          today.getFullYear();
+    if (previewDate) {
+        previewDate.textContent = `SHIPPING DATE: ${formattedDate}`;
+    }
+
     // 'Search client' logic
     if (searchInput) {
         searchInput.addEventListener("input", (event) => {
