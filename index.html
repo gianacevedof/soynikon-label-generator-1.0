@@ -72,9 +72,7 @@
       <h3 class="fw-bold">Label Generator</h3>
       <p class="text-secondary">Preview</p>
 
-      <form class="py-4 m-4 shadow-sm bg-white">
-        <p class=" fs-5">Fill in the order details</p>
-
+      <div class="bar">
         <label for="search">Who are you sending to?</label>
         <input
           id="search"
@@ -82,13 +80,16 @@
           type="text"
           placeholder="Search client...">
           <div id="search-results" class="search-results-container" style="display: none;"></div>
+      </div>
 
-        <label for="search-bar">What do you want to send?</label>
+      <form class="py-4 m-4 shadow-sm bg-white bar">
+        <label for="search-bar" class="p-0">What do you want to send?</label>
         <input
           id="item-search-bar"
-          class="search border rounded"
+          class="search border rounded mt-3"
           type="text"
-          placeholder="Enter or search the item being sent...">
+          placeholder="Enter the item being sent...">
+          <div id="item-results" class="search-results-container" style="display: none;"></div>
         
         <button id="template" class="btns btn mt-3">Add to template</button>
       </form>
