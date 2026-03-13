@@ -17,10 +17,14 @@ http://web.soynikon.do
 * **Deployment:** Managed through cPanel.
 
 ## Roadmap (Upcoming)
-- [x] Changing design and structure of the web
-- [ ] User Authentication System (Secure Login/Signup)
 - [x] Advanced CSS Grid/Flexbox layouts
 - [x] Database normalization for order tracking
+- [x] Changing design and structure of the web
+- [ ] Search bar integration for label template (Client and item search)
+- [ ] Generate label based on filled out template (to print in 4x6)
+- [ ] Order tracking table
+- [ ] User Authentication System (Secure Login/Signup)
+- [ ] PC Layout
 
 ---
 *Developed by Giancarlo Acevedo Francisco – Computer Programming & Analysis Student (3.9 GPA)*
