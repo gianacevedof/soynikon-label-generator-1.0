@@ -69,10 +69,10 @@
 
     <!-- main section of the label generator -->
     <section id="main" class="py-5 text-center">
-      <h3>Label Generator</h3>
+      <h3 class="fw-bold">Label Generator</h3>
       <p class="text-secondary">Preview</p>
 
-      <form class="py-4 m-4 shadow-sm container bg-white">
+      <form class="py-4 m-4 shadow-sm bg-white">
         <p class=" fs-5">Fill in the order details</p>
 
         <label for="search">Who are you sending to?</label>
@@ -80,7 +80,8 @@
           id="search"
           class="search border rounded"
           type="text"
-          placeholder="Enter name, phone number, city, etc...">
+          placeholder="Search client...">
+          <div id="search-results" class="search-results-container" style="display: none;"></div>
 
         <label for="search-bar">What do you want to send?</label>
         <input
@@ -155,6 +156,7 @@
       </div>
     </footer>
 
+    <script src="assets/js/label_logic.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
