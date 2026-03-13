@@ -20,9 +20,10 @@ http://web.soynikon.do
 - [x] Advanced CSS Grid/Flexbox layouts
 - [x] Database normalization for order tracking
 - [x] Changing design and structure of the web
-- [ ] Search bar integration for label template (Client and item search)
+- [x] Search bar integration for label template (Client and item search)
 - [ ] Generate label based on filled out template (to print in 4x6)
-- [ ] Order tracking table
+- [ ] Order history page
+- [ ] Clients table (edit/delete) options
 - [ ] User Authentication System (Secure Login/Signup)
 - [ ] PC Layout
 
