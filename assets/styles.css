@@ -4,17 +4,12 @@
     margin: 0;
 }
 
-header a {
-    text-align: center;
+header {
+    background-color: rgb(255, 200, 0);
 }
 
 header img {
     width: 70px;
-}
-
-.navbar {
-    position: fixed;
-    background-color: rgb(255, 200, 0);
 }
 
 .navbar a {
@@ -40,15 +35,6 @@ header img {
     color: white;
 }
 
-#hero {
-    background-color: rgb(251, 251, 251);
-    text-align: center;
-}
-
-#hero h1 {
-    font-size: 2.5em;
-}
-
 #hero img {
     height: 60vh;
     width: 100vw;
@@ -56,26 +42,26 @@ header img {
     position: center;
 }
 
-#main {
-    text-align: center;
+#main form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 86vw;
+    height: 40vh;
 }
 
-#search-bar {
+#main label {
+    padding-top: 10px;
+}
+
+#main .search {
     padding: 5px 15px;
     margin-bottom: 5px;
     width: 76vw;
 }
 
-#add-client {
-    padding: 5px 15px;
-    width: 76vw;
-}
-
-#add-client i {
-    font-size: 0.9em;
-}
-
-#add-client:hover {
+#template:hover {
     background-color: white;
     color: rgb(255, 200, 0);
     border: solid 1px rgb(255, 200, 0);
@@ -87,12 +73,6 @@ header img {
 
 #details, #sender, #note {
     padding: 15px 0;
-}
-
-#note h1 {
-    padding: 15px;
-    font-size: 1em;
-    margin-bottom: 0;
 }
 
 /* NEW.HTML PAGE */

@@ -15,12 +15,12 @@
       crossorigin="anonymous"
     />
 
-    <title>Soynikon | Label Generator</title>
+    <title>Soynikon Desk</title>
   </head>
 
-  <body>
+  <body class="bg-light">
     <!-- header -->
-    <header>
+    <header class="sticky-top text-center">
       <div>
         <nav class="navbar navbar-expand-md">
           <div class="container-fluid m-1">
@@ -36,10 +36,11 @@
 
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav fw-bold">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="new.html">New</a>
-                <a class="nav-link" href="clients.html">Clients</a>
-                <a class="nav-link disabled" aria-disabled="true">Settings</a>
+                <a class="nav-link" href="index.html">Create Label</a>
+                <a class="nav-link" href="new.html">New Client</a>
+                <a class="nav-link" href="clients.html">Current Clients</a>
+                <a class="nav-link disabled" href="orders.html">Orders</a>
+                <a class="nav-link disabled">Settings</a>
                 
                 <!-- temporarily -->
                 <a class="nav-link gray" href="http://api.soynikon.do" target="_blank" style="color: rgba(0, 0, 0, 0.3);">Working Demo</a>
@@ -51,15 +52,15 @@
     </header>
 
     <!-- hero -->
-    <section id="hero">
+    <section id="hero" class="text-center bg-white">
       <div>
         <div class="img-fluid">
           <img 
             src="assets/images/hero-2.jpg" alt="Nikon D810 Camera with Lens as 'Hero image'">
         </div>
         <div class="p-5">
-          <h1 class="fw-bold">Shipping Label Generator</h1>
-          <p class="text-secondary">Simple and efficient management of your clients.</p>
+          <h1 class="fw-bold display-3">Soynikon Desk</h1>
+          <p class="text-secondary">A simple and efficient way to ease daily business operations.</p>
           <a href="new.html"><button class="btns btn1 btn fw-bold">New client</button></a>
           <a href="clients.html"><button class="btn2 btn btn-outline-warning fw-bold">See clients</button></a>
         </div>
@@ -67,24 +68,31 @@
     </section>
 
     <!-- main section of the label generator -->
-    <section id="main" class="py-5">
+    <section id="main" class="py-5 text-center">
       <h3>Label Generator</h3>
       <p class="text-secondary">Preview</p>
 
-      <div class="py-4">
-        <input
-          id="search-bar"
-          type="text"
-          placeholder="Search by name, phone number or city..."
-          class="border rounded"
-        >
-        
-        <button id="add-client" class="btns btn">
-          Add client <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
+      <form class="py-4 m-4 shadow-sm container bg-white">
+        <p class=" fs-5">Fill in the order details</p>
 
-      <div id="label-preview" class="row m-4 border bg-light">
+        <label for="search">Who are you sending to?</label>
+        <input
+          id="search"
+          class="search border rounded"
+          type="text"
+          placeholder="Enter name, phone number, city, etc...">
+
+        <label for="search-bar">What do you want to send?</label>
+        <input
+          id="item-search-bar"
+          class="search border rounded"
+          type="text"
+          placeholder="Enter or search the item being sent...">
+        
+        <button id="template" class="btns btn mt-3">Add to template</button>
+      </form>
+
+      <div id="label-preview" class="row m-4 border">
         
         <div id="details" class="bg-light border">
           <div>
@@ -127,13 +135,13 @@
           </div>
         </div>
 
-        <div id="note" class="border text-start">
-          <h1>NOTE:</h1>
+        <div id="note" class="border text-start p-4">
+          <h3 class="fs-6 m-0">NOTE:</h3>
         </div>
       </div>
 
-      <button type="button" class="btns btn1 btn fw-bold">Generate</button>
-      <button type="reset" class="btn2 btn btn-outline-warning fw-bold">Reset</button>
+      <button type="button" class="btns btn1 btn fw-bold shadow-sm">Generate</button>
+      <button type="reset" class="btn2 btn btn-outline-warning fw-bold ">Reset</button>
 
     </section>
 
