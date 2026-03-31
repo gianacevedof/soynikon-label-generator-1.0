@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultsContainer = document.getElementById("search-results");
   const previewName = document.getElementById("ship-to");
   const previewAddress = document.getElementById("ship-address");
+  let selectedClientId = null;
 
   // Item elements
   const itemInput = document.getElementById("item-search-bar");
   const itemResults = document.getElementById("item-results");
   const previewItem = document.getElementById("order-item");
   const btnTemplate = document.getElementById("template");
+  let selectedItemId = null;
 
   // Get actual date MM-DD-YYYY
   const previewDate = document.getElementById("shipping-date");
@@ -59,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       div.innerHTML = `<strong>${client.first_name} ${client.last_name}</strong> - ${client.city}`;
 
       div.addEventListener("click", () => {
+        selectedClientId = client.client_id;
         previewName.textContent = `${client.first_name} ${client.last_name}`;
         previewAddress.innerHTML = `
                     ${client.address_1} ${client.address_2 ? "<br>" + client.address_2 : ""}<br>
@@ -107,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       div.textContent = item.item;
 
       div.addEventListener("click", () => {
+        selectedItemId = item.item_id;
         previewItem.textContent = `Item: ${item.item}`;
         itemInput.value = item.item;
         itemResults.style.display = "none";
@@ -146,126 +150,148 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Generate print-version label
-  const previewOrderNumber = document.getElementById("order-number");
-
   const generateBtn = document.getElementById("generate-btn");
   generateBtn.addEventListener("click", () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit: "in", format: [4, 6] });
+    // Save order first, then generate PDF
+    const formData = new FormData();
+    formData.append("client_id", selectedClientId);
+    formData.append("item_id", selectedItemId);
+    formData.append("shipping_date", new Date().toISOString().split("T")[0]);
 
-    const stripHTML = (html) => {
-      const temp = document.createElement("div");
-      temp.innerHTML = html;
-      return temp.innerText;
-    };
+    fetch("backend/save_order.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          const orderNumber = data.order_id;
+          console.log("Order saved:", orderNumber);
 
-    const name = previewName.textContent.trim();
-    const address = stripHTML(previewAddress.innerHTML).trim();
-    const item = previewItem.textContent.trim();
-    const date = previewDate.textContent.trim();
+          // Generate PDF
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({ unit: "in", format: [4, 6] });
 
-    const d0 = 0;
-    const d1 = 1.3;
-    const d2 = 2.9;
-    const d3 = 4.2;
+          const stripHTML = (html) => {
+            const temp = document.createElement("div");
+            temp.innerHTML = html;
+            return temp.innerText;
+          };
 
-    // Section centers
-    const sec1Center = (d0 + d1) / 2;
-    const sec3Center = (d2 + d3) / 2;
+          const name = previewName.textContent.trim();
+          const address = stripHTML(previewAddress.innerHTML).trim();
+          const item = previewItem.textContent.trim();
+          const date = previewDate.textContent.trim();
 
-    doc.setDrawColor(180);
-    doc.setLineWidth(0.005);
+          const d0 = 0;
+          const d1 = 1.3;
+          const d2 = 2.9;
+          const d3 = 4.2;
 
-    // ORDER DETAILS
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.text("ORDER DETAILS", 0.3, d0 + 0.3);
+          // Section centers
+          const sec1Center = (d0 + d1) / 2;
+          const sec3Center = (d2 + d3) / 2;
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text(date, 0.3, d1 - 0.15);
-    doc.text(item, 0.3, d1 - 0.35);
-    doc.text("Order #: 12345", 0.3, d1 - 0.55);
+          doc.setDrawColor(180);
+          doc.setLineWidth(0.005);
 
-    // Logo
-    const logoH = 0.75;
-    const logoW = 0.9;
-    const logoY = sec1Center - logoH / 2;
-    try {
-      doc.addImage(
-        "https://web.soynikon.do/assets/images/logo-1-print.jpeg",
-        "JPEG",
-        2.8,
-        logoY,
-        logoW,
-        logoH,
-      );
-    } catch (e) {
-      console.log("Logo not loaded:", e);
-    }
+          // ORDER DETAILS
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text("ORDER DETAILS", 0.3, d0 + 0.3);
 
-    // Divider 1
-    doc.line(0.3, d1, 3.7, d1);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.text(date, 0.3, d1 - 0.15);
+          doc.text(item, 0.3, d1 - 0.35);
+          doc.text(`Order #: ${orderNumber}`, 0.3, d1 - 0.55);
 
-    // SHIP TO
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.text("SHIP TO:", 0.3, d1 + 0.3);
+          // Logo
+          const logoH = 0.75;
+          const logoW = 0.9;
+          const logoY = sec1Center - logoH / 2;
+          try {
+            doc.addImage(
+              "https://web.soynikon.do/assets/images/logo-1-print.jpeg",
+              "JPEG",
+              2.8,
+              logoY,
+              logoW,
+              logoH,
+            );
+          } catch (e) {
+            console.log("Logo not loaded:", e);
+          }
 
-    const addressLines = address.split("\n").filter((l) => l.trim() !== "");
-    const totalAddressLines = addressLines.length;
-    const bottomY = d2 - 0.15;
+          // Divider 1
+          doc.line(0.3, d1, 3.7, d1);
 
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text(name, 0.3, bottomY - totalAddressLines * 0.2 - 0.15);
+          // SHIP TO
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text("SHIP TO:", 0.3, d1 + 0.3);
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    let addrY = bottomY - (totalAddressLines - 1) * 0.2;
-    addressLines.forEach((line) => {
-      doc.text(line.trim(), 0.3, addrY);
-      addrY += 0.2;
-    });
+          const addressLines = address
+            .split("\n")
+            .filter((l) => l.trim() !== "");
+          const totalAddressLines = addressLines.length;
+          const bottomY = d2 - 0.15;
 
-    // Divider 2
-    doc.line(0.3, d2, 3.7, d2);
+          doc.setFontSize(16);
+          doc.setFont("helvetica", "bold");
+          doc.text(name, 0.3, bottomY - totalAddressLines * 0.2 - 0.15);
 
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.text("FROM:", 0.3, d2 + 0.3);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          let addrY = bottomY - (totalAddressLines - 1) * 0.2;
+          addressLines.forEach((line) => {
+            doc.text(line.trim(), 0.3, addrY);
+            addrY += 0.2;
+          });
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("Orlando, FL 56789", 0.3, d3 - 0.15);
-    doc.text("1234 Envio St.", 0.3, d3 - 0.35);
-    doc.text("Soynikon Photo Store", 0.3, d3 - 0.55);
+          // Divider 2
+          doc.line(0.3, d2, 3.7, d2);
 
-    // Fragile icon
-    const fragileH = 0.8;
-    const fragileW = 0.85;
-    const fragileY = sec3Center - fragileH / 2;
-    try {
-      doc.addImage(
-        "https://web.soynikon.do/assets/images/fragile.png",
-        "PNG",
-        2.85,
-        fragileY,
-        fragileW,
-        fragileH,
-      );
-    } catch (e) {
-      console.log("Fragile not loaded:", e);
-    }
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text("FROM:", 0.3, d2 + 0.3);
 
-    // Divider 3
-    doc.line(0.3, d3, 3.7, d3);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.text("Orlando, FL 56789", 0.3, d3 - 0.15);
+          doc.text("1234 Envio St.", 0.3, d3 - 0.35);
+          doc.text("Soynikon Photo Store", 0.3, d3 - 0.55);
 
-    // NOTE
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.text("NOTE:", 0.3, d3 + 0.3);
+          // Fragile icon
+          const fragileH = 0.8;
+          const fragileW = 0.85;
+          const fragileY = sec3Center - fragileH / 2;
+          try {
+            doc.addImage(
+              "https://web.soynikon.do/assets/images/fragile.png",
+              "PNG",
+              2.85,
+              fragileY,
+              fragileW,
+              fragileH,
+            );
+          } catch (e) {
+            console.log("Fragile not loaded:", e);
+          }
 
-    doc.save("soynikon-desk-label.pdf");
+          // Divider 3
+          doc.line(0.3, d3, 3.7, d3);
+
+          // NOTE
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text("NOTE:", 0.3, d3 + 0.3);
+
+          doc.save("soynikon-desk-label.pdf");
+        } else {
+          alert("Error saving order: " + data.message);
+        }
+      })
+      .catch((err) => console.error("Error:", err));
   });
 });
