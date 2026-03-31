@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/197e9f07b4.js"
-      crossorigin="anonymous"
-    ></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-
+    <link rel="icon" type="image/png" href="assets/images/logo-1-print.jpeg" />
     <title>Soynikon Desk</title>
   </head>
 
@@ -26,11 +22,22 @@
           <div class="container-fluid m-1">
             <a class="navbar-brand" href="index.html">
               <div>
-                <img src="assets/images/logo-3.png" alt="Logo for Soynikon Photo Store"/>
+                <img
+                  src="assets/images/logo-3.png"
+                  alt="Logo for Soynikon Photo Store"
+                />
               </div>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
               <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -41,9 +48,15 @@
                 <a class="nav-link" href="clients.html">Current Clients</a>
                 <a class="nav-link disabled" href="orders.html">Orders</a>
                 <a class="nav-link disabled">Settings</a>
-                
+
                 <!-- temporarily -->
-                <a class="nav-link gray" href="http://api.soynikon.do" target="_blank" style="color: rgba(0, 0, 0, 0.3);">Working Demo</a>
+                <a
+                  class="nav-link gray"
+                  href="http://api.soynikon.do"
+                  target="_blank"
+                  style="color: rgba(0, 0, 0, 0.3)"
+                  >Working Demo</a
+                >
               </div>
             </div>
           </div>
@@ -55,14 +68,24 @@
     <section id="hero" class="text-center bg-white">
       <div>
         <div class="img-fluid">
-          <img 
-            src="assets/images/hero-2.jpg" alt="Nikon D810 Camera with Lens as 'Hero image'">
+          <img
+            src="assets/images/hero-2.jpg"
+            alt="Nikon D810 Camera with Lens as 'Hero image'"
+          />
         </div>
         <div class="p-5">
           <h1 class="fw-bold display-3">Soynikon Desk</h1>
-          <p class="text-secondary">A simple and efficient way to ease daily business operations.</p>
-          <a href="new.html"><button class="btns btn1 btn fw-bold">New client</button></a>
-          <a href="clients.html"><button class="btn2 btn btn-outline-warning fw-bold">See clients</button></a>
+          <p class="text-secondary">
+            A simple and efficient way to ease daily business operations.
+          </p>
+          <a href="new.html"
+            ><button class="btns btn1 btn fw-bold">New client</button></a
+          >
+          <a href="clients.html"
+            ><button class="btn2 btn btn-outline-warning fw-bold">
+              See clients
+            </button></a
+          >
         </div>
       </div>
     </section>
@@ -78,8 +101,13 @@
           id="search"
           class="search border rounded"
           type="text"
-          placeholder="Search client...">
-          <div id="search-results" class="search-results-container" style="display: none;"></div>
+          placeholder="Search client..."
+        />
+        <div
+          id="search-results"
+          class="search-results-container"
+          style="display: none"
+        ></div>
       </div>
 
       <form class="py-4 m-4 shadow-sm bg-white bar">
@@ -88,14 +116,19 @@
           id="item-search-bar"
           class="search border rounded mt-3"
           type="text"
-          placeholder="Enter the item being sent...">
-          <div id="item-results" class="search-results-container" style="display: none;"></div>
-        
+          placeholder="Enter the item being sent..."
+        />
+        <div
+          id="item-results"
+          class="search-results-container"
+          style="display: none"
+        ></div>
+
         <button id="template" class="btns btn mt-3">Add to template</button>
       </form>
 
+      <!-- Label template -->
       <div id="label-preview" class="row m-4 border">
-        
         <div id="details" class="bg-light border">
           <div>
             <img
@@ -107,33 +140,31 @@
           </div>
 
           <p id="order-details" class="fw-bold">ORDER DETAILS</p>
-          <p id="order-number">ORDER #: 12345</p>
-          <p id="order-item">ITEM: Camera Accesorie</p>
-          <p id="shipping-date">SHIPPING DATE: 07-29-2026</p>
+          <p id="order-number">Order #:</p>
+          <p id="order-item">Item:</p>
+          <p id="shipping-date">Shipping date:</p>
         </div>
 
         <div id="recipient" class="border py-4">
           <p class="text-decoration-underline fw-bold">SHIP TO:</p>
-          <span id="ship-to" class="h2">Giancarlo Acevedo</span>
-          <br>
-          <span id="ship-address">
-            789 Oakwood Ave<br> 
-            Dallas, TX 75230
-          </span>
+          <span id="ship-to" class="h2"></span>
+          <br />
+          <span id="ship-address"> </span>
         </div>
 
         <div id="sender" class="border">
           <p class="fw-bold">FROM:</p>
           <p>
-            Soynikon Photo Store<br>
-            1234 Envio St.<br>
+            Soynikon Photo Store<br />
+            1234 Envio St.<br />
             Orlando, FL 56789
           </p>
           <div>
             <img
-            src="assets/images/fragile.png"
-            alt="Icon of fragile item"
-            style="width: 70px;">
+              src="assets/images/fragile.png"
+              alt="Icon of fragile item"
+              style="width: 70px"
+            />
           </div>
         </div>
 
@@ -142,22 +173,44 @@
         </div>
       </div>
 
-      <button type="button" class="btns btn1 btn fw-bold shadow-sm">Generate</button>
-      <button type="reset" class="btn2 btn btn-outline-warning fw-bold ">Reset</button>
-
+      <button
+        type="button"
+        id="generate-btn"
+        class="btns btn1 btn fw-bold shadow-sm"
+      >
+        Generate
+      </button>
+      <button type="reset" class="btn2 btn btn-outline-warning fw-bold">
+        Reset
+      </button>
     </section>
 
     <!-- footer -->
     <footer class="text-white p-4">
-      <p>&#169 2026 Soynikon</p>
+      <p>© 2026 Soynikon</p>
       <div>
-        <a href="http://wa.me/18098664326" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/soynikon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/soynikon.do" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="http://wa.me/18098664326" target="_blank"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+        <a href="https://www.instagram.com/soynikon" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a href="https://www.facebook.com/soynikon.do" target="_blank"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
       </div>
     </footer>
 
     <script src="assets/js/label_logic.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/197e9f07b4.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
