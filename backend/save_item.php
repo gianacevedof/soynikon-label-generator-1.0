@@ -19,14 +19,14 @@ try {
 
     if ($resCheck->num_rows > 0) {
         // If exists: do nothing
-        echo json_encode(["success" => true, "message" => "Item ya existe, no se duplicó."]);
+        echo json_encode(["success" => true, "message" => "Item already exists."]);
     } else {
         // 2. If does not exist: insert it
         $sql = "INSERT INTO items (item) VALUES (?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $itemName);
         $stmt->execute();
-        echo json_encode(["success" => true, "message" => "Nuevo item guardado."]);
+        echo json_encode(["success" => true, "message" => "New item saved."]);
     }
 } catch (Exception $e) {
     echo json_encode(["success" => false, "message" => $e->getMessage()]);
