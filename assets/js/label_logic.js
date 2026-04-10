@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "search-item p-2 border-bottom";
       div.style.cursor = "pointer";
-      div.innerHTML = `<strong>${client.first_name} ${client.last_name}</strong> - ${client.city}`;
+      div.innerHTML = `<strong>${client.first_name} ${client.last_name}</strong>: ${client.city}`;
 
       div.addEventListener("click", () => {
         selectedClientId = client.client_id;
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${client.address_1} ${client.address_2 ? "<br>" + client.address_2 : ""}<br>
                     ${client.city}, ${client.state} ${client.zip}
                 `;
+        searchInput.value = `${client.first_name} ${client.last_name}`;
         resultsContainer.style.display = "none";
-        searchInput.value = "";
       });
 
       resultsContainer.appendChild(div);
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.getElementById("generate-btn");
   generateBtn.addEventListener("click", () => {
     if (!previewName.textContent || !itemResults.innerHTML) {
-      window.alert("Error: Please select a client and an item");
+      window.alert("Error: please select a client and an item");
       console.log("Clicked");
     } else {
       // Save order first, then generate PDF
