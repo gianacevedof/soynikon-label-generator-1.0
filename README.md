@@ -3,7 +3,7 @@
 
 This is a full-stack web application built to manage business operations and user data for Soynikon Photo Store. This project focuses on implementing secure backend logic and a modern, responsive frontend.
 
-http://web.soynikon.do
+http://desk.soynikon.do
 
 ## Current Features
 * **Secure Data Handling:** Utilizing PHP with **SQL Prepared Statements** to prevent injection vulnerabilities.
