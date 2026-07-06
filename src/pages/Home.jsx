@@ -1,0 +1,122 @@
+import React from "react";
+import RotatingText from "../utils/reactbits/RotatingText";
+import { getUsername } from "../utils/auth";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBoxOpen,
+  faUserGroup,
+  faUserPlus,
+  faCartShopping,
+  faArrowRightFromBracket,
+  faTruckFast,
+} from "@fortawesome/free-solid-svg-icons";
+
+function Home() {
+  const [username, setUsername] = useState("Guest");
+
+  useEffect(() => {
+    const name = getUsername();
+    if (name) {
+      setUsername(name);
+    }
+  }, []);
+
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+  const hours = today.getHours();
+  const time = hours < 12 ? "Morning" : hours < 18 ? "Afternoon" : "Evening";
+
+  return (
+    <div className="home">
+      <section className="topbar-block">
+        <h1 className="fw-bold">
+          Good {time},
+          <span style={{ textTransform: "capitalize" }}> {username}</span>
+        </h1>
+        <p>{formattedDate}</p>
+      </section>
+
+      <section>
+        <div className="hero">
+          <div className="hero-content">
+            <p className="hero-static">Manage your</p>
+            <RotatingText
+              texts={["clients.", "orders.", "labels.", "business."]}
+              mainClassName="rotating-word"
+              staggerFrom="last"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={2000}
+              splitBy="characters"
+              auto
+              loop
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About Soynikon Desk</h2>
+        <p>
+          Internal business management tool for Soynikon Photo Store. Manage
+          clients, track orders, and generate shipping labels — all in one
+          place.
+        </p>
+
+        <hr />
+
+        <h2 className="quick-actions">Quick Actions</h2>
+        <div className="row justify-content-evenly">
+          <div className="cards col-3">
+            <Link to="/clients">
+              <div className="icons">
+                <FontAwesomeIcon icon={faUserGroup} />
+              </div>
+              <h4>Clients</h4>
+              <p>View and manage clients</p>
+            </Link>
+          </div>
+          <div className="cards col-3">
+            <Link to="/orders">
+              <div className="icons">
+                <FontAwesomeIcon icon={faCartShopping} />
+              </div>
+              <h4>Orders</h4>
+              <p>Browse all orders</p>
+            </Link>
+          </div>
+          <div className="cards col-3">
+            <Link to="/labels">
+              <div className="icons">
+                <FontAwesomeIcon icon={faTruckFast} />
+              </div>
+              <h4>Labels</h4>
+              <p>Generate shipping labels</p>
+            </Link>
+          </div>
+          <div className="cards col-3">
+            <Link to="/new">
+              <div className="icons">
+                <FontAwesomeIcon icon={faUserPlus} />
+              </div>
+              <h4>New client</h4>
+              <p>Register a customer</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+export default Home;
