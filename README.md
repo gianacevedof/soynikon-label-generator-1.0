@@ -1,16 +1,47 @@
-# React + Vite
+# Soynikon Desk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack business management web app built for a real business, handling clients, orders, and shipping label generation. Built as a real working tool and as a portfolio project.
 
-Currently, two official plugins are available:
+**Live demo:** [desk.soynikon.do](https://desk.soynikon.do)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Demo access
 
-## React Compiler
+This deployment is a personal project, not the production tool used by the business it was built for. Public self-registration is intentionally disabled to avoid spam accounts — use one of the seeded demo accounts on the sign-in page instead.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Role     | Username | Password             |
+| -------- | -------- | -------------------- |
+| Admin    | admin    | cegge0-ruhBep-nofmaw |
+| Standard | standard | _see sign-in page_   |
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend**
+
+- React + Vite
+- React Router
+- Bootstrap (layout utilities only)
+- Sonner (toast notifications)
+- FontAwesome
+- `@react-pdf/renderer` (shipping label PDF generation)
+
+**Backend**
+
+- OWN PHP APIs + MySQL
+- JWT auth via `firebase/php-jwt`
+- Environment config via `vlucas/phpdotenv`
+
+**Hosting**
+
+- Hostinger shared hosting (`desk.soynikon.do`)
+
+## Features
+
+- Role-based access control (`admin` / `standard`)
+- Client management (create, edit, delete, search/filter)
+- Orders history with SQL joins across clients, orders, items, cities, and states
+- Shipping label generation as downloadable PDFs
+- JWT-based authentication with protected routes
+
+## License
+
+Personal project — not currently licensed for reuse.
