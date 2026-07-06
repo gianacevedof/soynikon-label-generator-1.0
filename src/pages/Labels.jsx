@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +15,7 @@ function Labels() {
   const URL = import.meta.env.VITE_API_URL;
   const role = getRole();
 
+  // MM-DD-YYYY, used both in the on-screen preview and passed into the PDF
   const today = new Date();
   const formattedDate =
     (today.getMonth() + 1).toString().padStart(2, "0") +
@@ -32,26 +33,46 @@ function Labels() {
   const [orderId, setOrderId] = useState(null);
   const [orderReady, setOrderReady] = useState(false);
 
+  // Live client search-as-you-type
   useEffect(() => {
     if (clientSearch.length < 1) {
       setClientResults([]);
       return;
     }
-    fetch(`${URL}/search_clients.php?q=${clientSearch}`)
-      .then((res) => res.json())
-      .then((data) => setClientResults(data))
-      .catch((err) => console.error("Client search error:", err));
+
+    const fetchClients = async () => {
+      try {
+        const res = await fetch(
+          `${URL}search_clients.php?q=${encodeURIComponent(clientSearch)}`,
+        );
+        const data = await res.json();
+        setClientResults(data);
+      } catch (err) {
+        console.error("Client search error:", err);
+      }
+    };
+    fetchClients();
   }, [clientSearch]);
 
+  // Live item search-as-you-type
   useEffect(() => {
     if (itemSearch.length < 1) {
       setItemResults([]);
       return;
     }
-    fetch(`${URL}/search_items.php?q=${itemSearch}`)
-      .then((res) => res.json())
-      .then((data) => setItemResults(data))
-      .catch((err) => console.error("Item search error:", err));
+
+    const fetchItems = async () => {
+      try {
+        const res = await fetch(
+          `${URL}search_items.php?q=${encodeURIComponent(itemSearch)}`,
+        );
+        const data = await res.json();
+        setItemResults(data);
+      } catch (err) {
+        console.error("Item search error:", err);
+      }
+    };
+    fetchItems();
   }, [itemSearch]);
 
   const handleSelectClient = (client) => {
@@ -66,46 +87,64 @@ function Labels() {
     setItemResults([]);
   };
 
-  const handleAddItem = () => {
+  // Admin-only: creates a brand-new item on the fly when a search
+  // for it comes up empty, then selects it immediately.
+  const handleAddItem = async () => {
     const trimmed = itemSearch.trim();
     if (!trimmed) return;
+
     const formData = new FormData();
     formData.append("item_name", trimmed);
-    fetch(`${URL}/save_item.php`, { method: "POST", body: formData })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setSelectedItem({ item_id: data.item_id, item: trimmed });
-          setItemResults([]);
-          toast.success(data.message);
-        } else {
-          toast.error(data.message);
-        }
-      })
-      .catch((err) => console.error("Add item error:", err));
+
+    try {
+      const res = await fetch(`${URL}save_item.php`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setSelectedItem({ item_id: data.item_id, item: trimmed });
+        setItemResults([]);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (err) {
+      console.error("Add item error:", err);
+    }
   };
 
-  const handleGenerate = () => {
+  // Saves the order (client + item + today's date) and unlocks the
+  // PDF download link once the backend hands back an order_id.
+  const handleGenerate = async () => {
     if (!selectedClient || !selectedItem) {
       toast.error("Select a client and an item first.");
       return;
     }
+
     const formData = new FormData();
     formData.append("client_id", selectedClient.client_id);
     formData.append("item_id", selectedItem.item_id);
     formData.append("shipping_date", new Date().toISOString().split("T")[0]);
-    fetch(`${URL}/save_order.php`, { method: "POST", body: formData })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setOrderId(data.order_id);
-          setOrderReady(true);
-          toast.success("Order saved — label ready.");
-        } else {
-          toast.error("Error saving order: " + data.message);
-        }
-      })
-      .catch((err) => console.error("Save order error:", err));
+
+    try {
+      const res = await fetch(`${URL}save_order.php`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setOrderId(data.order_id);
+        setOrderReady(true);
+        toast.success("Order saved — label ready.");
+      } else {
+        toast.error("Error saving order: " + data.message);
+      }
+    } catch (err) {
+      console.error("Save order error:", err);
+    }
   };
 
   const handleReset = () => {
@@ -121,14 +160,14 @@ function Labels() {
 
   return (
     <div>
-      <section className="topbar-block">
+      <section className="surface-panel topbar">
         <h1 className="fw-bold">Labels</h1>
         <p>Generate and print shipping labels</p>
       </section>
 
-      <div id="labels">
-        {/* DETAILS PANEL */}
-        <div className="label-details">
+      <div className="labels-grid">
+        {/* DETAILS PANEL — recipient + item search */}
+        <div className="surface-panel label-details">
           <h3 className="label-panel-title">Details</h3>
           <hr className="label-divider" />
 
@@ -202,7 +241,9 @@ function Labels() {
                         className="label-dropdown-item"
                         onClick={() => handleSelectItem(item)}
                       >
-                        <span className="label-dropdown-name">{item.item}</span>
+                        <span className="label-dropdown-name">
+                          {item.item}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -220,8 +261,8 @@ function Labels() {
           </div>
         </div>
 
-        {/* PREVIEW PANEL */}
-        <div className="label-preview">
+        {/* PREVIEW PANEL — live sticker preview + generate/download/reset */}
+        <div className="surface-panel label-preview">
           <h3 className="label-panel-title">Preview</h3>
           <hr className="label-divider" />
 
@@ -250,7 +291,9 @@ function Labels() {
                 <p className="label-sticker-name">
                   {selectedClient.first_name} {selectedClient.last_name}
                 </p>
-                <p className="label-sticker-text">{selectedClient.address_1}</p>
+                <p className="label-sticker-text">
+                  {selectedClient.address_1}
+                </p>
                 {selectedClient.address_2 && (
                   <p className="label-sticker-text">
                     {selectedClient.address_2}
@@ -275,9 +318,7 @@ function Labels() {
             <hr className="label-sticker-hr" />
 
             <div className="label-sticker-row">
-              <p className="label-sticker-section-title" style={{ margin: 0 }}>
-                NOTES
-              </p>
+              <p className="label-sticker-section-title m-0">NOTES</p>
               <div className="label-barcode-img-wrap">
                 <img src="barcode.png" alt="Image of a barcode" />
               </div>

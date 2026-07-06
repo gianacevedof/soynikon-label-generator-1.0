@@ -1,3 +1,5 @@
+// Bootstrap CSS must load before index.css so my rules
+// (and the CSS variable system) can override Bootstrap's defaults.
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App.jsx";

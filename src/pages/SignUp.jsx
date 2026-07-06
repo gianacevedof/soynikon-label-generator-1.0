@@ -4,7 +4,10 @@ import { useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 
+// Username: starts with a letter, 2-25 chars total, letters/numbers/-/_ after that
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{1,24}$/;
+// Password: 8-25 chars, at least one lowercase, one uppercase, one digit,
+// one of !@#$*&-
 const PWD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$*&-])[a-zA-Z0-9!@#$*&-]{8,25}$/;
 
@@ -22,14 +25,17 @@ function SignUp() {
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
 
+  // Auto-focus the username field on page load
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
+  // Live-validate username as the person types
   useEffect(() => {
     setValidUser(USER_REGEX.test(user));
   }, [user]);
 
+  // Live-validate password strength + confirm-password match
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(pwd));
     setValidMatch(pwd === matchPwd);
@@ -57,7 +63,6 @@ function SignUp() {
         toast.success(json.message);
       } else {
         toast.error(json.message);
-        console.log(json.message);
       }
     } catch (err) {
       console.error(err);
@@ -68,6 +73,7 @@ function SignUp() {
   return (
     <div className="auth-page">
       <div className="auth-shell">
+        {/* Brand panel */}
         <div className="auth-left">
           <div className="auth-glow" />
           <div className="auth-glow2" />
@@ -84,6 +90,7 @@ function SignUp() {
           </div>
         </div>
 
+        {/* Sign-up form */}
         <div className="auth-right">
           <form className="auth-form-wrap" onSubmit={handleSubmit}>
             <div className="auth-title">Create account</div>

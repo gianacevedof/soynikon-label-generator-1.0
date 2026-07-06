@@ -8,12 +8,10 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import EditModal from "../components/EditModal";
 import DeleteModal from "../components/DeleteModal";
-import "./styles.css";
 
 function Clients() {
   const URL = import.meta.env.VITE_API_URL;
@@ -25,6 +23,7 @@ function Clients() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
 
+  // Load the full client list once on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,6 +50,8 @@ function Clients() {
       const json = await res.json();
       if (json.success) {
         setClients(clients.filter((client) => client.client_id !== id));
+        toast.success(json.message);
+      } else {
         toast.error(json.message);
       }
     } catch (err) {
@@ -63,7 +64,7 @@ function Clients() {
     setEditModal(!editModal);
   };
 
-  const toggleDeleteModal = (id) => {
+  const toggleDeleteModal = () => {
     setDeleteModal(!deleteModal);
   };
 
@@ -73,7 +74,7 @@ function Clients() {
 
   return (
     <div>
-      <section className="topbar-flex">
+      <section className="surface-panel topbar topbar--flex">
         <div>
           <h1 className="fw-bold">Clients</h1>
         </div>
@@ -95,7 +96,7 @@ function Clients() {
         </div>
       </section>
 
-      <div className="table-container">
+      <div className="surface-panel table-container">
         <p className="h5 mb-3">All clients</p>
 
         {/* Header bubble */}
@@ -113,7 +114,7 @@ function Clients() {
           {role === "admin" && <span>Actions</span>}
         </div>
 
-        {/* Rows bubble */}
+        {/* Rows bubble — filtered client-side against every visible field */}
         <div className="table-body">
           {clients
             .filter((client) => {

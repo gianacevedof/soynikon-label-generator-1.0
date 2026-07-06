@@ -1,15 +1,12 @@
-import React from "react";
-import RotatingText from "../utils/reactbits/RotatingText";
-import { getUsername } from "../utils/auth";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import RotatingText from "../utils/reactbits/RotatingText";
+import { getUsername } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBoxOpen,
   faUserGroup,
   faUserPlus,
   faCartShopping,
-  faArrowRightFromBracket,
   faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,6 +20,7 @@ function Home() {
     }
   }, []);
 
+  // Today's date, formatted for the greeting header
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -30,19 +28,22 @@ function Home() {
     day: "numeric",
     year: "numeric",
   });
+
+  // Good Morning / Afternoon / Evening based on the current hour
   const hours = today.getHours();
   const time = hours < 12 ? "Morning" : hours < 18 ? "Afternoon" : "Evening";
 
   return (
     <div className="home">
-      <section className="topbar-block">
+      {/* Greeting header */}
+      <section className="surface-panel topbar">
         <h1 className="fw-bold">
-          Good {time},
-          <span style={{ textTransform: "capitalize" }}> {username}</span>
+          Good {time},<span className="capitalize"> {username}</span>
         </h1>
         <p>{formattedDate}</p>
       </section>
 
+      {/* Hero banner with rotating "Manage your ___" text */}
       <section>
         <div className="hero">
           <div className="hero-content">
@@ -66,7 +67,8 @@ function Home() {
         </div>
       </section>
 
-      <section id="about">
+      {/* About blurb + quick-action cards to the main pages */}
+      <section className="surface-panel about-section">
         <h2>About Soynikon Desk</h2>
         <p>
           Internal business management tool for Soynikon Photo Store. Manage
@@ -76,7 +78,7 @@ function Home() {
 
         <hr />
 
-        <h2 className="quick-actions">Quick Actions</h2>
+        <h2 className="quick-actions-heading">Quick Actions</h2>
         <div className="row justify-content-evenly">
           <div className="cards col-3">
             <Link to="/clients">

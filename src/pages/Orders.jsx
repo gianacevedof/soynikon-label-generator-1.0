@@ -1,5 +1,4 @@
-import react, { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
@@ -8,6 +7,7 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   const [search, setSearch] = useState("");
 
+  // Load the full order list once on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +23,7 @@ function Orders() {
 
   return (
     <div>
-      <section className="topbar-flex">
+      <section className="surface-panel topbar topbar--flex">
         <div>
           <h1 className="fw-bold">Orders</h1>
         </div>
@@ -39,7 +39,7 @@ function Orders() {
         </div>
       </section>
 
-      <div className="table-container">
+      <div className="surface-panel table-container">
         <p className="h5 mb-3">All Orders</p>
         {/* Header bubble */}
         <div className="table-header orders-cols">
@@ -55,7 +55,7 @@ function Orders() {
           <span>Shipping Date</span>
         </div>
 
-        {/* Rows bubble */}
+        {/* Rows bubble — filtered client-side against every visible field */}
         <div className="table-body">
           {orders
             .filter((order) => {

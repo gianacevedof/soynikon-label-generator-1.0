@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -6,7 +6,16 @@ import Modal from "react-bootstrap/Modal";
 function ClientModal({ setToggleEditModal, clientData, setClients }) {
   const URL = import.meta.env.VITE_API_URL;
 
-  const [formData, setFormData] = useState(clientData);
+  // Some fields (last_name, phone, address_2) can come back null from the
+  // API. Coalescing to "" here keeps every input controlled from the start —
+  // otherwise React logs a warning the first time one of these fields goes
+  // from null to a typed value.
+  const [formData, setFormData] = useState({
+    ...clientData,
+    last_name: clientData.last_name ?? "",
+    phone: clientData.phone ?? "",
+    address_2: clientData.address_2 ?? "",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -14,6 +23,8 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
   };
 
   const submitFormData = async (e) => {
+    e.preventDefault();
+
     try {
       const res = await fetch(`${URL}edit_client.php`, {
         method: "POST",
@@ -27,6 +38,8 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
       if (json.success) {
         toast.success(json.message);
         setToggleEditModal();
+        // Merge the edited fields into the matching client in the list,
+        // instead of refetching the whole table.
         setClients((c) =>
           c.map((c) =>
             c.client_id === clientData.client_id ? { ...c, ...formData } : c,
@@ -48,10 +61,13 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
       <Modal.Body>
         <form onSubmit={submitFormData} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label">First</label>
+            <label htmlFor="editFirst" className="form-label">
+              First
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editFirst"
               name="first_name"
               value={formData.first_name}
               onChange={handleInputChange}
@@ -59,30 +75,39 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label">Last</label>
+            <label htmlFor="editLast" className="form-label">
+              Last
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editLast"
               name="last_name"
               value={formData.last_name}
               onChange={handleInputChange}
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label">Phone Number</label>
+            <label htmlFor="editPhone" className="form-label">
+              Phone Number
+            </label>
             <input
               type="tel"
               className="form-control"
+              id="editPhone"
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
             />
           </div>
           <div className="col-12">
-            <label className="form-label">Address</label>
+            <label htmlFor="editAddress" className="form-label">
+              Address
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editAddress"
               name="address_1"
               placeholder="1234 Main St"
               value={formData.address_1}
@@ -91,10 +116,13 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
             />
           </div>
           <div className="col-12">
-            <label className="form-label">Address 2</label>
+            <label htmlFor="editAddress2" className="form-label">
+              Address 2
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editAddress2"
               name="address_2"
               placeholder="Apartment, studio, or floor"
               value={formData.address_2}
@@ -102,10 +130,13 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label">City</label>
+            <label htmlFor="editCity" className="form-label">
+              City
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editCity"
               name="city"
               value={formData.city}
               onChange={handleInputChange}
@@ -113,10 +144,14 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
             />
           </div>
           <div className="col-md-4">
-            <label className="form-label">State</label>
+            <label htmlFor="editState" className="form-label">
+              State
+            </label>
             <select
               className="form-select"
+              id="editState"
               name="state"
+              value={formData.state}
               onChange={handleInputChange}
               required
             >
@@ -176,10 +211,13 @@ function ClientModal({ setToggleEditModal, clientData, setClients }) {
             </select>
           </div>
           <div className="col-md-2">
-            <label className="form-label">Zip</label>
+            <label htmlFor="editZip" className="form-label">
+              Zip
+            </label>
             <input
               type="text"
               className="form-control"
+              id="editZip"
               name="zip"
               value={formData.zip}
               onChange={handleInputChange}

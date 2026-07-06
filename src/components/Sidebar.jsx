@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getRole, getUsername } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +16,8 @@ function Sidebar() {
   const role = getRole();
   const [username, setUsername] = useState("Guest");
 
+  // Pull the username from the JWT once on mount. Falls back to
+  // "Guest" (initial state) if there's no token or no username claim.
   useEffect(() => {
     const name = getUsername();
     if (name) {
@@ -24,11 +25,13 @@ function Sidebar() {
     }
   }, []);
 
+  // "John Doe" -> "JD"
   const initials = username
     .split(" ")
     .map((w) => w[0].toUpperCase())
     .join("");
 
+  // Adds the "active" class to whichever nav link matches the current route
   const navClass = ({ isActive }) => `nav-item ${isActive ? "active" : ""}`;
 
   const handleSignOut = () => {
@@ -38,7 +41,7 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      {/* top */}
+      {/* Logo + app name */}
       <div className="d-flex gap-3 p-4">
         <div className="m-0 p-0">
           <img src="/logo.jpg" alt="Soynikon Desk logo" />
@@ -51,7 +54,7 @@ function Sidebar() {
 
       <hr />
 
-      {/* middle / menu */}
+      {/* Navigation links — "New Client" is admin-only */}
       <div className="sidebar-menu d-flex flex-column p-4">
         <p className="pb-4">
           <b>MAIN</b>
@@ -77,14 +80,11 @@ function Sidebar() {
 
       <hr />
 
-      {/* bottom */}
+      {/* Signed-in user + sign-out button */}
       <div className="d-flex justify-content-between p-4">
-        <div
-          className="d-flex align-items-center gap-3"
-          style={{ textTransform: "capitalize" }}
-        >
+        <div className="d-flex align-items-center gap-3 capitalize">
           <div className="user-profile-pic">
-            <p className="">{initials}</p>
+            <p>{initials}</p>
           </div>
           <div>
             <p className="text-white h5 m-0">{username}</p>

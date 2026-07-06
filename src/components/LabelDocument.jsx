@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Document,
   Page,
@@ -7,17 +6,26 @@ import {
   Image,
   StyleSheet,
 } from "@react-pdf/renderer";
-import { contain } from "three/src/extras/TextureUtils.js";
+
+// These mirror my custom css palette by value so the printed label stays
+// visually in sync with the on-screen preview in Labels.jsx. Update both
+// places if the palette changes.
+const colors = {
+  surface: "#ffffff", // matches --surface
+  dark: "#1a1a1a", // matches --dark
+  grayMuted: "#6e6e73", // matches --gray-muted
+  dividerGray: "#cccccc", // intentionally darker than --gray-border (#e4e4e7) —
+};
 
 const styles = StyleSheet.create({
   page: {
     padding: "0.3in",
     fontFamily: "Helvetica",
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.surface,
   },
   divider: {
     borderBottomWidth: 0.5,
-    borderBottomColor: "#cccccc",
+    borderBottomColor: colors.dividerGray,
     marginVertical: 8,
   },
   sectionRow: {
@@ -34,22 +42,22 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     letterSpacing: 1,
     marginBottom: 4,
-    color: "#888888",
+    color: colors.grayMuted,
   },
   text: {
     fontSize: 10,
     marginBottom: 2,
-    color: "#1a1a1a",
+    color: colors.dark,
   },
   boldText: {
     fontSize: 13,
     fontFamily: "Helvetica-Bold",
     marginBottom: 3,
-    color: "#1a1a1a",
+    color: colors.dark,
   },
   orderNumber: {
     fontSize: 9,
-    color: "#888888",
+    color: colors.grayMuted,
     marginBottom: 2,
   },
   logo: {
@@ -78,6 +86,8 @@ const styles = StyleSheet.create({
   },
 });
 
+// Renders the actual downloadable PDF label — a mirror of the live
+// preview markup in Labels.jsx built from @react-pdf/renderer
 function LabelDocument({ selectedClient, selectedItem, orderId, date }) {
   const address2 = selectedClient?.address_2 || null;
 

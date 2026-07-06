@@ -38,6 +38,7 @@ function NewClients() {
 
       if (json.success) {
         toast.success(json.message);
+        // Reset the form so the user can add another client right away
         setFormData((f) => ({
           ...f,
           first_name: "",
@@ -59,13 +60,13 @@ function NewClients() {
 
   return (
     <div>
-      <section className="topbar-block">
+      <section className="surface-panel topbar">
         <h1 className="fw-bold">Add new client</h1>
         <p>Fill in the client's information below</p>
       </section>
 
-      <div className="new-form">
-        <form onSubmit={submitFormData} className="">
+      <div className="surface-panel new-form">
+        <form onSubmit={submitFormData}>
           <div className="contact row g-3">
             <p className="fw-bold">
               <FontAwesomeIcon icon={faCircleUser} /> CONTACT INFO
@@ -78,6 +79,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputFirst"
                 name="first_name"
                 value={formData.first_name}
                 onChange={handleInputChange}
@@ -92,6 +94,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputLast"
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleInputChange}
@@ -105,6 +108,7 @@ function NewClients() {
               <input
                 type="tel"
                 className="form-control"
+                id="inputPhone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
@@ -125,6 +129,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputAddress"
                 name="address_1"
                 placeholder="1234 Main St"
                 value={formData.address_1}
@@ -139,6 +144,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputAddress2"
                 name="address_2"
                 placeholder="Apartment, studio, or floor"
                 value={formData.address_2}
@@ -152,6 +158,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputCity"
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
@@ -165,11 +172,11 @@ function NewClients() {
               </label>
               <select
                 className="form-select"
+                id="inputState"
                 name="state"
                 value={formData.state}
                 onChange={handleInputChange}
                 required
-                // defaultValue=""
               >
                 <option value="" disabled>
                   Choose...
@@ -233,6 +240,7 @@ function NewClients() {
               <input
                 type="text"
                 className="form-control"
+                id="inputZip"
                 name="zip"
                 value={formData.zip}
                 onChange={handleInputChange}
@@ -242,7 +250,6 @@ function NewClients() {
             </div>
           </div>
 
-          <div className="col-12"></div>
           <div className="col-12">
             <button type="submit">Add client</button>
           </div>

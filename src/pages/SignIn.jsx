@@ -10,6 +10,7 @@ function SignIn() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
 
+  // Auto-focus the username field on page load
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -34,7 +35,6 @@ function SignIn() {
         navigate("/", { replace: true });
       } else {
         toast.error(json.message);
-        console.log(json.message);
       }
     } catch (err) {
       console.error(err);
@@ -45,6 +45,7 @@ function SignIn() {
   return (
     <div className="auth-page">
       <div className="auth-shell">
+        {/* Brand panel */}
         <div className="auth-left">
           <div className="auth-glow" />
           <div className="auth-glow2" />
@@ -61,6 +62,7 @@ function SignIn() {
           </div>
         </div>
 
+        {/* Sign-in form */}
         <div className="auth-right">
           <form className="auth-form-wrap" onSubmit={handleSubmit}>
             <div className="auth-title">Welcome back</div>

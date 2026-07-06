@@ -1,3 +1,6 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
   /* Brand */
   --yellow: #ffc01a;
@@ -15,21 +18,19 @@
   --surface: #ffffff;
   --sidebar-bg: #1e1e1e;
 
-  /* Padding */
-  --padding-sm: 20px;
-  --padding-md: 40px;
-  --padding-lg: 60px;
-
-  /* Margin */
-  --margin-sm: 20px;
-  --margin-md: 40px;
-  --margin-lg: 60px;
-
-  /* Semantic */
+  /* Semantic (status/feedback colors) */
   --success: #16a34a;
   --success-bg: #dcfce7;
   --danger: #dc2626;
   --danger-bg: #fee2e2;
+
+  /* Page-level spacing — section padding, card padding, page gutters */
+  --padding-sm: 20px;
+  --padding-md: 40px;
+  --padding-lg: 60px;
+  --margin-sm: 20px;
+  --margin-md: 40px;
+  --margin-lg: 60px;
 
   /* Radius */
   --radius-sm: 6px;
@@ -41,7 +42,15 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Resets */
+/* ============================================================
+   GLOBAL RESETS
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--page-bg);
   color: var(--dark);
@@ -51,12 +60,6 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 p,
@@ -69,18 +72,20 @@ img {
 
 hr {
   margin: var(--margin-sm) 0;
+  border: none;
+  border-top: 1px solid var(--gray-border);
 }
 
-.home::-webkit-scrollbar {
-  display: none;
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.capitalize {
+  text-transform: capitalize;
 }
 
-.home {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-/* Layout */
+/* ============================================================
+   APP SHELL / LAYOUT
+   ============================================================ */
 .page-content {
   height: 100vh;
   background-color: var(--page-bg);
@@ -88,6 +93,9 @@ hr {
   position: relative;
 }
 
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -96,15 +104,6 @@ hr {
   height: 100vh;
   flex-shrink: 0;
   color: var(--gray-muted);
-}
-
-/* Components */
-/* sidebar */
-.nav-item {
-  color: var(--gray-muted);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-  text-decoration: none;
 }
 
 .sidebar img {
@@ -116,14 +115,6 @@ hr {
   flex: 1;
 }
 
-.active,
-.sidebar .active:hover {
-  background: var(--yellow);
-  color: var(--dark);
-  font-weight: 500;
-  border-radius: var(--radius-md);
-}
-
 .sidebar a:hover {
   color: var(--yellow-hover);
 }
@@ -132,53 +123,78 @@ hr {
   border: none;
 }
 
+.nav-item {
+  color: var(--gray-muted);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  text-decoration: none;
+}
+
+.active,
+.sidebar .active:hover {
+  background: var(--yellow);
+  color: var(--dark);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+}
+
 .user-profile-pic {
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   width: 50px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: var(--yellow);
   color: var(--gray);
 }
 
-/* topbar */
-.topbar-block {
-  padding: var(--padding-md);
+/* ============================================================
+   SURFACE PANEL
+   ============================================================ */
+.surface-panel {
   background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--radius-lg);
   border: 1px solid var(--gray-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-.topbar-block p {
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  padding: var(--padding-md);
+}
+
+.topbar p {
   color: var(--gray-muted);
 }
 
-.topbar-flex {
+.topbar--flex {
   display: flex;
   justify-content: space-between;
-  padding: var(--padding-md);
-  background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--gray-border);
+  align-items: center;
 }
 
-/* ===============
-      HOME
-=============== */
+/* ============================================================
+   HOME
+   ============================================================ */
 .home {
   overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge/IE */
+}
+
+.home::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .hero {
   margin: var(--margin-md) 0;
   border-radius: var(--radius-lg);
-  background-image: url(hero.jpeg);
+  background-image: url(assets/hero.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -213,28 +229,19 @@ hr {
   overflow: hidden;
 }
 
-#about {
-  background-color: var(--surface);
+.about-section {
   padding: var(--padding-md);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
 }
-#about a {
+
+.about-section a {
   color: var(--dark);
   text-decoration: none;
 }
 
-.quick-actions {
+/* Heading above the quick-action cards */
+.quick-actions-heading {
   margin: var(--margin-lg);
   text-align: center;
-}
-
-#quick-actions {
-  padding: var(--padding-md);
-  background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--radius-lg);
 }
 
 .cards {
@@ -249,6 +256,7 @@ hr {
   border-radius: var(--radius-lg);
   transition: transform 0.2s ease;
 }
+
 .cards:hover {
   transform: scale(1.05);
 }
@@ -260,16 +268,16 @@ hr {
   width: 60px;
   height: 60px;
   border-radius: var(--radius-lg);
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: var(--surface);
   background-color: var(--yellow);
   margin-bottom: 10px;
   border: 2px solid var(--yellow-hover);
 }
 
-/* ===============
-    CLIENTS
-=============== */
+/* ============================================================
+   CLIENTS
+   ============================================================ */
 .search-bar-container {
   display: flex;
   gap: 20px;
@@ -278,7 +286,7 @@ hr {
 
 .clients-new {
   background-color: var(--yellow);
-  color: white;
+  color: var(--surface);
   font-weight: bold;
   border-radius: var(--radius-md);
   padding: 8px var(--padding-sm);
@@ -296,13 +304,9 @@ hr {
 
 .table-container {
   margin: var(--margin-md) 0;
-  background-color: var(--surface);
   padding: var(--padding-sm);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
   min-width: 1200px;
   text-align: center;
-  border: 1px solid var(--gray-border);
 }
 
 .standard-cols {
@@ -319,11 +323,11 @@ hr {
   background: var(--surface);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(26, 26, 26, 0.07);
+  border: 1px solid rgba(26, 26, 26, 0.07); /* --dark at ~7% opacity */
   padding: 12px 16px;
   color: var(--gray-muted);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 8px;
@@ -333,7 +337,7 @@ hr {
   background: var(--surface);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(26, 26, 26, 0.07);
+  border: 1px solid rgba(26, 26, 26, 0.07); /* --dark at ~7% opacity */
   overflow: hidden;
 }
 
@@ -341,7 +345,7 @@ hr {
   padding: 12px 16px;
   border-bottom: 1px solid var(--gray-border);
   align-items: center;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .table-row:last-child {
@@ -355,28 +359,24 @@ hr {
 
 .table-actions button {
   border: none;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
   margin: 0 auto;
 }
 
-/* ===============
-      ORDERS
-=============== */
+/* ============================================================
+   ORDERS
+   ============================================================ */
 .orders-cols {
   display: grid;
   grid-template-columns: 80px repeat(9, 1fr);
 }
 
-/* ===============
-    NEW CLIENT
-=============== */
+/* ============================================================
+   NEW CLIENTS
+   ============================================================ */
 .new-form {
-  background-color: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
   margin: var(--margin-md) 0;
   padding: var(--padding-md);
-  border: 1px solid var(--gray-border);
 }
 
 .new-form p {
@@ -385,13 +385,12 @@ hr {
 
 .new-form button {
   background-color: var(--yellow);
-  color: white;
+  color: var(--surface);
   font-weight: bold;
   border: none;
   border-radius: var(--radius-md);
   padding: 8px var(--padding-sm);
   transition: transform 0.2s ease;
-  text-decoration: none;
 }
 
 .new-form button:hover {
@@ -403,10 +402,10 @@ hr {
   padding-bottom: var(--padding-md);
 }
 
-/* ===============
-      LABELS
-=============== */
-#labels {
+/* ============================================================
+   LABELS
+   ============================================================ */
+.labels-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -417,11 +416,7 @@ hr {
 /* Panels */
 .label-details,
 .label-preview {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: var(--padding-sm);
 }
 
 .label-panel-title {
@@ -432,7 +427,7 @@ hr {
 
 .label-divider {
   border: none;
-  border-top: 1px solid #efefef;
+  border-top: 1px solid var(--gray-border);
   margin: 0.75rem 0 1.25rem;
 }
 
@@ -453,7 +448,7 @@ hr {
 
 .label-field-label svg {
   margin-right: 0.35rem;
-  color: var(--accent);
+  color: var(--yellow);
 }
 
 /* Input row */
@@ -473,28 +468,28 @@ hr {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   border: none;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--gray-border);
   border-radius: 0;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--dark);
   outline: none;
   transition: border-color 0.15s ease;
 }
 
 .label-input:focus {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--yellow);
 }
 
-/* Dropdown */
+/* Dropdown (client/item search results) */
 .label-dropdown {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   z-index: 100;
   max-height: 200px;
   overflow-y: auto;
@@ -513,22 +508,22 @@ hr {
 }
 
 .label-dropdown-item:hover {
-  background: #fafafa;
+  background: var(--page-bg);
   border-left-color: var(--yellow);
 }
 
 .label-dropdown-name {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--dark);
 }
 
 .label-dropdown-meta {
   font-size: 0.75rem;
-  color: #aaa;
+  color: var(--gray-muted);
 }
 
-/* Action buttons */
+/* Action buttons ("New" / "Add" next to the search inputs) */
 .label-action-btn {
   display: inline-flex;
   align-items: center;
@@ -536,7 +531,7 @@ hr {
   padding: 0.45rem 0.85rem;
   font-size: 0.8rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
@@ -548,7 +543,7 @@ hr {
 .label-action-btn--ghost {
   background-color: var(--yellow);
   border: none;
-  color: white;
+  color: var(--surface);
 }
 
 .label-action-btn--ghost:hover {
@@ -557,9 +552,9 @@ hr {
 
 /* Sticker preview */
 .label-sticker {
-  background: #fafafa;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
+  background: var(--page-bg);
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-md);
   padding: 1rem 1.1rem;
   font-size: 0.8rem;
   box-shadow:
@@ -576,7 +571,7 @@ hr {
 
 .label-sticker-hr {
   border: none;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--gray-border);
   margin: 0.6rem 0;
 }
 
@@ -585,32 +580,34 @@ hr {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #aaa;
+  color: var(--gray-muted);
   margin-bottom: 0.3rem;
 }
 
 .label-sticker-order-num {
   font-size: 0.75rem;
-  color: #999;
+  color: var(--gray-muted);
   margin-bottom: 0.15rem;
 }
 
 .label-sticker-text {
   font-size: 0.8rem;
-  color: #444;
+  color: var(--gray);
   margin-bottom: 0.1rem;
 }
 
 .label-sticker-name {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dark);
   margin-bottom: 0.2rem;
 }
 
+/* "No client selected" / "—" placeholder text */
 .label-sticker-empty {
   font-size: 0.8rem;
-  color: #ccc;
+  color: var(--gray-muted);
+  opacity: 0.6;
   font-style: italic;
 }
 
@@ -626,7 +623,7 @@ hr {
   object-fit: contain;
 }
 
-/* Bottom action buttons */
+/* Bottom action buttons (Generate / Download / Reset) */
 .label-actions {
   display: flex;
   gap: 0.6rem;
@@ -638,7 +635,7 @@ hr {
   padding: 0.6rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   transition:
@@ -650,14 +647,15 @@ hr {
   transform: scale(0.98);
 }
 
-.label-btn--generate {
-  background: var(--yellow);
-  color: white;
-}
-
+.label-btn--generate,
 .label-btn--download {
   background: var(--yellow);
-  color: white;
+  color: var(--surface);
+}
+
+.label-btn--generate:hover,
+.label-btn--download:hover {
+  opacity: 0.88;
 }
 
 .label-btn--reset {
@@ -669,16 +667,13 @@ hr {
 }
 
 .label-btn--reset:hover {
-  border-color: #ccc;
-  color: #555;
+  border-color: var(--gray-border);
+  color: var(--gray);
 }
 
-.label-btn--generate:hover,
-.label-btn--download:hover {
-  opacity: 0.88;
-}
-
-/* ─── AUTH PAGES ─── */
+/* ============================================================
+   AUTH PAGES
+   ============================================================ */
 .auth-page {
   min-height: 100vh;
   width: 100%;
@@ -688,16 +683,19 @@ hr {
   background: var(--page-bg);
   padding: var(--padding-sm);
 }
+
 .auth-shell {
   min-height: 480px;
   width: 100%;
   max-width: 900px;
   background: var(--dark);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   display: flex;
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
+
+/* Left panel — brand/logo side */
 .auth-left {
   width: 280px;
   flex-shrink: 0;
@@ -711,6 +709,8 @@ hr {
   position: relative;
   overflow: hidden;
 }
+
+/* Decorative glow circles */
 .auth-glow {
   width: 200px;
   height: 200px;
@@ -720,6 +720,7 @@ hr {
   top: -40px;
   left: -40px;
 }
+
 .auth-glow2 {
   width: 160px;
   height: 160px;
@@ -729,6 +730,7 @@ hr {
   bottom: -30px;
   right: -30px;
 }
+
 .auth-logo-big {
   width: 56px;
   height: 56px;
@@ -741,29 +743,34 @@ hr {
   position: relative;
   z-index: 1;
 }
+
 .auth-logo-big span {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 800;
   color: var(--dark);
   line-height: 1.1;
   text-align: center;
 }
+
 .auth-brand {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--surface);
   margin-bottom: 6px;
   position: relative;
   z-index: 1;
 }
+
 .auth-tagline {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   position: relative;
   z-index: 1;
   line-height: 1.6;
 }
+
+/* Right panel — the actual form */
 .auth-right {
   flex: 1;
   display: flex;
@@ -773,46 +780,54 @@ hr {
   padding: var(--padding-md) 48px;
   background: var(--page-bg);
 }
+
 .auth-form-wrap {
   width: 100%;
   max-width: 320px;
 }
+
 .auth-title {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--dark);
   margin-bottom: 6px;
 }
+
 .auth-sub {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--gray-muted);
   margin-bottom: 24px;
 }
+
 .auth-field {
   margin-bottom: 14px;
 }
+
 .auth-label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: var(--gray-muted);
   margin-bottom: 5px;
   display: block;
 }
+
 .auth-input {
   width: 100%;
   padding: 9px 12px;
   border: 1px solid var(--gray-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-family: inherit;
   color: var(--dark);
   background: var(--surface);
   outline: none;
 }
+
 .auth-input:focus {
   border-color: var(--yellow);
   box-shadow: 0 0 0 3px rgba(255, 192, 26, 0.12);
 }
+
 .auth-btn {
   width: 100%;
   padding: 10px;
@@ -820,25 +835,29 @@ hr {
   border-radius: var(--radius-sm);
   background: var(--yellow);
   color: var(--dark);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
   margin-top: 6px;
 }
+
 .auth-btn:hover {
   background: var(--yellow-hover);
 }
+
 .auth-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .auth-footer-text {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--gray-muted);
   text-align: center;
   margin-top: 16px;
 }
+
 .auth-footer-text a {
   color: var(--yellow-hover);
   text-decoration: none;
@@ -846,19 +865,24 @@ hr {
 }
 
 .auth-input-err {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--danger);
   margin-top: 5px;
   line-height: 1.4;
 }
+
 .auth-input-err svg {
   margin-right: 4px;
 }
 
-/* Utilities */
-.blur {
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.189);
-  background-color: rgba(165, 165, 165, 0.07);
-  border-radius: 25px;
+/* ============================================================
+   MODALS
+   ============================================================ */
+
+/* Inline "delete" warning tag inside DeleteModal */
+.delete-tag {
+  color: var(--danger);
+  background-color: var(--danger-bg);
+  padding: 3px 5px;
+  border-radius: var(--radius-sm);
 }
