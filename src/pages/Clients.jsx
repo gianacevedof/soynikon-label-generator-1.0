@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import EditModal from "../components/EditModal";
 import DeleteModal from "../components/DeleteModal";
+import Topbar from "../components/Topbar";
 
 function Clients() {
   const URL = import.meta.env.VITE_API_URL;
@@ -75,6 +76,7 @@ function Clients() {
   return (
     <div>
       <section className="surface-panel topbar topbar--flex">
+        <Topbar />
         <div>
           <h1 className="fw-bold">Clients</h1>
         </div>

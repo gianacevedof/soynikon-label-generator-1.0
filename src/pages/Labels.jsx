@@ -10,6 +10,7 @@ import {
 import { toast } from "sonner";
 import { getRole } from "../utils/auth";
 import LabelDocument from "../components/LabelDocument";
+import Topbar from "../components/Topbar";
 
 function Labels() {
   const URL = import.meta.env.VITE_API_URL;
@@ -160,7 +161,8 @@ function Labels() {
 
   return (
     <div>
-      <section className="surface-panel topbar">
+      <section className="surface-panel topbar topbar--flex">
+        <Topbar />
         <h1 className="fw-bold">Labels</h1>
         <p>Generate and print shipping labels</p>
       </section>

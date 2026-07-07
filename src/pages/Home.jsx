@@ -9,6 +9,7 @@ import {
   faCartShopping,
   faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
+import Topbar from "../components/Topbar";
 
 function Home() {
   const [username, setUsername] = useState("Guest");
@@ -36,11 +37,14 @@ function Home() {
   return (
     <div className="home">
       {/* Greeting header */}
-      <section className="surface-panel topbar">
-        <h1 className="fw-bold">
-          Good {time},<span className="capitalize"> {username}</span>
-        </h1>
-        <p>{formattedDate}</p>
+      <section className="surface-panel topbar topbar--flex">
+        <Topbar />
+        <div>
+          <h1 className="fw-bold">
+            Good {time},<span className="capitalize"> {username}</span>
+          </h1>
+          <p>{formattedDate}</p>
+        </div>
       </section>
 
       {/* Hero banner with rotating "Manage your ___" text */}

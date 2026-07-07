@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import Topbar from "../components/Topbar";
 
 function NewClients() {
   const URL = import.meta.env.VITE_API_URL;
@@ -60,7 +61,8 @@ function NewClients() {
 
   return (
     <div>
-      <section className="surface-panel topbar">
+      <section className="surface-panel topbar topbar--flex">
+        <Topbar />
         <h1 className="fw-bold">Add new client</h1>
         <p>Fill in the client's information below</p>
       </section>

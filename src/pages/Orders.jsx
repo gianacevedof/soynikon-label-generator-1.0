@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Topbar from "../components/Topbar";
 
 function Orders() {
   const URL = import.meta.env.VITE_API_URL;
@@ -24,6 +25,7 @@ function Orders() {
   return (
     <div>
       <section className="surface-panel topbar topbar--flex">
+        <Topbar />
         <div>
           <h1 className="fw-bold">Orders</h1>
         </div>

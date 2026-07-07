@@ -886,3 +886,67 @@ hr {
   padding: 3px 5px;
   border-radius: var(--radius-sm);
 }
+
+/* ============================================================
+   SIDEBAR — Mobile off-canvas (≤768px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: var(--shadow-md);
+    width: 280px;
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  body.sidebar-open .sidebar-backdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Hamburger button */
+  .mobile-hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    color: var(--dark);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+  }
+  .mobile-hamburger:hover {
+    background: var(--gray-border);
+  }
+  .mobile-hamburger:focus-visible {
+    outline: 2px solid var(--yellow);
+    outline-offset: 2px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-hamburger {
+    display: none;
+  }
+}
