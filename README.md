@@ -11,7 +11,7 @@ This deployment is a personal project, not the production tool used by the busin
 | Role     | Username | Password             |
 | -------- | -------- | -------------------- |
 | Admin    | admin    | cegge0-ruhBep-nofmaw |
-| Standard | standard | _see sign-in page_   |
+| Standard | standard | defmyK-dyqhaj-2bywta |
 
 ## Stack
 
