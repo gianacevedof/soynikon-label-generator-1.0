@@ -22,7 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.md
 .env
 /PSDs
-CHANGELOG.md
 src_
