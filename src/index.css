@@ -981,6 +981,10 @@ hr {
   /* Page content — flush to viewport edges */
   .page-content {
     padding: 0;
+    height: auto;
+    min-height: 100dvh;
+    min-height: 100vh;
+    overflow-y: auto;
   }
 
   /* Tables — switch to card-stack view */
@@ -1040,13 +1044,25 @@ hr {
   }
 
   .table-actions {
-    justify-content: flex-end;
-    gap: 12px;
+    justify-content: center;
+    gap: 16px;
+    border-bottom: none;
+    padding-top: 8px;
+  }
+
+  .table-actions::before {
+    display: none;
   }
 
   .table-actions button {
     padding: 12px;
     font-size: 1rem;
+  }
+
+  /* Address field — allow value to wrap naturally */
+  .table-row span[data-label="ADDRESS"] {
+    justify-content: flex-start;
+    gap: 8px;
   }
 }
 

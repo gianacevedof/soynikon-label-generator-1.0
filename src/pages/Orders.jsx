@@ -92,20 +92,22 @@ function Orders() {
                 byShippingDate
               );
             })
-            .map((order) => (
-              <div className="table-row orders-cols" key={order.order_num}>
-                <span data-label="Order #">{order.order_num}</span>
-                <span data-label="First">{order.first_name}</span>
-                <span data-label="Last">{order.last_name || "-"}</span>
-                <span data-label="Item">{order.item}</span>
-                <span data-label="Address Ln 1">{order.address_1}</span>
-                <span data-label="Address Ln 2">{order.address_2 || "-"}</span>
-                <span data-label="City">{order.city}</span>
-                <span data-label="State">{order.state}</span>
-                <span data-label="Zip">{order.zip}</span>
-                <span data-label="Shipping Date">{order.shipping_date}</span>
-              </div>
-            ))}
+            .map((order) => {
+              const addressParts = [order.address_1]
+                .concat(order.address_2 ? [order.address_2] : []);
+              const addressStr = [...addressParts, order.city, order.state, order.zip]
+                .filter(Boolean).join(", ");
+
+              return (
+                <div className="table-row orders-cols" key={order.order_num}>
+                  <span data-label="Order #">{order.order_num}</span>
+                  <span data-label="CLIENT">{order.first_name} {order.last_name || "-"}</span>
+                  <span data-label="ITEM">{order.item}</span>
+                  <span data-label="ADDRESS">{addressStr}</span>
+                  <span data-label="Shipping Date">{order.shipping_date}</span>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

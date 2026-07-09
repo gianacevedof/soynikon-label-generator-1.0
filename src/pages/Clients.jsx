@@ -147,41 +147,43 @@ function Clients() {
                 byZip
               );
             })
-            .map((client) => (
-              <div
-                className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
-                key={client.client_id}
-              >
-                <span data-label="First">{client.first_name}</span>
-                <span data-label="Last">{client.last_name || "-"}</span>
-                <span data-label="Phone">{client.phone || "-"}</span>
-                <span data-label="Address Ln 1">{client.address_1}</span>
-                <span data-label="Address Ln 2">{client.address_2 || "-"}</span>
-                <span data-label="City">{client.city}</span>
-                <span data-label="State">{client.state}</span>
-                <span data-label="Zip">{client.zip}</span>
-                {role === "admin" && (
-                  <span className="table-actions" data-label="Actions">
-                    <button
-                      onClick={() => {
-                        selectClient(client);
-                        toggleEditModal();
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </button>
-                    <button
-                      onClick={() => {
-                        selectClient(client);
-                        toggleDeleteModal();
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </span>
-                )}
-              </div>
-            ))}
+            .map((client) => {
+              const addressParts = [client.address_1]
+                .concat(client.address_2 ? [client.address_2] : []);
+              const addressStr = [...addressParts, client.city, client.state, client.zip]
+                .filter(Boolean).join(", ");
+
+              return (
+                <div
+                  className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
+                  key={client.client_id}
+                >
+                  <span data-label="CLIENT">{client.first_name} {client.last_name || ""}</span>
+                  <span data-label="PHONE">{client.phone || "-"}</span>
+                  <span data-label="ADDRESS">{addressStr}</span>
+                  {role === "admin" && (
+                    <span className="table-actions">
+                      <button
+                        onClick={() => {
+                          selectClient(client);
+                          toggleEditModal();
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </button>
+                      <button
+                        onClick={() => {
+                          selectClient(client);
+                          toggleDeleteModal();
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </span>
+                  )}
+                </div>
+              );
+            })}
         </div>
 
         {editModal && (
