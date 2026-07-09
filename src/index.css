@@ -24,13 +24,13 @@
   --danger: #dc2626;
   --danger-bg: #fee2e2;
 
-  /* Page-level spacing — section padding, card padding, page gutters */
-  --padding-sm: 20px;
-  --padding-md: 40px;
-  --padding-lg: 60px;
-  --margin-sm: 20px;
-  --margin-md: 40px;
-  --margin-lg: 60px;
+  /* Page-level spacing — fluid, scales between mobile and desktop */
+  --padding-sm: clamp(12px, 1.5vw, 20px);
+  --padding-md: clamp(20px, 3vw, 40px);
+  --padding-lg: clamp(24px, 5vw, 60px);
+  --margin-sm: clamp(12px, 1.5vw, 20px);
+  --margin-md: clamp(20px, 3vw, 40px);
+  --margin-lg: clamp(24px, 5vw, 60px);
 
   /* Radius */
   --radius-sm: 6px;
