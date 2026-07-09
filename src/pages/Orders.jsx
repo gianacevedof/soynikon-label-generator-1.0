@@ -94,16 +94,16 @@ function Orders() {
             })
             .map((order) => (
               <div className="table-row orders-cols" key={order.order_num}>
-                <span>{order.order_num}</span>
-                <span>{order.first_name}</span>
-                <span>{order.last_name || "-"}</span>
-                <span>{order.item}</span>
-                <span>{order.address_1}</span>
-                <span>{order.address_2 || "-"}</span>
-                <span>{order.city}</span>
-                <span>{order.state}</span>
-                <span>{order.zip}</span>
-                <span>{order.shipping_date}</span>
+                <span data-label="Order #">{order.order_num}</span>
+                <span data-label="First">{order.first_name}</span>
+                <span data-label="Last">{order.last_name || "-"}</span>
+                <span data-label="Item">{order.item}</span>
+                <span data-label="Address Ln 1">{order.address_1}</span>
+                <span data-label="Address Ln 2">{order.address_2 || "-"}</span>
+                <span data-label="City">{order.city}</span>
+                <span data-label="State">{order.state}</span>
+                <span data-label="Zip">{order.zip}</span>
+                <span data-label="Shipping Date">{order.shipping_date}</span>
               </div>
             ))}
         </div>

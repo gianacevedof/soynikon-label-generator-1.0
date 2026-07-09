@@ -982,6 +982,72 @@ hr {
   .page-content {
     padding: 0;
   }
+
+  /* Tables — switch to card-stack view */
+  .table-container {
+    min-width: auto;
+  }
+
+  .standard-cols,
+  .admin-cols,
+  .orders-cols {
+    display: block;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .table-body {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .table-row {
+    display: block;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--surface);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table-row span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-border);
+    font-size: 0.875rem;
+  }
+
+  .table-row span:last-child {
+    border-bottom: none;
+  }
+
+  .table-row span::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--gray-muted);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+
+  .table-actions {
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .table-actions button {
+    padding: 12px;
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 769px) {

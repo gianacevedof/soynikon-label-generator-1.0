@@ -152,16 +152,16 @@ function Clients() {
                 className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
                 key={client.client_id}
               >
-                <span>{client.first_name}</span>
-                <span>{client.last_name || "-"}</span>
-                <span>{client.phone || "-"}</span>
-                <span>{client.address_1}</span>
-                <span>{client.address_2 || "-"}</span>
-                <span>{client.city}</span>
-                <span>{client.state}</span>
-                <span>{client.zip}</span>
+                <span data-label="First">{client.first_name}</span>
+                <span data-label="Last">{client.last_name || "-"}</span>
+                <span data-label="Phone">{client.phone || "-"}</span>
+                <span data-label="Address Ln 1">{client.address_1}</span>
+                <span data-label="Address Ln 2">{client.address_2 || "-"}</span>
+                <span data-label="City">{client.city}</span>
+                <span data-label="State">{client.state}</span>
+                <span data-label="Zip">{client.zip}</span>
                 {role === "admin" && (
-                  <span className="table-actions">
+                  <span className="table-actions" data-label="Actions">
                     <button
                       onClick={() => {
                         selectClient(client);
