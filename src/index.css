@@ -152,6 +152,16 @@ hr {
 }
 
 /* ============================================================
+   SIDEBAR BACKDROP
+   ============================================================ */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* ============================================================
    SURFACE PANEL
    ============================================================ */
 .surface-panel {
@@ -176,6 +186,51 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* ============================================================
+   GLOBAL TOPBAR
+   ============================================================ */
+.global-topbar {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 var(--padding-md);
+  background: var(--surface);
+  border-bottom: 1px solid var(--gray-border);
+  gap: 16px;
+  position: relative;
+  z-index: 100;
+}
+
+.topbar-hamburger {
+  display: none; /* hidden on desktop — shown at <=768px */
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--dark);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+}
+
+.topbar-hamburger:hover {
+  background: var(--page-bg);
+}
+
+.topbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--dark);
+  white-space: nowrap;
+}
+
+.topbar-title {
+  margin-left: auto;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--gray-muted);
+  white-space: nowrap;
 }
 
 /* ============================================================
@@ -885,4 +940,52 @@ hr {
   background-color: var(--danger-bg);
   padding: 3px 5px;
   border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (<=768px)
+   ============================================================
+   All overrides are additive. Desktop CSS is untouched.
+   The off-canvas sidebar slides from the left, backdrop covers
+   the viewport, and page-content loses its padding for flush
+   edge-to-edge layout. */
+@media (max-width: 768px) {
+  /* Global Topbar — edge-to-edge, no border-radius */
+  .global-topbar {
+    padding: 0 var(--padding-sm);
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .topbar-hamburger {
+    display: block;
+  }
+
+  /* Sidebar — off-canvas drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100dvh;
+    height: 100vh; /* fallback for browsers without dvh support */
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Page content — flush to viewport edges */
+  .page-content {
+    padding: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-backdrop {
+    display: none;
+  }
 }

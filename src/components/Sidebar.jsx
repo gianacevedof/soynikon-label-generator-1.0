@@ -11,7 +11,10 @@ import {
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar() {
+// Sidebar also receives `open` and `onClose` props from Layout for the
+// off-canvas mobile drawer behavior. On desktop (>=769px) `open` has no
+// visual effect — the sidebar sits statically in the flex layout.
+function Sidebar({ open, onClose }) {
   const navigate = useNavigate();
   const role = getRole();
   const [username, setUsername] = useState("Guest");
@@ -40,7 +43,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${open ? "open" : ""}`}>
       {/* Logo + app name */}
       <div className="d-flex gap-3 p-4">
         <div className="m-0 p-0">
@@ -59,21 +62,21 @@ function Sidebar() {
         <p className="pb-4">
           <b>MAIN</b>
         </p>
-        <NavLink to="/" className={navClass}>
+        <NavLink to="/" className={navClass} onClick={onClose}>
           <FontAwesomeIcon icon={faBoxOpen} /> Home
         </NavLink>
-        <NavLink to="/clients" className={navClass}>
+        <NavLink to="/clients" className={navClass} onClick={onClose}>
           <FontAwesomeIcon icon={faUserGroup} /> Clients
         </NavLink>
-        <NavLink to="/orders" className={navClass}>
+        <NavLink to="/orders" className={navClass} onClick={onClose}>
           <FontAwesomeIcon icon={faCartShopping} /> Orders
         </NavLink>
         {role === "admin" && (
-          <NavLink to="/new" className={navClass}>
+          <NavLink to="/new" className={navClass} onClick={onClose}>
             <FontAwesomeIcon icon={faUserPlus} /> New Client
           </NavLink>
         )}
-        <NavLink to="/labels" className={navClass}>
+        <NavLink to="/labels" className={navClass} onClick={onClose}>
           <FontAwesomeIcon icon={faTag} /> Labels
         </NavLink>
       </div>
