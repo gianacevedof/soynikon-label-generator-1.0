@@ -93,15 +93,24 @@ function Orders() {
               );
             })
             .map((order) => {
-              const addressParts = [order.address_1]
-                .concat(order.address_2 ? [order.address_2] : []);
-              const addressStr = [...addressParts, order.city, order.state, order.zip]
-                .filter(Boolean).join(", ");
+              const addressParts = [order.address_1].concat(
+                order.address_2 ? [order.address_2] : [],
+              );
+              const addressStr = [
+                ...addressParts,
+                order.city,
+                order.state,
+                order.zip,
+              ]
+                .filter(Boolean)
+                .join(", ");
 
               return (
                 <div className="table-row orders-cols" key={order.order_num}>
                   <span data-label="Order #">{order.order_num}</span>
-                  <span data-label="CLIENT">{order.first_name} {order.last_name || "-"}</span>
+                  <span data-label="CLIENT">
+                    {order.first_name} {order.last_name || "-"}
+                  </span>
                   <span data-label="ITEM">{order.item}</span>
                   <span data-label="ADDRESS">{addressStr}</span>
                   <span data-label="Shipping Date">{order.shipping_date}</span>

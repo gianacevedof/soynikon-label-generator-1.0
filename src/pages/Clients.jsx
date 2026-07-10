@@ -148,17 +148,26 @@ function Clients() {
               );
             })
             .map((client) => {
-              const addressParts = [client.address_1]
-                .concat(client.address_2 ? [client.address_2] : []);
-              const addressStr = [...addressParts, client.city, client.state, client.zip]
-                .filter(Boolean).join(", ");
+              const addressParts = [client.address_1].concat(
+                client.address_2 ? [client.address_2] : [],
+              );
+              const addressStr = [
+                ...addressParts,
+                client.city,
+                client.state,
+                client.zip,
+              ]
+                .filter(Boolean)
+                .join(", ");
 
               return (
                 <div
                   className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
                   key={client.client_id}
                 >
-                  <span data-label="CLIENT">{client.first_name} {client.last_name || ""}</span>
+                  <span data-label="CLIENT">
+                    {client.first_name} {client.last_name || ""}
+                  </span>
                   <span data-label="PHONE">{client.phone || "-"}</span>
                   <span data-label="ADDRESS">{addressStr}</span>
                   {role === "admin" && (
