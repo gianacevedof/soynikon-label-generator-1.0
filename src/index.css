@@ -188,6 +188,21 @@ hr {
   align-items: center;
 }
 
+/* page-header replaces .topbar on non-home pages, mirrors .topbar rules */
+.page-header {
+  padding: var(--padding-md);
+}
+
+.page-header p {
+  color: var(--gray-muted);
+}
+
+.page-header--flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* ============================================================
    GLOBAL TOPBAR
    ============================================================ */
@@ -199,8 +214,9 @@ hr {
   background: var(--surface);
   border-bottom: 1px solid var(--gray-border);
   gap: 16px;
-  position: relative;
-  z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 110;
 }
 
 .topbar-hamburger {
@@ -945,124 +961,415 @@ hr {
 /* ============================================================
    RESPONSIVE — MOBILE (<=768px)
    ============================================================
-   All overrides are additive. Desktop CSS is untouched.
-   The off-canvas sidebar slides from the left, backdrop covers
-   the viewport, and page-content loses its padding for flush
-   edge-to-edge layout. */
+   
+*/
 @media (max-width: 768px) {
   /* Global Topbar — edge-to-edge, no border-radius */
-  .global-topbar {
-    padding: 0 var(--padding-sm);
+.global-topbar {
+  padding: 0 var(--padding-sm);
+  border-radius: 0;
+  width: 100%;
+}
+
+.topbar-hamburger {
+  display: block;
+  margin: 0;
+}
+
+/* Sidebar — off-canvas drawer */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100dvh;
+  height: 100vh; /* fallback for browsers without dvh support */
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Page content — flush to viewport edges */
+.page-content {
+  padding: 0;
+  height: auto;
+  min-height: 100dvh;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Tables — switch to card-stack view */
+.table-container {
+  min-width: auto;
+}
+
+.standard-cols,
+.admin-cols,
+.orders-cols {
+  display: block;
+}
+
+.table-header {
+  display: none;
+}
+
+.table-body {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.table-row {
+  display: block;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.table-row span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-border);
+  font-size: 0.875rem;
+}
+
+.table-row span:last-child {
+  border-bottom: none;
+}
+
+.table-row span::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: var(--gray-muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.table-actions {
+  justify-content: center;
+  gap: 16px;
+  border-bottom: none;
+  padding-top: 8px;
+}
+
+.table-actions::before {
+  display: none;
+}
+
+.table-actions button {
+  padding: 12px;
+  font-size: 1rem;
+}
+
+/* Address field — allow value to wrap naturally */
+.table-row span[data-label="ADDRESS"] {
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* ==========================================================
+     HOME — redesigned mobile layout
+     ========================================================== */
+.home .surface-panel.topbar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0 var(--padding-sm) 4px;
+  margin: 1rem 0;
+}
+
+.home .surface-panel.topbar h1 {
+  font-size: 1.15rem;
+
+  margin-bottom: 0.5rem;
+}
+
+.home .surface-panel.topbar p {
+  font-size: 0.75rem;
+  color: var(--gray-muted);
+}
+
+/* Hero — compact, centered */
+.hero {
+  min-height: 35vh;
+  border-radius: 0;
+  margin: 0;
+}
+
+.hero-content {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-static {
+  font-size: clamp(1.1rem, 10vw, 3rem);
+  display: block;
+}
+
+.rotating-word {
+  font-size: clamp(1.35rem, 10vw, 4rem);
+}
+
+/* Quick-action grid — symmetric 2x2 */
+.quick-actions-heading {
+  font-size: 0.75rem;
+  margin: 12px 0 10px;
+  text-align: center;
+  color: var(--gray-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.home .row.justify-content-evenly {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 var(--padding-sm);
+  margin: 0;
+}
+
+.cards {
+  width: 100%;
+  height: auto;
+  min-height: 110px;
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.cards .icons {
+  width: 44px;
+  height: 44px;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  border-width: 1.5px;
+}
+
+.cards h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cards p {
+  display: none;
+}
+
+/* About section — clean text, no bubble */
+.about-section {
+  padding: 16px var(--padding-sm);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.about-section h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.about-section p {
+  font-size: 0.78rem;
+  color: var(--gray-muted);
+  line-height: 1.45;
+}
+
+.about-section hr {
+  display: none;
+}
+
+  /* ==========================================================
+     ALL PAGES — clean mobile layout, no bubble
+     ========================================================== */
+
+  /* Remove bubble from page headers */
+  .surface-panel.page-header {
+    background: transparent;
+    border: none;
+    box-shadow: none;
     border-radius: 0;
+    padding: 10px var(--padding-sm) 4px;
+  }
+
+  .surface-panel.page-header h1 {
+    font-size: 1.15rem;
+  }
+
+  .surface-panel.page-header p {
+    font-size: 0.75rem;
+    color: var(--gray-muted);
+  }
+
+  /* Stack page-header content (title + search) */
+  .page-header--flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Search bar goes full width */
+  .search-bar-container {
+    flex-wrap: wrap;
+    gap: 8px;
     width: 100%;
   }
 
-  .topbar-hamburger {
-    display: block;
+  .search-bar {
+    flex: 1;
+    min-width: 0;
   }
 
-  /* Sidebar — off-canvas drawer */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 100dvh;
-    height: 100vh; /* fallback for browsers without dvh support */
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+  /* "New Client" button — full width touch target */
+  .clients-new {
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
   }
 
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  /* Page content — flush to viewport edges */
-  .page-content {
-    padding: 0;
-    height: auto;
-    min-height: 100dvh;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-
-  /* Tables — switch to card-stack view */
-  .table-container {
-    min-width: auto;
-  }
-
-  .standard-cols,
-  .admin-cols,
-  .orders-cols {
-    display: block;
-  }
-
-  .table-header {
-    display: none;
-  }
-
-  .table-body {
+  /* Remove bubble from table container */
+  .surface-panel.table-container {
     background: transparent;
-    border-radius: 0;
     border: none;
     box-shadow: none;
+    border-radius: 0;
+    padding: 0;
   }
 
-  .table-row {
-    display: block;
-    padding: 16px;
-    margin-bottom: 12px;
-    background: var(--surface);
-    border: 1px solid var(--gray-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+  /* ==========================================================
+     NEW CLIENTS — mobile
+     ========================================================== */
+
+  .surface-panel.new-form {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 var(--padding-sm);
   }
 
-  .table-row span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--gray-border);
-    font-size: 0.875rem;
+  .new-form .contact,
+  .new-form .address {
+    padding-bottom: 12px;
   }
 
-  .table-row span:last-child {
-    border-bottom: none;
-  }
-
-  .table-row span::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: var(--gray-muted);
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-    margin-right: 12px;
-  }
-
-  .table-actions {
-    justify-content: center;
-    gap: 16px;
-    border-bottom: none;
-    padding-top: 8px;
-  }
-
-  .table-actions::before {
-    display: none;
-  }
-
-  .table-actions button {
-    padding: 12px;
+  .new-form button {
+    width: 100%;
+    padding: 14px 20px;
     font-size: 1rem;
   }
 
-  /* Address field — allow value to wrap naturally */
-  .table-row span[data-label="ADDRESS"] {
-    justify-content: flex-start;
+  /* ==========================================================
+     LABELS — mobile
+     ========================================================== */
+
+  .labels-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 var(--padding-sm);
+    margin-top: 12px;
+  }
+
+  .surface-panel.label-details,
+  .surface-panel.label-preview {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .label-input-row {
+    flex-wrap: wrap;
+  }
+
+  .label-action-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  .label-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .label-btn {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+
+  .label-btn--reset {
+    flex: 1;
+  }
+
+  .label-sticker {
+    padding: 0.75rem;
+  }
+
+  .label-sticker-row {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
+  }
+
+  /* ==========================================================
+     AUTH PAGES — mobile
+     ========================================================== */
+
+  .auth-shell {
+    flex-direction: column;
+    max-width: 100%;
+    border-radius: 0;
+    min-height: auto;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    padding: 32px 20px;
+    background: transparent;
+  }
+
+  .auth-form-wrap {
+    max-width: 100%;
+  }
+
+  .auth-input {
+    padding: 14px 12px;
+    font-size: 1rem;
+  }
+
+  .auth-btn {
+    padding: 14px;
+    font-size: 1rem;
   }
 }
 

@@ -160,7 +160,7 @@ function Labels() {
 
   return (
     <div>
-      <section className="surface-panel topbar">
+      <section className="surface-panel page-header">
         <h1 className="fw-bold">Labels</h1>
         <p>Generate and print shipping labels</p>
       </section>

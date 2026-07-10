@@ -74,7 +74,7 @@ function Clients() {
 
   return (
     <div>
-      <section className="surface-panel topbar topbar--flex">
+      <section className="surface-panel page-header page-header--flex">
         <div>
           <h1 className="fw-bold">Clients</h1>
         </div>

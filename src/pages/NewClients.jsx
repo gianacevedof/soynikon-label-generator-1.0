@@ -60,7 +60,7 @@ function NewClients() {
 
   return (
     <div>
-      <section className="surface-panel topbar">
+      <section className="surface-panel page-header">
         <h1 className="fw-bold">Add new client</h1>
         <p>Fill in the client's information below</p>
       </section>
