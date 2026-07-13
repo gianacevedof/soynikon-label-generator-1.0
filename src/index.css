@@ -1429,10 +1429,10 @@ hr {
    TABLET — collapsed sidebar + detail cards (769px - 1024px)
    ========================================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
-
   /* ----- Sidebar collapsed to 80px icon-only ----- */
   .sidebar {
     width: 80px;
+    height: calc(100vh - 60px);
     align-items: center;
     overflow-x: hidden;
   }
@@ -1494,6 +1494,10 @@ hr {
     width: 44px;
     height: 44px;
     font-size: 1.1rem;
+  }
+  .sidebar button.nav-item {
+    font-size: larger;
+    background-color: rgba(0, 0, 0, 0);
   }
 
   /* Page-content — less padding (sidebar is narrower) */
@@ -1609,7 +1613,9 @@ hr {
     background: var(--surface);
     border: 1px solid var(--gray-border);
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .cards:hover {
