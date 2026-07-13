@@ -1425,6 +1425,83 @@ hr {
   }
 }
 
+/* ==========================================================
+   TABLET — collapsed sidebar + detail cards (769px - 1024px)
+   ========================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* ----- Sidebar collapsed to 80px icon-only ----- */
+  .sidebar {
+    width: 80px;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  /* Hide brand text, center logo */
+  .sidebar .d-flex.gap-3.p-4 {
+    flex-direction: column;
+    padding: 16px 4px !important;
+    gap: 0 !important;
+  }
+  .sidebar-brand-text {
+    display: none;
+  }
+  .sidebar .d-flex.gap-3.p-4 > div:first-child {
+    margin: 0 auto;
+  }
+  .sidebar img {
+    width: 44px;
+  }
+
+  /* Hide dividers */
+  .sidebar hr {
+    display: none;
+  }
+
+  /* Nav section — centered icons only */
+  .sidebar-menu {
+    padding: 8px 4px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sidebar-menu .pb-4 {
+    display: none;
+  }
+  .nav-label {
+    display: none;
+  }
+  .nav-item {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+  }
+
+  /* User section — avatar only, compact */
+  .sidebar .d-flex.justify-content-between.p-4 {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 4px !important;
+    gap: 8px;
+  }
+  .sidebar-user-text {
+    display: none;
+  }
+  .user-profile-pic {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  /* Page-content — less padding (sidebar is narrower) */
+  .page-content {
+    padding: var(--padding-sm);
+  }
+}
+
 @media (min-width: 769px) {
   .sidebar-backdrop {
     display: none;

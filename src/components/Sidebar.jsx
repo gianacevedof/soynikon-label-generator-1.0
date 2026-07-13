@@ -50,8 +50,12 @@ function Sidebar({ open, onClose }) {
           <img src="/logo.jpg" alt="Soynikon Desk logo" />
         </div>
         <div className="flex-column my-auto">
-          <p className="fw-bold text-white h5 m-0">Soynikon</p>
-          <p>Photo Store</p>
+          <p className="fw-bold text-white h5 m-0">
+            <span className="sidebar-brand-text">Soynikon</span>
+          </p>
+          <p>
+            <span className="sidebar-brand-text">Photo Store</span>
+          </p>
         </div>
       </div>
 
@@ -60,24 +64,24 @@ function Sidebar({ open, onClose }) {
       {/* Navigation links — "New Client" is admin-only */}
       <div className="sidebar-menu d-flex flex-column p-4">
         <p className="pb-4">
-          <b>MAIN</b>
+          <b><span className="nav-label">MAIN</span></b>
         </p>
         <NavLink to="/" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faBoxOpen} /> Home
+          <FontAwesomeIcon icon={faBoxOpen} /> <span className="nav-label">Home</span>
         </NavLink>
         <NavLink to="/clients" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faUserGroup} /> Clients
+          <FontAwesomeIcon icon={faUserGroup} /> <span className="nav-label">Clients</span>
         </NavLink>
         <NavLink to="/orders" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faCartShopping} /> Orders
+          <FontAwesomeIcon icon={faCartShopping} /> <span className="nav-label">Orders</span>
         </NavLink>
         {role === "admin" && (
           <NavLink to="/new" className={navClass} onClick={onClose}>
-            <FontAwesomeIcon icon={faUserPlus} /> New Client
+            <FontAwesomeIcon icon={faUserPlus} /> <span className="nav-label">New Client</span>
           </NavLink>
         )}
         <NavLink to="/labels" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faTag} /> Labels
+          <FontAwesomeIcon icon={faTag} /> <span className="nav-label">Labels</span>
         </NavLink>
       </div>
 
@@ -90,8 +94,8 @@ function Sidebar({ open, onClose }) {
             <p>{initials}</p>
           </div>
           <div>
-            <p className="text-white h5 m-0">{username}</p>
-            <p>{role}</p>
+            <p className="text-white h5 m-0"><span className="sidebar-user-text">{username}</span></p>
+            <p><span className="sidebar-user-text">{role}</span></p>
           </div>
         </div>
         <div>
