@@ -1500,6 +1500,86 @@ hr {
   .page-content {
     padding: var(--padding-sm);
   }
+
+  /* ----- Tables → horizontal detail cards ----- */
+
+  /* Hide table header, remove min-width constraint */
+  .table-header {
+    display: none;
+  }
+  .table-container {
+    min-width: auto;
+    margin: 12px 0;
+  }
+
+  /* Each row becomes a surface-panel card */
+  .table-row.standard-cols,
+  .table-row.admin-cols,
+  .table-row.orders-cols {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 6px;
+    column-gap: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Client name — bold, fills space */
+  .table-row span[data-label="CLIENT"] {
+    flex: 1;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* Phone — muted */
+  .table-row span[data-label="PHONE"] {
+    color: var(--gray-muted);
+    font-size: 0.875rem;
+  }
+
+  /* Order # — highlighted */
+  .table-row span[data-label="Order #"] {
+    font-weight: 600;
+    color: var(--yellow-hover);
+  }
+
+  /* Item — muted */
+  .table-row span[data-label="ITEM"] {
+    color: var(--gray-muted);
+  }
+
+  /* Address — fills space, pushes actions/date to right */
+  .table-row span[data-label="ADDRESS"] {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--gray-muted);
+  }
+
+  /* Shipping Date — muted */
+  .table-row span[data-label="Shipping Date"] {
+    color: var(--gray-muted);
+    font-size: 0.8125rem;
+  }
+
+  /* Actions — full width, right-aligned, with divider */
+  .table-actions {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    padding-top: 10px;
+    margin-top: 6px;
+    border-top: 1px solid var(--gray-border);
+    gap: 12px;
+  }
+
+  .table-actions button {
+    padding: 12px;
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 769px) {
