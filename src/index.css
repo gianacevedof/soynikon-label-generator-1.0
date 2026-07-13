@@ -1580,6 +1580,17 @@ hr {
     padding: 12px;
     font-size: 1rem;
   }
+
+  /* ----- Home page — fluid hero ----- */
+  .hero-static {
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+  }
+  .rotating-word {
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+  }
+  .hero {
+    min-height: 30vh;
+  }
 }
 
 @media (min-width: 769px) {
