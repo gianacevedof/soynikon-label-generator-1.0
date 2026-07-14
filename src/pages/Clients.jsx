@@ -167,24 +167,24 @@ function Clients() {
                     {client.first_name} {client.last_name || ""}
                   </span>
                   <span data-label="PHONE">{client.phone || "-"}</span>
-                  <span data-label="ADDRESS">{addressStr}</span>
-                  {role === "admin" && (
-                    <span className="table-actions" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={() => {
-                          openDetailModal(client, "edit");
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                      </button>
-                      <button
-                        onClick={() => {
-                          openDetailModal(client, "delete");
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                    </span>
+                  {!isCompact && (
+                    <>
+                      <span data-label="ADDRESS">{addressStr}</span>
+                      {role === "admin" && (
+                        <span className="table-actions" onClick={(e) => e.stopPropagation()}>
+                          <button
+                            onClick={() => openDetailModal(client, "edit")}
+                          >
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                          </button>
+                          <button
+                            onClick={() => openDetailModal(client, "delete")}
+                          >
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                        </span>
+                      )}
+                    </>
                   )}
                 </div>
               );

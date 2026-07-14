@@ -1279,27 +1279,52 @@ select.detail-modal-input {
     margin-right: 12px;
   }
 
-  .table-actions {
-    justify-content: center;
-    gap: 16px;
-    border-bottom: none;
-    padding-top: 8px;
-  }
 
-  .table-actions::before {
-    display: none;
-  }
-
-  .table-actions button {
-    padding-top: 10px;
-    font-size: 1rem;
-  }
 
   /* Address field — allow value to wrap naturally */
   .table-row span[data-label="ADDRESS"] {
     text-align: right;
     gap: 8px;
   }
+
+  /* Compact client cards — name + phone inline, no field labels */
+  .table-row.standard-cols,
+  .table-row.admin-cols {
+    display: flex !important;
+    align-items: baseline;
+    gap: 6px;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+  }
+  .table-row.standard-cols span,
+  .table-row.admin-cols span {
+    display: inline;
+    padding: 0;
+    border-bottom: none;
+  }
+  .table-row.standard-cols span::before,
+  .table-row.admin-cols span::before {
+    display: none;
+  }
+  .table-row span[data-label="CLIENT"] {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+  .table-row span[data-label="PHONE"] {
+    color: var(--gray-muted);
+    font-size: 0.8125rem;
+  }
+  .table-row span[data-label="PHONE"]::before {
+    content: "·";
+    display: inline !important;
+    margin-right: 6px;
+    color: var(--gray-300);
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.875rem;
+  }
+  /* Remove unused action styles */
 
   /* ==========================================================
      HOME — redesigned mobile layout
@@ -1765,6 +1790,18 @@ select.detail-modal-input {
     box-shadow: var(--shadow-sm);
   }
 
+  /* Compact client cards — name + phone inline, no field labels */
+  .table-row.standard-cols,
+  .table-row.admin-cols {
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    column-gap: 6px;
+  }
+  .table-row.standard-cols span::before,
+  .table-row.admin-cols span::before {
+    display: none;
+  }
+
   /* Client name — bold, fills space */
   .table-row span[data-label="CLIENT"] {
     flex: 1;
@@ -1802,78 +1839,8 @@ select.detail-modal-input {
     font-size: 0.8125rem;
   }
 
-  /* Actions — full width, right-aligned, with divider */
-  .table-actions {
-    flex: 1 1 100%;
-    justify-content: flex-end;
-    padding-top: 10px;
-    margin-top: 6px;
-    border-top: 1px solid var(--gray-border);
-    gap: 12px;
-  }
-
-  .table-actions button {
-    padding: 12px;
-    font-size: 1rem;
-  }
-
-  /* ----- Home page — fluid hero ----- */
-  .hero-static {
-    font-size: clamp(2.5rem, 4.5vw, 5rem);
-  }
-  .rotating-word {
-    font-size: clamp(2.5rem, 4.5vw, 5rem);
-  }
-  .hero {
-    min-height: 30vh;
-  }
-
-  /* ----- Home cards — tablet spacing + redesign ----- */
-
-  /* Card grid — proper vertical spacing between rows */
-  .home .row.justify-content-evenly {
-    row-gap: 20px;
-    padding: 0 var(--padding-sm);
-  }
-
-  /* Cards — cleaner, more premium look at tablet */
-  .cards {
-    width: 240px;
-    height: auto;
-    min-height: 150px;
-    padding: 24px 16px 20px;
-    background: var(--surface);
-    border: 1px solid var(--gray-border);
-    box-shadow: var(--shadow-sm);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .cards:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .cards a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .cards .icons {
-    width: 52px;
-    height: 52px;
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-  }
-
   .cards h4 {
-    font-size: 1rem;
+    font-size: 0.82rem;
     font-weight: 600;
     margin: 0;
   }
