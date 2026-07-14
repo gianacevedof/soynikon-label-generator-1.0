@@ -93,6 +93,20 @@ hr {
   position: relative;
 }
 
+/* Scrollable wrapper inside page-content — carries the actual page
+   content below the sticky Topbar. Takes remaining space and scrolls
+   independently of the sidebar. */
+.content-scroll {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge/IE */
+  min-height: 0;
+}
+
+.content-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 /* ============================================================
    SIDEBAR
    ============================================================ */
@@ -252,15 +266,6 @@ hr {
 /* ============================================================
    HOME
    ============================================================ */
-.home {
-  overflow-y: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* old Edge/IE */
-}
-
-.home::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
 
 .hero {
   margin: var(--margin-md) 0;
@@ -1432,7 +1437,6 @@ hr {
   /* ----- Sidebar collapsed to 80px icon-only ----- */
   .sidebar {
     width: 80px;
-    height: calc(100vh - 60px);
     align-items: center;
     overflow-x: hidden;
   }
