@@ -10,8 +10,7 @@ import {
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import EditModal from "../components/EditModal";
-import DeleteModal from "../components/DeleteModal";
+import DetailModal from "../components/DetailModal";
 
 function Clients() {
   const URL = import.meta.env.VITE_API_URL;
@@ -19,9 +18,12 @@ function Clients() {
 
   const [clients, setClients] = useState([]);
   const [search, setSearch] = useState("");
-  const [editModal, setEditModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [selectedClient, setSelectedClient] = useState(null);
+  const [detailModal, setDetailModal] = useState({
+    open: false,
+    mode: "view",
+    client: null,
+  });
+  const isCompact = window.matchMedia("(max-width: 1024px)").matches;
 
   // Load the full client list once on mount
   useEffect(() => {
@@ -60,17 +62,12 @@ function Clients() {
     }
   };
 
-  const toggleEditModal = () => {
-    setEditModal(!editModal);
+  const openDetailModal = (client, mode) => {
+    setDetailModal({ open: true, mode, client });
   };
-
-  const toggleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
+  const closeDetailModal = () => {
+    setDetailModal({ open: false, mode: "view", client: null });
   };
-
-  function selectClient(client) {
-    setSelectedClient(client);
-  }
 
   return (
     <div>
@@ -164,6 +161,7 @@ function Clients() {
                 <div
                   className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
                   key={client.client_id}
+                  onClick={isCompact ? () => openDetailModal(client, "view") : undefined}
                 >
                   <span data-label="CLIENT">
                     {client.first_name} {client.last_name || ""}
@@ -171,19 +169,17 @@ function Clients() {
                   <span data-label="PHONE">{client.phone || "-"}</span>
                   <span data-label="ADDRESS">{addressStr}</span>
                   {role === "admin" && (
-                    <span className="table-actions">
+                    <span className="table-actions" onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={() => {
-                          selectClient(client);
-                          toggleEditModal();
+                          openDetailModal(client, "edit");
                         }}
                       >
                         <FontAwesomeIcon icon={faPenToSquare} />
                       </button>
                       <button
                         onClick={() => {
-                          selectClient(client);
-                          toggleDeleteModal();
+                          openDetailModal(client, "delete");
                         }}
                       >
                         <FontAwesomeIcon icon={faTrash} />
@@ -195,18 +191,20 @@ function Clients() {
             })}
         </div>
 
-        {editModal && (
-          <EditModal
-            setToggleEditModal={toggleEditModal}
-            clientData={selectedClient}
-            setClients={setClients}
-          />
-        )}
-        {deleteModal && (
-          <DeleteModal
-            setToggleDeleteModal={toggleDeleteModal}
-            clientData={selectedClient}
-            deleteClient={deleteClient}
+        {detailModal.open && (
+          <DetailModal
+            type="client"
+            mode={detailModal.mode}
+            item={detailModal.client}
+            onClose={closeDetailModal}
+            onSave={(updated) =>
+              setClients((prev) =>
+                prev.map((c) =>
+                  c.client_id === updated.client_id ? updated : c
+                )
+              )
+            }
+            onDelete={(id) => deleteClient(id)}
           />
         )}
       </div>
