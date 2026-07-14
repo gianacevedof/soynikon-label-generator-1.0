@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import DetailModal from "../components/DetailModal";
 
 function Orders() {
   const URL = import.meta.env.VITE_API_URL;
   const [orders, setOrders] = useState([]);
   const [search, setSearch] = useState("");
+  const [detailModal, setDetailModal] = useState({
+    open: false,
+    mode: "view",
+    item: null,
+  });
+  const isCompact = window.matchMedia("(max-width: 1024px)").matches;
 
   // Load the full order list once on mount
   useEffect(() => {
@@ -20,6 +27,13 @@ function Orders() {
     };
     fetchData();
   }, []);
+
+  const openDetailModal = (order, mode) => {
+    setDetailModal({ open: true, mode, item: order });
+  };
+  const closeDetailModal = () => {
+    setDetailModal({ open: false, mode: "view", item: null });
+  };
 
   return (
     <div>
@@ -106,7 +120,7 @@ function Orders() {
                 .join(", ");
 
               return (
-                <div className="table-row orders-cols" key={order.order_num}>
+                <div className="table-row orders-cols" key={order.order_num} onClick={isCompact ? () => openDetailModal(order, "view") : undefined}>
                   <span data-label="Order #">{order.order_num}</span>
                   <span data-label="CLIENT">
                     {order.first_name} {order.last_name || "-"}
@@ -118,6 +132,17 @@ function Orders() {
               );
             })}
         </div>
+
+        {detailModal.open && (
+          <DetailModal
+            type="order"
+            mode={detailModal.mode}
+            item={detailModal.item}
+            onClose={closeDetailModal}
+            onSave={() => {}}
+            onDelete={() => {}}
+          />
+        )}
       </div>
     </div>
   );
