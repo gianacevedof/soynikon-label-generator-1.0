@@ -79,8 +79,8 @@ function Home() {
         <hr />
 
         <h2 className="quick-actions-heading">Quick Actions</h2>
-        <div className="row justify-content-evenly">
-          <div className="cards col-3">
+        <div className="row justify-content-center g-3">
+          <div className="cards col-xl-3 col-lg-4 col-md-6">
             <Link to="/clients">
               <div className="icons">
                 <FontAwesomeIcon icon={faUserGroup} />
@@ -89,7 +89,7 @@ function Home() {
               <p>View and manage clients</p>
             </Link>
           </div>
-          <div className="cards col-3">
+          <div className="cards col-xl-3 col-lg-4 col-md-6">
             <Link to="/orders">
               <div className="icons">
                 <FontAwesomeIcon icon={faCartShopping} />
@@ -98,7 +98,7 @@ function Home() {
               <p>Browse all orders</p>
             </Link>
           </div>
-          <div className="cards col-3">
+          <div className="cards col-xl-3 col-lg-4 col-md-6">
             <Link to="/labels">
               <div className="icons">
                 <FontAwesomeIcon icon={faTruckFast} />
@@ -107,7 +107,7 @@ function Home() {
               <p>Generate shipping labels</p>
             </Link>
           </div>
-          <div className="cards col-3">
+          <div className="cards col-xl-3 col-lg-4 col-md-6">
             <Link to="/new">
               <div className="icons">
                 <FontAwesomeIcon icon={faUserPlus} />

@@ -215,6 +215,8 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 /* ============================================================
@@ -290,13 +292,13 @@ hr {
 
 .hero-static {
   color: var(--gray-border);
-  font-size: 6rem;
+  font-size: clamp(2.8rem, 5.5vw, 6rem);
   font-weight: 700;
   margin: 0;
 }
 
 .rotating-word {
-  font-size: 6rem;
+  font-size: clamp(2.8rem, 5.5vw, 6rem);
   font-weight: 700;
   background: var(--yellow);
   color: var(--dark);
@@ -321,16 +323,18 @@ hr {
 }
 
 .cards {
-  width: 250px;
-  height: 200px;
+  max-width: 300px;
+  min-width: 180px;
   padding: var(--padding-sm);
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: var(--page-bg);
   border: 2px solid var(--gray-border);
   border-radius: var(--radius-lg);
   transition: transform 0.2s ease;
+  min-height: 180px;
 }
 
 .cards:hover {
@@ -375,14 +379,14 @@ hr {
 }
 
 .search-bar {
-  width: 25vw;
+  width: clamp(180px, 25vw, 350px);
 }
 
 .table-container {
   margin: var(--margin-md) 0;
   padding: var(--padding-sm);
-  min-width: 1200px;
   text-align: center;
+  overflow-x: auto;
 }
 
 .standard-cols {
@@ -1380,7 +1384,7 @@ select.detail-modal-input {
     letter-spacing: 0.08em;
   }
 
-  .home .row.justify-content-evenly {
+  .home .row.justify-content-center {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
