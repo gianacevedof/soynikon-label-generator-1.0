@@ -12,7 +12,6 @@ function Orders() {
     mode: "view",
     item: null,
   });
-  const isCompact = window.matchMedia("(max-width: 1024px)").matches;
 
   // Load the full order list once on mount
   useEffect(() => {
@@ -53,23 +52,10 @@ function Orders() {
         </div>
       </section>
 
-      <div className="surface-panel table-container">
+      <div className="surface-panel table-container order-cards">
         <p className="h5 mb-3">All Orders</p>
-        {/* Header bubble */}
-        <div className="table-header orders-cols">
-          <span>Order #</span>
-          <span>First</span>
-          <span>Last</span>
-          <span>Item</span>
-          <span>Address Ln 1</span>
-          <span>Address Ln 2</span>
-          <span>City</span>
-          <span>State</span>
-          <span>Zip</span>
-          <span>Shipping Date</span>
-        </div>
 
-        {/* Rows bubble — filtered client-side against every visible field */}
+        {/* Card rows — filtered client-side against every visible field */}
         <div className="table-body">
           {orders
             .filter((order) => {
@@ -106,31 +92,20 @@ function Orders() {
                 byShippingDate
               );
             })
-            .map((order) => {
-              const addressParts = [order.address_1].concat(
-                order.address_2 ? [order.address_2] : [],
-              );
-              const addressStr = [
-                ...addressParts,
-                order.city,
-                order.state,
-                order.zip,
-              ]
-                .filter(Boolean)
-                .join(", ");
-
-              return (
-                <div className="table-row orders-cols" key={order.order_num} onClick={isCompact ? () => openDetailModal(order, "view") : undefined}>
-                  <span data-label="Order #">{order.order_num}</span>
-                  <span data-label="CLIENT">
-                    {order.first_name} {order.last_name || "-"}
-                  </span>
-                  <span data-label="ITEM">{order.item}</span>
-                  <span data-label="ADDRESS">{addressStr}</span>
-                  <span data-label="Shipping Date">{order.shipping_date}</span>
-                </div>
-              );
-            })}
+            .map((order) => (
+              <div
+                className="table-row"
+                key={order.order_num}
+                onClick={() => openDetailModal(order, "view")}
+              >
+                <span data-label="Order #">{order.order_num}</span>
+                <span data-label="CLIENT">
+                  {order.first_name} {order.last_name || "-"}
+                </span>
+                <span data-label="ITEM">{order.item}</span>
+                <span data-label="Shipping Date">{order.shipping_date}</span>
+              </div>
+            ))}
         </div>
 
         {detailModal.open && (
