@@ -4,8 +4,6 @@ import { getRole } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
-  faPenToSquare,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
@@ -23,7 +21,6 @@ function Clients() {
     mode: "view",
     client: null,
   });
-  const isCompact = window.matchMedia("(max-width: 1024px)").matches;
 
   // Load the full client list once on mount
   useEffect(() => {
@@ -93,25 +90,10 @@ function Clients() {
         </div>
       </section>
 
-      <div className="surface-panel table-container">
+      <div className="surface-panel table-container client-cards">
         <p className="h5 mb-3">All clients</p>
 
-        {/* Header bubble */}
-        <div
-          className={`table-header ${role === "admin" ? "admin-cols" : "standard-cols"}`}
-        >
-          <span>First</span>
-          <span>Last</span>
-          <span>Phone</span>
-          <span>Address Ln 1</span>
-          <span>Address Ln 2</span>
-          <span>City</span>
-          <span>State</span>
-          <span>Zip</span>
-          {role === "admin" && <span>Actions</span>}
-        </div>
-
-        {/* Rows bubble — filtered client-side against every visible field */}
+        {/* Card rows — filtered client-side against every field */}
         <div className="table-body">
           {clients
             .filter((client) => {
@@ -144,51 +126,18 @@ function Clients() {
                 byZip
               );
             })
-            .map((client) => {
-              const addressParts = [client.address_1].concat(
-                client.address_2 ? [client.address_2] : [],
-              );
-              const addressStr = [
-                ...addressParts,
-                client.city,
-                client.state,
-                client.zip,
-              ]
-                .filter(Boolean)
-                .join(", ");
-
-              return (
-                <div
-                  className={`table-row ${role === "admin" ? "admin-cols" : "standard-cols"}`}
-                  key={client.client_id}
-                  onClick={isCompact ? () => openDetailModal(client, "view") : undefined}
-                >
-                  <span data-label="CLIENT">
-                    {client.first_name} {client.last_name || ""}
-                  </span>
-                  <span data-label="PHONE">{client.phone || "-"}</span>
-                  {!isCompact && (
-                    <>
-                      <span data-label="ADDRESS">{addressStr}</span>
-                      {role === "admin" && (
-                        <span className="table-actions" onClick={(e) => e.stopPropagation()}>
-                          <button
-                            onClick={() => openDetailModal(client, "edit")}
-                          >
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                          </button>
-                          <button
-                            onClick={() => openDetailModal(client, "delete")}
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                        </span>
-                      )}
-                    </>
-                  )}
-                </div>
-              );
-            })}
+            .map((client) => (
+              <div
+                className="table-row"
+                key={client.client_id}
+                onClick={() => openDetailModal(client, "view")}
+              >
+                <span data-label="CLIENT">
+                  {client.first_name} {client.last_name || ""}
+                </span>
+                <span data-label="PHONE">{client.phone || "-"}</span>
+              </div>
+            ))}
         </div>
 
         {detailModal.open && (
