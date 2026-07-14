@@ -964,6 +964,225 @@ hr {
 }
 
 /* ============================================================
+   DETAIL MODAL
+   ============================================================ */
+
+/* Full-screen translucent backdrop */
+.detail-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
+  animation: fadeIn 0.15s ease;
+}
+
+/* Centered panel */
+.detail-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1060;
+  width: min(540px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.15s ease, slideUp 0.2s ease;
+}
+
+/* Header */
+.detail-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 0;
+}
+
+.detail-modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--gray-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+}
+
+.detail-modal-close:hover {
+  background: var(--page-bg);
+  color: var(--dark);
+}
+
+/* Scrollable body */
+.detail-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Field labels */
+.detail-modal-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gray-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+/* Display values (view mode) */
+.detail-modal-value {
+  font-size: 0.9rem;
+  color: var(--dark);
+  margin: 0;
+  padding: 6px 0;
+  line-height: 1.4;
+}
+
+/* Editable inputs (edit mode) */
+.detail-modal-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--dark);
+  background: var(--page-bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.detail-modal-input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(255, 192, 26, 0.12);
+}
+
+select.detail-modal-input {
+  cursor: pointer;
+}
+
+/* Footer — always at bottom */
+.detail-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--gray-border);
+}
+
+.detail-modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* Delete confirmation */
+.detail-modal-delete-confirm {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.detail-modal-delete-confirm .delete-icon {
+  font-size: 2.5rem;
+  color: var(--danger);
+  margin-bottom: 12px;
+}
+
+.detail-modal-delete-confirm p {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.detail-modal-delete-confirm .text-muted {
+  color: var(--gray-muted);
+  font-size: 0.8rem;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, -45%); }
+  to   { transform: translate(-50%, -50%); }
+}
+
+/* ============================================================
+   BUTTONS (for DetailModal)
+   ============================================================ */
+.dbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+
+.dbtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dbtn-outline {
+  background: transparent;
+  border-color: var(--gray-border);
+  color: var(--gray-muted);
+}
+
+.dbtn-outline:hover {
+  background: var(--page-bg);
+  color: var(--dark);
+}
+
+.dbtn-warning {
+  background: var(--yellow);
+  color: #000;
+  border-color: var(--yellow);
+}
+
+.dbtn-warning:hover {
+  background: var(--yellow-hover);
+}
+
+.dbtn-danger {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.dbtn-danger:hover {
+  opacity: 0.9;
+}
+
+/* ============================================================
    RESPONSIVE — MOBILE (<=768px)
    ============================================================ */
 @media (max-width: 768px) {
@@ -1428,6 +1647,15 @@ hr {
     padding: 14px;
     font-size: 1rem;
   }
+
+  /* Card click affordance */
+  .table-row {
+    cursor: pointer;
+  }
+
+  .table-row:hover {
+    background: var(--page-bg);
+  }
 }
 
 /* ==========================================================
@@ -1656,6 +1884,15 @@ hr {
     color: var(--gray-muted);
     margin-top: 6px;
     line-height: 1.3;
+  }
+
+  /* Card click affordance */
+  .table-row {
+    cursor: pointer;
+  }
+
+  .table-row:hover {
+    background: var(--page-bg);
   }
 }
 
