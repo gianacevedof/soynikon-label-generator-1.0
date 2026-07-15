@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 *.md
 .env
+
+# Backend (PHP / Composer)
+vendor/
+backend/.env

@@ -104,7 +104,14 @@ function SignIn() {
             </button>
 
             <div className="auth-footer-text">
-              Accounts are provisioned by admin
+              Demo accounts on{" "}
+              <a
+                href="https://github.com/gianacevedof/desk.soynikon.do"
+                target="_blank"
+              >
+                GitHub
+              </a>
+              . Otherwise provisioned by admin.
             </div>
           </form>
         </div>
