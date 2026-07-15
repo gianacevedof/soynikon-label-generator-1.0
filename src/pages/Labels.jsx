@@ -344,6 +344,7 @@ function Labels() {
                     selectedItem={selectedItem}
                     orderId={orderId}
                     date={formattedDate}
+                    baseUrl={window.location.origin}
                   />
                 }
                 fileName="soynikon-desk-label.pdf"

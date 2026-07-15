@@ -88,7 +88,10 @@ const styles = StyleSheet.create({
 
 // Renders the actual downloadable PDF label — a mirror of the live
 // preview markup in Labels.jsx built from @react-pdf/renderer
-function LabelDocument({ selectedClient, selectedItem, orderId, date }) {
+//
+// baseUrl prop provides the absolute origin so @react-pdf/renderer can
+// resolve image paths in its web worker (relative paths fail there).
+function LabelDocument({ selectedClient, selectedItem, orderId, date, baseUrl }) {
   const address2 = selectedClient?.address_2 || null;
 
   return (
@@ -103,7 +106,7 @@ function LabelDocument({ selectedClient, selectedItem, orderId, date }) {
             <Text style={styles.text}>Date: {date}</Text>
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Image style={styles.logo} src="soynikon-logo.png" />
+            <Image style={styles.logo} src={`${baseUrl}/soynikon-logo.png`} />
           </View>
         </View>
 
@@ -141,11 +144,11 @@ function LabelDocument({ selectedClient, selectedItem, orderId, date }) {
             <Text style={styles.sectionLabel}>NOTES</Text>
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Image style={styles.fragile} src="fragile.png" />
+            <Image style={styles.fragile} src={`${baseUrl}/fragile.png`} />
           </View>
         </View>
         <View style={styles.barcodeWrapper}>
-          <Image style={styles.barcode} src="barcode.png" />
+          <Image style={styles.barcode} src={`${baseUrl}/barcode.png`} />
         </View>
       </Page>
     </Document>
