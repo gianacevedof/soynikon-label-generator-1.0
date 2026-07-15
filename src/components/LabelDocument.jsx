@@ -6,6 +6,11 @@ import {
   Image,
   StyleSheet,
 } from "@react-pdf/renderer";
+import {
+  LOGO_DATA_URI,
+  FRAGILE_DATA_URI,
+  BARCODE_DATA_URI,
+} from "../utils/labelImages";
 
 // These mirror my custom css palette by value so the printed label stays
 // visually in sync with the on-screen preview in Labels.jsx. Update both
@@ -88,10 +93,7 @@ const styles = StyleSheet.create({
 
 // Renders the actual downloadable PDF label — a mirror of the live
 // preview markup in Labels.jsx built from @react-pdf/renderer
-//
-// baseUrl prop provides the absolute origin so @react-pdf/renderer can
-// resolve image paths in its web worker (relative paths fail there).
-function LabelDocument({ selectedClient, selectedItem, orderId, date, baseUrl }) {
+function LabelDocument({ selectedClient, selectedItem, orderId, date }) {
   const address2 = selectedClient?.address_2 || null;
 
   return (
@@ -106,7 +108,7 @@ function LabelDocument({ selectedClient, selectedItem, orderId, date, baseUrl })
             <Text style={styles.text}>Date: {date}</Text>
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Image style={styles.logo} src={`${baseUrl}/soynikon-logo.png`} />
+            <Image style={styles.logo} src={LOGO_DATA_URI} />
           </View>
         </View>
 
@@ -144,11 +146,11 @@ function LabelDocument({ selectedClient, selectedItem, orderId, date, baseUrl })
             <Text style={styles.sectionLabel}>NOTES</Text>
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Image style={styles.fragile} src={`${baseUrl}/fragile.png`} />
+            <Image style={styles.fragile} src={FRAGILE_DATA_URI} />
           </View>
         </View>
         <View style={styles.barcodeWrapper}>
-          <Image style={styles.barcode} src={`${baseUrl}/barcode.png`} />
+          <Image style={styles.barcode} src={BARCODE_DATA_URI} />
         </View>
       </Page>
     </Document>
