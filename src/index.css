@@ -1317,7 +1317,7 @@ select.detail-modal-input {
     margin: 0;
   }
 
-  /* Sidebar — off-canvas drawer, scrollable if content overflows */
+  /* Sidebar — off-canvas drawer */
   .sidebar {
     position: fixed;
     top: 0;
@@ -1328,7 +1328,21 @@ select.detail-modal-input {
     z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  /* Nav menu scrolls independently; logo + user section stay pinned */
+  .sidebar-menu {
+    flex: 1;
     overflow-y: auto;
+    min-height: 0;
+  }
+
+  /* Pin logo at the top, user section at the bottom */
+  .sidebar > .d-flex.gap-3.p-4,
+  .sidebar > .d-flex.justify-content-between.p-4,
+  .sidebar > hr {
+    flex-shrink: 0;
   }
 
   .sidebar.open {
