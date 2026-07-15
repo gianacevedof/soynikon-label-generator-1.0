@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -104,7 +104,7 @@ function SignIn() {
             </button>
 
             <div className="auth-footer-text">
-              Don't have an account? <Link to="/signup">Sign up</Link>
+              Accounts are provisioned by admin
             </div>
           </form>
         </div>

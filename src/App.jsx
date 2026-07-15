@@ -6,7 +6,6 @@ import NewClients from "./pages/NewClients";
 import Orders from "./pages/Orders";
 import Labels from "./pages/Labels";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
       <Routes>
         {/* Public routes — reachable without a token */}
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
 
         {/* Everything below requires a valid token.
             ProtectedRoutes renders the Sidebar + page shell (Layout)
