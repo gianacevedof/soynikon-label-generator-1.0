@@ -28,7 +28,6 @@ function Sidebar({ open, onClose }) {
     }
   }, []);
 
-  // "John Doe" -> "JD"
   const initials = username
     .split(" ")
     .map((w) => w[0].toUpperCase())
@@ -44,7 +43,6 @@ function Sidebar({ open, onClose }) {
 
   return (
     <div className={`sidebar ${open ? "open" : ""}`}>
-      {/* Logo + app name */}
       <div className="d-flex gap-3 p-4">
         <div className="m-0 p-0">
           <img src="/logo.jpg" alt="Soynikon Desk logo" />
@@ -87,7 +85,6 @@ function Sidebar({ open, onClose }) {
 
       <hr />
 
-      {/* Signed-in user + sign-out button */}
       <div className="d-flex justify-content-between p-4">
         <div className="d-flex align-items-center gap-3 capitalize">
           <div className="user-profile-pic">

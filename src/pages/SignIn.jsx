@@ -10,7 +10,6 @@ function SignIn() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
 
-  // Auto-focus the username field on page load
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -99,7 +98,7 @@ function SignIn() {
               />
             </div>
 
-            <button className="auth-btn" type="submit">
+            <button className="dbtn dbtn-warning dbtn-full" type="submit">
               Sign in
             </button>
 

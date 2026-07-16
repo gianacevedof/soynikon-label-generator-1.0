@@ -35,7 +35,6 @@ function Home() {
 
   return (
     <div className="home">
-      {/* Greeting header */}
       <section className="surface-panel topbar">
         <h1 className="fw-bold">
           Good {time},<span className="capitalize"> {username}</span>
@@ -67,7 +66,6 @@ function Home() {
         </div>
       </section>
 
-      {/* About blurb + quick-action cards to the main pages */}
       <section className="surface-panel about-section">
         <h2>About Soynikon Desk</h2>
         <p>

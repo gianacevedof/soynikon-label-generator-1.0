@@ -25,17 +25,14 @@ function SignUp() {
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
 
-  // Auto-focus the username field on page load
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
-  // Live-validate username as the person types
   useEffect(() => {
     setValidUser(USER_REGEX.test(user));
   }, [user]);
 
-  // Live-validate password strength + confirm-password match
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(pwd));
     setValidMatch(pwd === matchPwd);
@@ -164,7 +161,7 @@ function SignUp() {
             </div>
 
             <button
-              className="auth-btn"
+              className="dbtn dbtn-warning dbtn-full"
               type="submit"
               disabled={!validUser || !validPwd || !validMatch}
             >

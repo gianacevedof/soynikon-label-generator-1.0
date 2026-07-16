@@ -11,12 +11,10 @@ function Layout() {
   const [navOpen, setNavOpen] = useState(false);
   const location = useLocation();
 
-  // Close the sidebar drawer on every route change.
   useEffect(() => {
     setNavOpen(false);
   }, [location]);
 
-  // Close the sidebar drawer on Escape.
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") setNavOpen(false);

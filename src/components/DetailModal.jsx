@@ -8,6 +8,7 @@ import {
   faFloppyDisk,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import US_STATES from "../utils/states";
 
 function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete }) {
   const URL = import.meta.env.VITE_API_URL;
@@ -39,7 +40,7 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
       const json = await res.json();
       if (json.success) {
         toast.success(json.message);
-        onSave(formData);
+        onSave?.(formData);
         onClose();
       } else {
         toast.error(json.message);
@@ -52,7 +53,7 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
   };
 
   const handleDelete = () => {
-    onDelete(item[type === "client" ? "client_id" : "order_num"]);
+    onDelete?.(item[type === "client" ? "client_id" : "order_num"]);
     onClose();
   };
 
@@ -82,20 +83,6 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
           { label: "Shipping Date", key: "shipping_date", type: "date", colClass: "col-md-4" },
         ];
 
-  // Full US states list
-  const US_STATES = [
-    "Alabama","Alaska","Arizona","Arkansas","California","Colorado",
-    "Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho",
-    "Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana",
-    "Maine","Maryland","Massachusetts","Michigan","Minnesota",
-    "Mississippi","Missouri","Montana","Nebraska","Nevada",
-    "New Hampshire","New Jersey","New Mexico","New York",
-    "North Carolina","North Dakota","Ohio","Oklahoma","Oregon",
-    "Pennsylvania","Rhode Island","South Carolina","South Dakota",
-    "Tennessee","Texas","Utah","Vermont","Virginia","Washington",
-    "West Virginia","Wisconsin","Wyoming",
-  ];
-
   const title =
     type === "client"
       ? `${formData.first_name} ${formData.last_name || ""}`.trim() || "Client Details"
@@ -105,7 +92,6 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
     <>
       <div className="detail-modal-backdrop" onClick={onClose} />
       <div className={`detail-modal ${mode}`}>
-        {/* Header */}
         <div className="detail-modal-header">
           <h3>{title}</h3>
           <button className="detail-modal-close" onClick={onClose}>
@@ -113,7 +99,6 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
           </button>
         </div>
 
-        {/* Body */}
         <div className="detail-modal-body">
           {mode === "delete" ? (
             <div className="detail-modal-delete-confirm">
@@ -163,20 +148,21 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
           )}
         </div>
 
-        {/* Footer */}
         <div className="detail-modal-footer">
           {mode === "view" && (
             <>
               <button className="dbtn dbtn-outline" onClick={onClose}>Close</button>
               <div className="detail-modal-actions">
                 {type === "client" && (
-                  <button className="dbtn dbtn-warning" onClick={() => setMode("edit")}>
-                    <FontAwesomeIcon icon={faPenToSquare} /> Edit
-                  </button>
+                  <>
+                    <button className="dbtn dbtn-warning" onClick={() => setMode("edit")}>
+                      <FontAwesomeIcon icon={faPenToSquare} /> Edit
+                    </button>
+                    <button className="dbtn dbtn-danger" onClick={() => setMode("delete")}>
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+                  </>
                 )}
-                <button className="dbtn dbtn-danger" onClick={() => setMode("delete")}>
-                  <FontAwesomeIcon icon={faTrash} /> Delete
-                </button>
               </div>
             </>
           )}

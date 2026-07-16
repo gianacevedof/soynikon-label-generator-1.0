@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import DetailModal from "../components/DetailModal";
 
 function Orders() {
@@ -13,7 +11,6 @@ function Orders() {
     item: null,
   });
 
-  // Load the full order list once on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,14 +38,11 @@ function Orders() {
           <h1 className="fw-bold">Orders</h1>
         </div>
         <div className="search-bar-container">
-          <Form>
-            <InputGroup className="search-bar">
-              <Form.Control
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
-              />
-            </InputGroup>
-          </Form>
+          <input
+              className="search-bar"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search"
+            />
         </div>
       </section>
 
@@ -59,37 +53,10 @@ function Orders() {
         <div className="table-body">
           {orders
             .filter((order) => {
-              if (search.trim() === "") return true;
-              const searchTerm = search.toLowerCase();
-              const byOrderNum = order.order_num?.includes(search);
-              const byFirst = order.first_name
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byLast = order.last_name
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byItem = order.item?.toLowerCase().includes(searchTerm);
-              const byAddress1 = order.address_1
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byAddress2 = order.address_2
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byCity = order.city?.toLowerCase().includes(searchTerm);
-              const byState = order.state?.toLowerCase().includes(searchTerm);
-              const byZip = order.zip?.toLowerCase().includes(searchTerm);
-              const byShippingDate = order.shipping_date?.includes(searchTerm);
-              return (
-                byOrderNum ||
-                byFirst ||
-                byLast ||
-                byItem ||
-                byAddress1 ||
-                byAddress2 ||
-                byCity ||
-                byState ||
-                byZip ||
-                byShippingDate
+              if (!search.trim()) return true;
+              const q = search.toLowerCase();
+              return Object.values(order).some((v) =>
+                String(v ?? "").toLowerCase().includes(q)
               );
             })
             .map((order) => (
@@ -114,8 +81,6 @@ function Orders() {
             mode={detailModal.mode}
             item={detailModal.item}
             onClose={closeDetailModal}
-            onSave={() => {}}
-            onDelete={() => {}}
           />
         )}
       </div>

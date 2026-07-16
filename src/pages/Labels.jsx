@@ -33,7 +33,6 @@ function Labels() {
   const [orderId, setOrderId] = useState(null);
   const [orderReady, setOrderReady] = useState(false);
 
-  // Live client search-as-you-type
   useEffect(() => {
     if (clientSearch.length < 1) {
       setClientResults([]);
@@ -54,7 +53,6 @@ function Labels() {
     fetchClients();
   }, [clientSearch]);
 
-  // Live item search-as-you-type
   useEffect(() => {
     if (itemSearch.length < 1) {
       setItemResults([]);
@@ -209,7 +207,7 @@ function Labels() {
               {role === "admin" && (
                 <NavLink
                   to="/new"
-                  className="label-action-btn label-action-btn--ghost"
+                  className="dbtn dbtn-warning"
                 >
                   <FontAwesomeIcon icon={faPlus} /> New
                 </NavLink>
@@ -251,7 +249,7 @@ function Labels() {
               </div>
               {role === "admin" && (
                 <button
-                  className="label-action-btn label-action-btn--ghost"
+                  className="dbtn dbtn-warning"
                   onClick={handleAddItem}
                 >
                   <FontAwesomeIcon icon={faPlus} /> Add
@@ -331,7 +329,7 @@ function Labels() {
           <div className="label-actions">
             {!orderReady ? (
               <button
-                className="label-btn label-btn--generate"
+                className="dbtn dbtn-warning"
                 onClick={handleGenerate}
               >
                 Generate Label
@@ -349,14 +347,14 @@ function Labels() {
                 fileName="soynikon-desk-label.pdf"
               >
                 {({ loading }) => (
-                  <button className="label-btn label-btn--download">
+                  <button className="dbtn dbtn-warning">
                     {loading ? "Preparing..." : "Download PDF"}
                   </button>
                 )}
               </PDFDownloadLink>
             )}
             <button
-              className="label-btn label-btn--reset"
+              className="dbtn dbtn-outline"
               onClick={handleReset}
             >
               Reset

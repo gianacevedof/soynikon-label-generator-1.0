@@ -6,8 +6,6 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import DetailModal from "../components/DetailModal";
 
 function Clients() {
@@ -22,7 +20,6 @@ function Clients() {
     client: null,
   });
 
-  // Load the full client list once on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,14 +70,11 @@ function Clients() {
           <h1 className="fw-bold">Clients</h1>
         </div>
         <div className="search-bar-container">
-          <Form className="search-bar">
-            <InputGroup>
-              <Form.Control
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
-              />
-            </InputGroup>
-          </Form>
+          <input
+              className="search-bar"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search"
+            />
 
           {role === "admin" && (
             <NavLink to="/new" className="clients-new">
@@ -97,33 +91,10 @@ function Clients() {
         <div className="table-body">
           {clients
             .filter((client) => {
-              if (search.trim() === "") return true;
-              const searchTerm = search.toLowerCase();
-              const byFirst = client.first_name
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byLast = client.last_name
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byPhone = client.phone?.includes(searchTerm);
-              const byAddress1 = client.address_1
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byAddress2 = client.address_2
-                ?.toLowerCase()
-                .includes(searchTerm);
-              const byCity = client.city?.toLowerCase().includes(searchTerm);
-              const byState = client.state?.toLowerCase().includes(searchTerm);
-              const byZip = client.zip?.toLowerCase().includes(searchTerm);
-              return (
-                byFirst ||
-                byLast ||
-                byPhone ||
-                byAddress1 ||
-                byAddress2 ||
-                byCity ||
-                byState ||
-                byZip
+              if (!search.trim()) return true;
+              const q = search.toLowerCase();
+              return Object.values(client).some((v) =>
+                String(v ?? "").toLowerCase().includes(q)
               );
             })
             .map((client) => (
