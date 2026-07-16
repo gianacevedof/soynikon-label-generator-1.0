@@ -1,5 +1,4 @@
 <?php
-// Load .env from the project root (one level up from backend/)
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
