@@ -61,12 +61,10 @@ function NewClients() {
 
   return (
     <div>
-      <section className="surface-panel page-header">
-        <h1 className="fw-bold">Add new client</h1>
-        <p>Fill in the client's information below</p>
-      </section>
-
       <div className="surface-panel new-form">
+        <h5 className="new-form-intro">
+          Fill in the client's information below
+        </h5>
         <form onSubmit={submitFormData}>
           <div className="contact row g-3">
             <p className="fw-bold">
@@ -183,7 +181,9 @@ function NewClients() {
                   Choose...
                 </option>
                 {US_STATES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
                 ))}
               </select>
             </div>

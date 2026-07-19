@@ -110,6 +110,7 @@ hr {
   scrollbar-width: none;
   -ms-overflow-style: none;
   min-height: 0;
+  padding: var(--padding-sm) 0;
 }
 
 .content-scroll::-webkit-scrollbar {
@@ -161,6 +162,10 @@ hr {
   border-radius: var(--radius-md);
 }
 
+.user-info {
+  gap: 15px;
+}
+
 .user-profile-pic {
   display: flex;
   justify-content: center;
@@ -195,37 +200,41 @@ hr {
 }
 
 /* ============================================================
-   TOPBAR
+   HOME GREETING
    ============================================================ */
-.topbar {
-  padding: var(--padding-md);
+.home-greeting {
+  padding-top: var(--padding-sm);
 }
 
-.topbar p {
+.home-greeting-text {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 4px;
+}
+
+.home-greeting-date {
+  font-size: var(--text-sm);
   color: var(--gray-muted);
+  margin: 0;
 }
 
-.topbar--flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* page-header replaces .topbar on non-home pages, mirrors .topbar rules */
-.page-header {
-  padding: var(--padding-md);
-}
-
-.page-header p {
-  color: var(--gray-muted);
-}
-
-.page-header--flex {
+/* ============================================================
+   TABLE HEAD ROW  (heading + search/actions bar)
+   ============================================================ */
+.table-head-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+  margin-bottom: 16px;
+}
+
+.table-head-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* ============================================================
@@ -234,11 +243,11 @@ hr {
 .global-topbar {
   display: flex;
   align-items: center;
-  height: 60px;
   padding: 0 var(--padding-md);
   background: var(--surface);
   border-bottom: 1px solid var(--gray-border);
   gap: 16px;
+  height: 60px;
   position: sticky;
   top: 0;
   z-index: 110;
@@ -320,6 +329,11 @@ hr {
   padding: var(--padding-md);
 }
 
+.about-section p {
+  color: var(--gray-muted);
+  line-height: 1.45;
+}
+
 .about-section a {
   color: var(--dark);
   text-decoration: none;
@@ -327,7 +341,7 @@ hr {
 
 /* Heading above the quick-action cards */
 .quick-actions-heading {
-  margin: var(--margin-lg);
+  margin: var(--margin-md);
   text-align: center;
 }
 
@@ -358,7 +372,7 @@ hr {
   height: 60px;
   border-radius: var(--radius-lg);
   font-size: var(--text-2xl);
-  color: var(--surface);
+  color: var(--dark);
   background-color: var(--yellow);
   margin-bottom: 10px;
   border: 2px solid var(--yellow-hover);
@@ -367,25 +381,6 @@ hr {
 /* ============================================================
    CLIENTS
    ============================================================ */
-.search-bar-container {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.clients-new {
-  background-color: var(--yellow);
-  color: var(--surface);
-  font-weight: bold;
-  border-radius: var(--radius-md);
-  padding: 8px var(--padding-sm);
-  transition: transform 0.2s ease;
-  text-decoration: none;
-}
-
-.clients-new:hover {
-  transform: scale(1.03);
-}
 
 .search-bar {
   width: clamp(180px, 25vw, 350px);
@@ -409,9 +404,9 @@ hr {
 }
 
 .table-container {
-  margin: var(--margin-md) 0;
+  margin: 0;
   padding: var(--padding-sm);
-  text-align: center;
+  text-align: left;
   overflow-x: auto;
 }
 
@@ -506,17 +501,31 @@ hr {
   margin-bottom: 0;
 }
 
-/* Client name — bold, fills space */
-.client-cards .table-row span[data-label="CLIENT"] {
+/* Client card — info column + location */
+.client-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   flex: 1;
-  font-weight: 600;
-  font-size: var(--text-base);
+  min-width: 0;
 }
 
-/* Phone — muted */
-.client-cards .table-row span[data-label="PHONE"] {
-  color: var(--gray-muted);
+.client-card-name {
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--dark);
+}
+
+.client-card-detail {
   font-size: var(--text-sm);
+  color: var(--gray-muted);
+}
+
+.client-card-location {
+  font-size: var(--text-sm);
+  color: var(--gray);
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* ============================================================
@@ -543,10 +552,7 @@ hr {
 
 .order-cards .table-row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: 16px;
-  row-gap: 4px;
+  flex-direction: column;
   padding: 14px 18px;
   margin-bottom: 10px;
   background: var(--surface);
@@ -566,47 +572,73 @@ hr {
   margin-bottom: 0;
 }
 
+/* Two-row order card layout */
+.order-card-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.order-card-top {
+  margin-bottom: 4px;
+}
+
+.order-card-bottom {
+  gap: 12px;
+}
+
 /* Order # — highlighted */
-.order-cards .table-row span[data-label="Order #"] {
+.order-card-num {
   font-weight: 600;
   color: var(--yellow-hover);
-  margin-right: 4px;
+  margin-right: 12px;
+  font-size: var(--text-sm);
+  white-space: nowrap;
 }
 
 /* Client name — bold */
-.order-cards .table-row span[data-label="CLIENT"] {
+.order-card-client {
   font-weight: 600;
   font-size: var(--text-base);
-  margin-right: auto;
+  flex: 1;
+  min-width: 0;
 }
 
 /* Item — muted */
-.order-cards .table-row span[data-label="ITEM"] {
-  color: var(--gray-muted);
+.order-card-item {
+  color: var(--gray);
   font-size: var(--text-sm);
+  flex: 1;
+  min-width: 0;
 }
 
 /* Shipping date — muted */
-.order-cards .table-row span[data-label="Shipping Date"] {
+.order-card-date {
   color: var(--gray-muted);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  white-space: nowrap;
 }
 
 /* ============================================================
    NEW CLIENTS
    ============================================================ */
 .new-form {
-  margin: var(--margin-md) 0;
+  margin: 0;
   padding: var(--padding-md);
+  max-width: 640px;
 }
 
 .new-form p {
   color: var(--yellow-hover);
 }
 
+.new-form-intro {
+  margin-bottom: var(--margin-md);
+}
+
 .new-form button {
   background-color: var(--yellow);
-  color: var(--surface);
+  color: var(--dark);
   font-weight: bold;
   border: none;
   border-radius: var(--radius-md);
@@ -631,7 +663,7 @@ hr {
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   align-items: start;
-  margin-top: var(--margin-md);
+  margin-top: 0;
 }
 
 /* Panels */
@@ -899,6 +931,11 @@ hr {
   z-index: 1;
 }
 
+.auth-logo-big img {
+  width: 40px;
+  height: auto;
+}
+
 .auth-logo-big span {
   font-size: var(--text-base);
   font-weight: 800;
@@ -1047,7 +1084,9 @@ hr {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.15s ease, slideUp 0.2s ease;
+  animation:
+    fadeIn 0.15s ease,
+    slideUp 0.2s ease;
 }
 
 /* Header */
@@ -1076,7 +1115,9 @@ hr {
   cursor: pointer;
   padding: 4px 8px;
   border-radius: var(--radius-sm);
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .detail-modal-close:hover {
@@ -1176,13 +1217,21 @@ select.detail-modal-input {
 
 /* Modal animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translate(-50%, -45%); }
-  to   { transform: translate(-50%, -50%); }
+  from {
+    transform: translate(-50%, -45%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* ============================================================
@@ -1198,8 +1247,12 @@ select.detail-modal-input {
   font-size: var(--text-sm);
   font-weight: 500;
   font-family: inherit;
+  text-decoration: none;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    opacity 0.15s;
 }
 
 .dbtn:disabled {
@@ -1306,26 +1359,19 @@ select.detail-modal-input {
   }
 
   /* ==========================================================
-     HOME — redesigned mobile layout
+     HOME
      ========================================================== */
-  .home .surface-panel.topbar {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0 var(--padding-sm) 4px;
-    margin: 1rem 0;
+  .home-greeting {
+    padding: var(--padding-sm) 0 var(--padding-md) var(--padding-sm);
   }
 
-  .home .surface-panel.topbar h1 {
+  .home-greeting-text {
     font-size: var(--text-lg);
-
-    margin-bottom: 0.5rem;
+    margin-bottom: 2px;
   }
 
-  .home .surface-panel.topbar p {
+  .home-greeting-date {
     font-size: var(--text-xs);
-    color: var(--gray-muted);
   }
 
   /* Hero — compact, centered */
@@ -1349,12 +1395,11 @@ select.detail-modal-input {
     font-size: clamp(1.35rem, 10vw, 4rem);
   }
 
-  /* Quick-action grid — symmetric 2x2 */
+  /* Quick-action grid */
   .quick-actions-heading {
     font-size: var(--text-xs);
-    margin: 12px 0 10px;
+    margin: 16px 0 10px;
     text-align: center;
-    color: var(--gray-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -1381,6 +1426,9 @@ select.detail-modal-input {
     border: 1px solid var(--gray-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+  }
+  .cards:hover {
+    transform: none;
   }
 
   .cards .icons {
@@ -1418,8 +1466,6 @@ select.detail-modal-input {
 
   .about-section p {
     font-size: var(--text-sm);
-    color: var(--gray-muted);
-    line-height: 1.45;
   }
 
   .about-section hr {
@@ -1430,53 +1476,31 @@ select.detail-modal-input {
      ALL PAGES — clean mobile layout, no bubble
      ========================================================== */
 
-  /* Remove bubble from page headers */
-  .surface-panel.page-header {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 10px var(--padding-sm) 4px;
-  }
-
-  .surface-panel.page-header h1 {
-    font-size: var(--text-lg);
-  }
-
-  .surface-panel.page-header p {
-    font-size: var(--text-xs);
-    color: var(--gray-muted);
-  }
-
-  /* Stack page-header content (title + search) */
-  .page-header--flex {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  /* Search bar goes full width */
-  .search-bar-container {
-    flex-wrap: wrap;
-    gap: 8px;
-    width: 100%;
-  }
-
   .search-bar {
     flex: 1;
     min-width: 0;
     width: 100%;
   }
 
-  .search-bar-container .search-bar {
+  /* Stack table header vertically on mobile — title, then full-width search/actions */
+  .table-head-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .table-head-row h5 {
+    text-align: left;
+  }
+
+  .table-head-actions {
+    flex-direction: column;
     width: 100%;
   }
 
-  /* "New Client" button — full width touch target */
-  .clients-new {
+  .table-head-actions .search-bar,
+  .table-head-actions .dbtn {
     width: 100%;
-    text-align: center;
-    padding: 12px 24px;
   }
 
   /* Remove bubble from table container */
@@ -1485,7 +1509,16 @@ select.detail-modal-input {
     border: none;
     box-shadow: none;
     border-radius: 0;
-    padding: 0;
+    padding: 0 var(--padding-sm);
+  }
+
+  /* Order card — client name right-aligned on mobile */
+  .order-card-top {
+    justify-content: space-between;
+  }
+
+  .order-card-client {
+    text-align: right;
   }
 
   /* ==========================================================
@@ -1493,11 +1526,12 @@ select.detail-modal-input {
      ========================================================== */
 
   .surface-panel.new-form {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0 var(--padding-sm);
+    background: var(--surface);
+    border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg);
+    padding: var(--padding-sm);
+    margin: 0 var(--padding-sm);
   }
 
   .new-form .contact,
@@ -1532,13 +1566,22 @@ select.detail-modal-input {
   }
 
   .label-input-row {
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label-input-wrap {
+    width: 100%;
   }
 
   .dbtn {
     width: 100%;
     justify-content: center;
     padding: 14px 16px;
+  }
+
+  .dbtn-warning a {
+    text-decoration: none;
   }
 
   .label-actions {
@@ -1570,10 +1613,6 @@ select.detail-modal-input {
 
   .label-actions {
     align-items: center;
-  }
-
-  .dbtn {
-    max-width: 320px;
   }
 
   /* ==========================================================
@@ -1645,8 +1684,7 @@ select.detail-modal-input {
     padding: 14px;
     font-size: var(--text-base);
   }
-
-  }
+}
 
 /* ==========================================================
    TABLET — collapsed sidebar + detail cards (769px - 1024px)
@@ -1712,6 +1750,10 @@ select.detail-modal-input {
   .sidebar-user-text {
     display: none;
   }
+
+  .user-info {
+    gap: 0;
+  }
   .user-profile-pic {
     width: 44px;
     height: 44px;
@@ -1733,12 +1775,59 @@ select.detail-modal-input {
     margin: 12px 0;
   }
 
+  .home-greeting {
+    padding-bottom: var(--padding-md);
+  }
+
+  .hero {
+    margin-top: 0;
+  }
+
+  /* About section — left-aligned cards */
+  .about-section {
+    padding: var(--padding-sm);
+  }
+
+  /* Home quick-action cards — compact 3-column grid on tablet */
+  .home .row.justify-content-center {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cards {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 120px;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cards:hover {
+    transform: none;
+  }
+
+  .cards .icons {
+    width: 44px;
+    height: 44px;
+    font-size: var(--text-lg);
+    margin-bottom: 8px;
+    border-width: 1.5px;
+  }
+
   .cards h4 {
     font-size: var(--text-sm);
     font-weight: 600;
     margin: 0;
   }
-
   .cards p {
     display: block;
     font-size: var(--text-sm);
@@ -1747,10 +1836,32 @@ select.detail-modal-input {
     line-height: 1.3;
   }
 
+  .new-form {
+    margin: 0 auto;
   }
+}
 
-  @media (min-width: 769px) {
+@media (min-width: 769px) {
   .sidebar-backdrop {
     display: none;
+  }
+}
+
+/* ============================================================
+   DESKTOP ONLY (1025px+)
+   ============================================================ */
+@media (min-width: 1025px) {
+  /* Home cards — grid layout with consistent 20px gap */
+  .home .row.justify-content-center {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 0;
+  }
+
+  .cards {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
   }
 }

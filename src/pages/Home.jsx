@@ -35,12 +35,12 @@ function Home() {
 
   return (
     <div className="home">
-      <section className="surface-panel topbar">
-        <h1 className="fw-bold">
+      <div className="home-greeting">
+        <h1 className="home-greeting-text">
           Good {time},<span className="capitalize"> {username}</span>
         </h1>
-        <p>{formattedDate}</p>
-      </section>
+        <p className="home-greeting-date">{formattedDate}</p>
+      </div>
 
       {/* Hero banner with rotating "Manage your ___" text */}
       <section>

@@ -56,9 +56,7 @@ function Layout() {
   return (
     <div className="d-flex">
       <Sidebar open={navOpen} onClose={closeNav} />
-      {navOpen && (
-        <div className="sidebar-backdrop" onClick={closeNav} />
-      )}
+      {navOpen && <div className="sidebar-backdrop" onClick={closeNav} />}
       <div className="page-content container d-flex flex-column flex-grow-1">
         <Topbar onToggleNav={toggleNav} />
         <div className="content-scroll flex-grow-1">

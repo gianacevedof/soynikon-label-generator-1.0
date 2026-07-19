@@ -62,37 +62,48 @@ function Sidebar({ open, onClose }) {
       {/* Navigation links — "New Client" is admin-only */}
       <div className="sidebar-menu d-flex flex-column p-4">
         <p className="pb-4">
-          <b><span className="nav-label">MAIN</span></b>
+          <b>
+            <span className="nav-label">MAIN</span>
+          </b>
         </p>
         <NavLink to="/" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faBoxOpen} /> <span className="nav-label">Home</span>
+          <FontAwesomeIcon icon={faBoxOpen} />{" "}
+          <span className="nav-label">Home</span>
         </NavLink>
         <NavLink to="/clients" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faUserGroup} /> <span className="nav-label">Clients</span>
+          <FontAwesomeIcon icon={faUserGroup} />{" "}
+          <span className="nav-label">Clients</span>
         </NavLink>
         <NavLink to="/orders" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faCartShopping} /> <span className="nav-label">Orders</span>
+          <FontAwesomeIcon icon={faCartShopping} />{" "}
+          <span className="nav-label">Orders</span>
         </NavLink>
         {role === "admin" && (
           <NavLink to="/new" className={navClass} onClick={onClose}>
-            <FontAwesomeIcon icon={faUserPlus} /> <span className="nav-label">New Client</span>
+            <FontAwesomeIcon icon={faUserPlus} />{" "}
+            <span className="nav-label">New Client</span>
           </NavLink>
         )}
         <NavLink to="/labels" className={navClass} onClick={onClose}>
-          <FontAwesomeIcon icon={faTag} /> <span className="nav-label">Labels</span>
+          <FontAwesomeIcon icon={faTag} />{" "}
+          <span className="nav-label">Labels</span>
         </NavLink>
       </div>
 
       <hr />
 
       <div className="d-flex justify-content-between p-4">
-        <div className="d-flex align-items-center gap-3 capitalize">
+        <div className="user-info d-flex align-items-center capitalize">
           <div className="user-profile-pic">
             <p>{initials}</p>
           </div>
           <div>
-            <p className="text-white h5 m-0"><span className="sidebar-user-text">{username}</span></p>
-            <p><span className="sidebar-user-text">{role}</span></p>
+            <p className="text-white h5 m-0">
+              <span className="sidebar-user-text">{username}</span>
+            </p>
+            <p>
+              <span className="sidebar-user-text">{role}</span>
+            </p>
           </div>
         </div>
         <div>

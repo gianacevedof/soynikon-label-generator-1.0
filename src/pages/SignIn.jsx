@@ -49,11 +49,7 @@ function SignIn() {
           <div className="auth-glow" />
           <div className="auth-glow2" />
           <div className="auth-logo-big">
-            <span>
-              SOY
-              <br />
-              NIK
-            </span>
+            <img src="logo.jpg" alt="Soynikon Desk Logo" />
           </div>
           <div className="auth-brand">Soynikon Desk</div>
           <div className="auth-tagline">
@@ -108,7 +104,7 @@ function SignIn() {
                 href="https://github.com/gianacevedof/desk.soynikon.do"
                 target="_blank"
               >
-                GitHub
+                <u>GitHub</u>
               </a>
               . Otherwise provisioned by admin.
             </div>

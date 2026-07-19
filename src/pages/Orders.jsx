@@ -33,21 +33,17 @@ function Orders() {
 
   return (
     <div>
-      <section className="surface-panel page-header page-header--flex">
-        <div>
-          <h1 className="fw-bold">Orders</h1>
-        </div>
-        <div className="search-bar-container">
-          <input
+      <div className="surface-panel table-container order-cards">
+        <div className="table-head-row">
+          <h5 className="m-0">All Orders</h5>
+          <div className="table-head-actions">
+            <input
               className="search-bar"
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search"
             />
+          </div>
         </div>
-      </section>
-
-      <div className="surface-panel table-container order-cards">
-        <p className="h5 mb-3">All Orders</p>
 
         {/* Card rows — filtered client-side against every visible field */}
         <div className="table-body">
@@ -65,12 +61,16 @@ function Orders() {
                 key={order.order_num}
                 onClick={() => openDetailModal(order, "view")}
               >
-                <span data-label="Order #">{order.order_num}</span>
-                <span data-label="CLIENT">
-                  {order.first_name} {order.last_name || "-"}
-                </span>
-                <span data-label="ITEM">{order.item}</span>
-                <span data-label="Shipping Date">{order.shipping_date}</span>
+                <div className="order-card-row order-card-top">
+                  <span className="order-card-num">#{order.order_num}</span>
+                  <span className="order-card-client">
+                    {order.first_name} {order.last_name || "-"}
+                  </span>
+                </div>
+                <div className="order-card-row order-card-bottom">
+                  <span className="order-card-item">{order.item}</span>
+                  <span className="order-card-date">{order.shipping_date}</span>
+                </div>
               </div>
             ))}
         </div>

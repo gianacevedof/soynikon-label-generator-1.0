@@ -65,27 +65,22 @@ function Clients() {
 
   return (
     <div>
-      <section className="surface-panel page-header page-header--flex">
-        <div>
-          <h1 className="fw-bold">Clients</h1>
-        </div>
-        <div className="search-bar-container">
-          <input
+      <div className="surface-panel table-container client-cards">
+        <div className="table-head-row">
+          <h5 className="m-0">All clients</h5>
+          <div className="table-head-actions">
+            <input
               className="search-bar"
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search"
             />
-
-          {role === "admin" && (
-            <NavLink to="/new" className="clients-new">
-              <FontAwesomeIcon icon={faPlus} /> New Client
-            </NavLink>
-          )}
+            {role === "admin" && (
+              <NavLink to="/new" className="dbtn dbtn-warning" style={{ whiteSpace: "nowrap" }}>
+                <FontAwesomeIcon icon={faPlus} /> New Client
+              </NavLink>
+            )}
+          </div>
         </div>
-      </section>
-
-      <div className="surface-panel table-container client-cards">
-        <p className="h5 mb-3">All clients</p>
 
         {/* Card rows — filtered client-side against every field */}
         <div className="table-body">
@@ -103,10 +98,13 @@ function Clients() {
                 key={client.client_id}
                 onClick={() => openDetailModal(client, "view")}
               >
-                <span data-label="CLIENT">
-                  {client.first_name} {client.last_name || ""}
-                </span>
-                <span data-label="PHONE">{client.phone || "-"}</span>
+                <div className="client-card-info">
+                  <span className="client-card-name">
+                    {client.first_name} {client.last_name || ""}
+                  </span>
+                  <span className="client-card-detail">{client.phone || "-"}</span>
+                </div>
+                <span className="client-card-location">{client.city || "-"}</span>
               </div>
             ))}
         </div>
