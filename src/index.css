@@ -623,9 +623,9 @@ hr {
    NEW CLIENTS
    ============================================================ */
 .new-form {
-  margin: 0;
   padding: var(--padding-md);
   max-width: 640px;
+  margin: 0 auto;
 }
 
 .new-form p {
@@ -1834,10 +1834,6 @@ select.detail-modal-input {
     color: var(--gray-muted);
     margin-top: 6px;
     line-height: 1.3;
-  }
-
-  .new-form {
-    margin: 0 auto;
   }
 }
 
