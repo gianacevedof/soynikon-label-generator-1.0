@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { getRole } from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPenToSquare,
@@ -12,6 +13,7 @@ import US_STATES from "../utils/states";
 
 function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete }) {
   const URL = import.meta.env.VITE_API_URL;
+  const role = getRole();
   const [mode, setMode] = useState(initialMode); // "view" | "edit" | "delete"
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
@@ -155,12 +157,16 @@ function DetailModal({ item, type, mode: initialMode, onClose, onSave, onDelete 
               <div className="detail-modal-actions">
                 {type === "client" && (
                   <>
-                    <button className="dbtn dbtn-warning" onClick={() => setMode("edit")}>
-                      <FontAwesomeIcon icon={faPenToSquare} /> Edit
-                    </button>
-                    <button className="dbtn dbtn-danger" onClick={() => setMode("delete")}>
-                      <FontAwesomeIcon icon={faTrash} /> Delete
-                    </button>
+                    {role === "admin" && (
+                      <button className="dbtn dbtn-warning" onClick={() => setMode("edit")}>
+                        <FontAwesomeIcon icon={faPenToSquare} /> Edit
+                      </button>
+                    )}
+                    {role === "admin" && (
+                      <button className="dbtn dbtn-danger" onClick={() => setMode("delete")}>
+                        <FontAwesomeIcon icon={faTrash} /> Delete
+                      </button>
+                    )}
                   </>
                 )}
               </div>
