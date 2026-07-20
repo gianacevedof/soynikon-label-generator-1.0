@@ -1,6 +1,5 @@
 # SPA routing for Soynikon Desk
 RewriteEngine On
-RewriteBase /soynikon-desk/
 
 # If the request is for an actual file or directory, serve it
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -9,6 +8,12 @@ RewriteRule ^ - [L]
 
 # Otherwise rewrite to index.html for client-side routing
 RewriteRule ^ index.html [L]
+
+# Fallback for Hostinger CDN/LiteSpeed (catches 404s the rewrite misses)
+FallbackResource /index.html
+
+# Also catch 404s at the error-document level (belt + suspenders)
+ErrorDocument 404 /index.html
 
 # Security headers
 <IfModule mod_headers.c>
